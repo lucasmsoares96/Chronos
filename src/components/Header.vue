@@ -100,7 +100,8 @@ header{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 10px 25px;
+    padding: 0px 25px;
+    padding-bottom: 20px;
 
 }
 #busca{

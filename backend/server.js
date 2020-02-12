@@ -11,8 +11,8 @@ var myObj = [
     { name: 'Salas de Aula', item: 'sala' },
     { name: 'Laboratórios', item: 'lab' },
     { name: 'Ginásio', item: 'gin' },
-    { name: 'Ginásio', item: 'gin' },
-
+    { name: 'Veículo', item: 'vei' },
+    
 ];
 
 app.get('/data', (req, resp) => {

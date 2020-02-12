@@ -1,19 +1,22 @@
 <template>
-    <Section />
+    <main>
+        <!-- <Menu /> -->
+        <Section />
+    </main>
 </template>
 
 <script>
-
-import Section from "./Section"
+import Section from "./Section";
+// import Menu from "./Menu";
 
 export default {
-    name: 'Main',
+    name: "Main",
     components: {
-        Section
-    },
-}
+        Section,
+        // Menu
+    }
+};
 </script>
 
 <style>
-
 </style>
