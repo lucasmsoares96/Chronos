@@ -1,9 +1,9 @@
 <template>
-    <b-container>
+    <div>
         <Header />
         <Main />
         <Footer />
-    </b-container>
+    </div>
 </template>
 
 <script>
@@ -18,12 +18,9 @@ export default {
         Header, Footer, Main,
         
     }
-
 }
 </script>
 
 <style>
-body {
-    background: #C1C1C1;
-}
+
 </style>

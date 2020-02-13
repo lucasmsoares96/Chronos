@@ -27,6 +27,7 @@
                     Selected:
                     <strong>{{ selected }}</strong>
                 </div>
+                <!-- <router-link to="/schedule"></router-link> -->
                 <b-button variant="primary" v-on:click="sendDateRec"
                     >enviar</b-button
                 >
@@ -59,7 +60,7 @@ import axios from "axios";
 let date = new Date();
 
 export default {
-    name: "Section",
+    name: "Home",
     data() {
         return {
             formData: date.toISOString().slice(0, 10),
@@ -83,8 +84,8 @@ export default {
                         recurso: this.selected,
                     }
                 })
-                .then(res => {
-                    this.options = res.data;
+                .then( () => {
+                    this.$router.push('/schedule')
                 });
         },
 

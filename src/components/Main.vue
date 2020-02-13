@@ -1,18 +1,19 @@
 <template>
     <main>
+        <!-- <Section /> -->
+        <router-view></router-view>
         <!-- <Menu /> -->
-        <Section />
     </main>
 </template>
 
 <script>
-import Section from "./Section";
+// import Section from "./Section";
 // import Menu from "./Menu";
 
 export default {
     name: "Main",
     components: {
-        Section,
+        // Section,
         // Menu
     }
 };
