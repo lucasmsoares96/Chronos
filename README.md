@@ -1,16 +1,36 @@
-# chonus
+# Chonus
 
-## Project setup
-```
-npm install
-```
+## Como executar o projeto
 
-### Compiles and hot-reloads for development
+### Instale as dependencias do FRONTEND  e execute-o no modo de desenvolvimento
+```
+npm i
+```
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Instale as dependencias do BACKEND DE TESTE
+```
+cd /backend
+```
+```
+npm i
+```
+```
+npm start
+```
+
+### URL do backend
+```
+http://localhost:3003/
+```
+### URL do frontend
+```
+http://localhost:8080/
+```
+
+<!-- ### Compiles and minifies for production
 ```
 npm run build
 ```
@@ -21,4 +41,4 @@ npm run lint
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+See [Configuration Reference](https://cli.vuejs.org/config/). -->
