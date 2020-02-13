@@ -1,38 +1,69 @@
 <template>
     <div id="schedule">
         <h1>Quadro de horarios</h1>
-        <b-table @click="acao" bordered :fields="fields" :items="items"></b-table>
-
+        <b-table bordered :items="items" :fields="fields"></b-table>
     </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
-    name: 'Schedule',
-    data(){
-        return{
+    name: "Schedule",
+    data() {
+        return {
             items: [],
-            fields: [],
-        }
+            fields: []
+        };
     },
     methods: {
         loadSchedules() {
-            axios.get("http://localhost:3003/schedule")
-            .then(res => {
+            axios.get("http://localhost:3003/schedule").then(res => {
                 this.items = res.data;
-                this.fields = Object.keys(this.items[0]).filter((obj) => {return (obj == "idhorario") ? false : true})
-            })
-        },
-        acao(){
-            console.log("deu certo")
+                this.items.forEach((e, index1) => {
+                    this.items[index1]["_cellVariants"] = {};
+                    Object.values(e).forEach((el, index2) => {
+                        if (
+                            el == 2 &&
+                            Object.keys(this.items[index1])[index2] != "idhorario"
+                        ) {
+                            let col = String(
+                                Object.keys(this.items[index1])[index2]
+                            );
+                            this.items[index1]["_cellVariants"][col] = "danger";
+                        } else if (
+                            el == 1 &&
+                            Object.keys(this.items[index1])[index2] != "idhorario"
+                        ) {
+                            let col = String(
+                                Object.keys(this.items[index1])[index2]
+                            );
+                            this.items[index1]["_cellVariants"][col] = "warning";
+                        } else if (
+                            el == 0 &&
+                            Object.keys(this.items[index1])[index2] != "idhorario"
+                        ) {
+                            let col = String(
+                                Object.keys(this.items[index1])[index2]
+                            );
+                            this.items[index1]["_cellVariants"][col] = "info";
+                        }
+                    });
+                });
+                this.fields = Object.keys(this.items[0]).filter(obj => {
+                    return obj == "idhorario" || obj == "_cellVariants"
+                        ? false
+                        : true;
+                });
+            });
         }
+        // acao() {
+        //     console.log("deu certo");
+        // }
     },
     mounted() {
         this.loadSchedules();
     }
-    
-}
+};
 </script>
 
 <style>

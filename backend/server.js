@@ -1,24 +1,23 @@
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
-const express = require('express')
-const app = express()
-const bodyParser = require('body-parser')
-const cors = require('cors')
-
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cors())
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+app.use(bodyParser.json());
 
 let resorces = [
-    { name: 'Salas de Aula', item: 'sala' },
-    { name: 'Laboratórios', item: 'lab' },
-    { name: 'Ginásio', item: 'gin' },
-    { name: 'Veículo', item: 'vei' },
-    
+    { name: "Salas de Aula", item: "sala" },
+    { name: "Laboratórios", item: "lab" },
+    { name: "Ginásio", item: "gin" },
+    { name: "Veículo", item: "vei" }
 ];
+
 let schedule = [
     {
-        "numero": 303,
-        "idhorario": 1,
+        numero: 303,
+        idhorario: 1,
         "07:00-07:50": 0,
         "07:50-08:40": 0,
         "09:45-10:35": 0,
@@ -35,8 +34,8 @@ let schedule = [
         "21:45-22:35": 0
     },
     {
-        "numero": 303,
-        "idhorario": 2,
+        numero: 303,
+        idhorario: 2,
         "07:00-07:50": 0,
         "07:50-08:40": 0,
         "09:45-10:35": 0,
@@ -53,8 +52,8 @@ let schedule = [
         "21:45-22:35": 0
     },
     {
-        "numero": 303,
-        "idhorario": 3,
+        numero: 303,
+        idhorario: 3,
         "07:00-07:50": 1,
         "07:50-08:40": 1,
         "09:45-10:35": 1,
@@ -71,8 +70,8 @@ let schedule = [
         "21:45-22:35": 1
     },
     {
-        "numero": 303,
-        "idhorario": 4,
+        numero: 303,
+        idhorario: 4,
         "07:00-07:50": 2,
         "07:50-08:40": 2,
         "09:45-10:35": 2,
@@ -86,19 +85,40 @@ let schedule = [
         "19:00-19:50": 2,
         "19:50-20:40": 2,
         "20:55-21:45": 2,
-        "21:45-22:35": 2
+        "21:45-22:35": 2,
+        _cellVariants: {}
     }
-]
+];
 
-app.get('/data', (req, resp) => {
+app.get("/data", (req, resp) => {
     // console.log(req.body)
-    console.log(req.query)
-    resp.json(resorces)
-})
-app.get('/schedule', (req, resp) => {
+    console.log(req.query);
+    resp.json(resorces);
+});
+app.get("/schedule", (req, resp) => {
     // console.log(req.body)
-    console.log(req.query)
-    resp.json(schedule)
-})
+    console.log(req.query);
+    resp.json(schedule);
+});
 
-app.listen(3003)
+app.listen(3003);
+
+// schedule.forEach((e, index1) => {
+//     schedule[index1]["_cellVariants"] = {};
+//     Object.values(e).forEach((el, index2) => {
+//         if (el == 2 && Object.keys(schedule[index1])[index2] != "idhorario") {
+//             let col = String(Object.keys(schedule[index1])[index2]);
+//             console.log(el, col);
+//             schedule[index1]["_cellVariants"][col] = "danger";
+//         }else if (el == 1 && Object.keys(schedule[index1])[index2] != "idhorario") {
+//             let col = String(Object.keys(schedule[index1])[index2]);
+//             console.log(el, col);
+//             schedule[index1]["_cellVariants"][col] = "warning";
+//         } else if (el == 0 && Object.keys(schedule[index1])[index2] != "idhorario") {
+//             let col = String(Object.keys(schedule[index1])[index2]);
+//             console.log(el, col);
+//             schedule[index1]["_cellVariants"][col] = "info";
+//         }
+//     });
+// });
+// console.log(schedule)
