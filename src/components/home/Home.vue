@@ -71,14 +71,14 @@ export default {
     methods: {
         reqTable() {
             axios
-                .get("http://localhost:3000/tipoderecursos")
+                .get("http://localhost:3003/data")
                 .then(res => {
                     this.options = res.data;
                 });
         },
         sendDateRec() {
             axios
-                .post("http://localhost:3000/data2", {
+                .get("http://localhost:3003/data", {
                     params: {
                         data: this.formData,
                         recurso: this.selected,
