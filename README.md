@@ -5,19 +5,13 @@
 ### Instale as dependencias do FRONTEND  e execute-o no modo de desenvolvimento
 ```
 npm i
-```
-```
 npm run serve
 ```
 
 ### Instale as dependencias do BACKEND DE TESTE
 ```
 cd /backend
-```
-```
 npm i
-```
-```
 npm start
 ```
 
