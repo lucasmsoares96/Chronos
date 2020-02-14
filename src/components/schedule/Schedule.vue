@@ -9,6 +9,22 @@
 <script>
 export default {
     name: "Schedule",
+    methods: {
+        clickOnCell(){
+            console.log('deu certo')
+        },
+        catchCell(){
+            const tdInfo = [... document.querySelectorAll('td.table-info')]
+            tdInfo.forEach(e => {
+                e.innerHTML = ''
+                e.onclick = this.clickOnCell
+                })
+            const tdwarning = [... document.querySelectorAll('td.table-warning')]
+            tdwarning.forEach(e => e.innerHTML = '')
+            const tdDanger = [... document.querySelectorAll('td.table-danger')]
+            tdDanger.forEach(e => e.innerHTML = '')
+        }
+    },
     computed: {
         fields(){
             return this.$store.state.fields
@@ -18,6 +34,7 @@ export default {
         }
     },
     mounted(){
+        this.catchCell(),
         this.$store.commit('resSchedule')
     }
 };
