@@ -6,16 +6,21 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        obj: {},
         items: [],
-        fields: []
+        fields: [],
+        user: {
+            nome: 'Lucas Martins',
+            email: 'lucasmartinssoares@live.com'
+        },
     },
     mutations: {
-        resSchedule(state, obj) {
+        resSchedule(state) {
             axios
                 .get("http://localhost:3000/dataRecursos", {
                     params: {
-                        data : obj[0],
-                        tipoRecurso : obj[1]
+                        data: state.obj.data,
+                        tipoRecurso: state.obj.tipoRecurso,
                     }
                 })
                 .then(res => {
@@ -62,6 +67,11 @@ export default new Vuex.Store({
                             : true;
                     });
                 });
+        },
+        setObj(state,obj){
+            state.obj.data = obj[0],
+            state.obj.tipoRecurso = obj[1]
+
         }
     }
 });

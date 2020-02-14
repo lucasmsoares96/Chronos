@@ -26,7 +26,7 @@ export default {
 
 <style>
 header{
-    height: 162;
+    height: 162px;
     background-color: #004C84;    
     background-image: linear-gradient(
         to bottom,
