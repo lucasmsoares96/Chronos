@@ -6,7 +6,7 @@
 
 <script>
 
-import Container from "./components/Container"
+import Container from "./components/template/Container"
 import "bootstrap"
 
 export default {
