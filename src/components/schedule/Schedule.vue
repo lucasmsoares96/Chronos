@@ -17,7 +17,7 @@ export default {
     },
     methods: {
         loadSchedules() {
-            axios.get("http://localhost:3003/schedule").then(res => {
+            axios.get("http://localhost:3000/dataRecursosZZ").then(res => {
                 this.items = res.data;
                 this.items.forEach((e, index1) => {
                     this.items[index1]["_cellVariants"] = {};
