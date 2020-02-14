@@ -33,7 +33,6 @@
                     Selected:
                     <strong>{{ selected }}</strong>
                 </div>
-                <!-- <router-link to="/schedule"></router-link> -->
                 <b-button variant="primary" v-on:click="sendDateRec"
                     >enviar</b-button
                 >
@@ -72,7 +71,6 @@ export default {
             formData: date.toISOString().slice(0, 10),
             selected: "",
             options: [],
-            // items: []
         };
     },
     methods: {
@@ -82,13 +80,10 @@ export default {
             });
         },
         sendDateRec() {
-            axios.get("http://localhost:3000/dataRecursos", {
-                params: {
-                    data: this.formData,
-                    recurso: this.selected
-                }
-            });
-            this.$store.commit('resSchedule')
+            let data= this.formData
+            let tipoRecurso= this.selected
+            let obj = [data,tipoRecurso];
+            this.$store.commit('resSchedule',obj)
             this.$router.push("/schedule");
         }
     },
