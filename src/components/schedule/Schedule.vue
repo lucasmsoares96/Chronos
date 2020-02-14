@@ -17,6 +17,9 @@ export default {
             return this.$store.state.items
         }
     },
+    mounted(){
+        this.$store.commit('resSchedule')
+    }
 };
 </script>
 

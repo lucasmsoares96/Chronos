@@ -80,11 +80,17 @@ export default {
             });
         },
         sendDateRec() {
-            let data= this.formData
-            let tipoRecurso= this.selected
-            let obj = [data,tipoRecurso];
-            this.$store.commit('resSchedule',obj)
-            this.$router.push("/schedule");
+                let data= this.formData
+                let tipoRecurso= this.selected
+                let obj = [data,tipoRecurso];
+            axios
+                .post("http://localhost:3000/data", {
+                        data
+                })
+                .then(() => {
+                    this.$store.commit('setObj',obj)
+                    this.$router.push("/schedule");
+                })
         }
     },
     mounted() {

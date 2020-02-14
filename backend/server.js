@@ -8,10 +8,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 let resorces = [
-    { name: "Salas de Aula", item: "sala" },
-    { name: "Laboratórios", item: "lab" },
-    { name: "Ginásio", item: "gin" },
-    { name: "Veículo", item: "vei" }
+    { nome: "Salas de Aula", idTipoDeRecursos: "sala" },
+    { nome: "Laboratórios", idTipoDeRecursos: "lab" },
+    { nome: "Ginásio", idTipoDeRecursos: "gin" },
+    { nome: "Veículo", idTipoDeRecursos: "vei" }
 ];
 
 let schedule = [
@@ -90,18 +90,23 @@ let schedule = [
     }
 ];
 
-app.get("/data", (req, resp) => {
+app.get("/tipoderecursos", (req, resp) => {
     // console.log(req.body)
     console.log(req.query);
     resp.json(resorces);
 });
-app.get("/schedule", (req, resp) => {
+app.get("/dataRecursos", (req, resp) => {
     // console.log(req.body)
     console.log(req.query);
     resp.json(schedule);
 });
+app.post("/data", (req, resp) => {
+    console.log(req.body)
+    // console.log(req.query);
+    resp.json(schedule);
+});
 
-app.listen(3003);
+app.listen(3000);
 
 // schedule.forEach((e, index1) => {
 //     schedule[index1]["_cellVariants"] = {};
