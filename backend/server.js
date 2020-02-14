@@ -34,7 +34,7 @@ let schedule = [
         "21:45-22:35": 0
     },
     {
-        numero: 303,
+        numero: 304,
         idhorario: 2,
         "07:00-07:50": 0,
         "07:50-08:40": 0,
@@ -52,7 +52,7 @@ let schedule = [
         "21:45-22:35": 0
     },
     {
-        numero: 303,
+        numero: 305,
         idhorario: 3,
         "07:00-07:50": 1,
         "07:50-08:40": 1,
@@ -70,7 +70,7 @@ let schedule = [
         "21:45-22:35": 1
     },
     {
-        numero: 303,
+        numero: 306,
         idhorario: 4,
         "07:00-07:50": 2,
         "07:50-08:40": 2,
@@ -101,6 +101,11 @@ app.get("/dataRecursos", (req, resp) => {
     resp.json(schedule);
 });
 app.post("/data", (req, resp) => {
+    console.log(req.body)
+    // console.log(req.query);
+    resp.json(schedule);
+});
+app.post("/professorhorario", (req, resp) => {
     console.log(req.body)
     // console.log(req.query);
     resp.json(schedule);
