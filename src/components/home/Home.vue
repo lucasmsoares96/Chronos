@@ -6,10 +6,16 @@
         <div id="grade" class="border-bottom-1">
             <b-form class="formulario">
                 <p>Selecione a data desejada</p>
-                <input id="calendar" type="date" name="calendario" autofocus v-model="formData"/>
-                    <br>
-                    Selected:
-                    <strong>{{ formData }}</strong>
+                <input
+                    id="calendar"
+                    type="date"
+                    name="calendario"
+                    autofocus
+                    v-model="formData"
+                />
+                <br />
+                Selected:
+                <strong>{{ formData }}</strong>
                 <br />
                 <br />
                 <b-form-group label="Selecione o recurso desejado">
@@ -66,29 +72,25 @@ export default {
             formData: date.toISOString().slice(0, 10),
             selected: "",
             options: [],
+            // items: []
         };
     },
     methods: {
         reqTable() {
-            axios
-                .get("http://localhost:3000/tipoderecursos")
-                .then(res => {
-                    this.options = res.data;
-                });
+            axios.get("http://localhost:3000/tipoderecursos").then(res => {
+                this.options = res.data;
+            });
         },
         sendDateRec() {
-            axios
-                .get("http://localhost:3000/dataRecursos", {
-                    params: {
-                        data: this.formData,
-                        tipoRecurso: this.selected,
-                    }
-                })
-                .then( () => {
-                    this.$router.push('/schedule')
-                });
-        },
-
+            axios.get("http://localhost:3000/dataRecursos", {
+                params: {
+                    data: this.formData,
+                    recurso: this.selected
+                }
+            });
+            this.$store.commit('resSchedule')
+            this.$router.push("/schedule");
+        }
     },
     mounted() {
         this.reqTable();
