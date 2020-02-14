@@ -17,8 +17,8 @@
                         v-model="selected"
                         :options="options"
                         class="mb-3"
-                        value-field="item"
-                        text-field="name"
+                        value-field="idTipoDeRecursos"
+                        text-field="nome"
                         disabled-field="notEnabled"
                         stacked
                     ></b-form-radio-group>
@@ -71,17 +71,17 @@ export default {
     methods: {
         reqTable() {
             axios
-                .get("http://localhost:3003/data")
+                .get("http://localhost:3000/tipoderecursos")
                 .then(res => {
                     this.options = res.data;
                 });
         },
         sendDateRec() {
             axios
-                .get("http://localhost:3003/data", {
+                .get("http://localhost:3000/dataRecursos", {
                     params: {
                         data: this.formData,
-                        recurso: this.selected,
+                        tipoRecurso: this.selected,
                     }
                 })
                 .then( () => {
