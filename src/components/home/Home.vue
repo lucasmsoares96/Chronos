@@ -70,27 +70,29 @@ export default {
         return {
             formData: date.toISOString().slice(0, 10),
             selected: "",
-            options: [],
+            options: []
         };
     },
     methods: {
         reqTable() {
             axios.get("http://localhost:3000/tipoderecursos").then(res => {
                 this.options = res.data;
+                console.log(this.options);
             });
         },
         sendDateRec() {
-                let data= this.formData
-                let tipoRecurso= this.selected
-                let obj = [data,tipoRecurso];
+            let data = this.formData;
+            let tipoRecurso = this.selected;
+            let obj = [data, tipoRecurso];
             axios
                 .post("http://localhost:3000/data", {
-                        data
+                    data
                 })
                 .then(() => {
-                    this.$store.commit('setObj',obj)
+                    console.log(obj);
+                    this.$store.commit("setObj", obj);
                     this.$router.push("/schedule");
-                })
+                });
         }
     },
     mounted() {
@@ -114,22 +116,32 @@ section {
     align-items: flex-start;
     padding: 20px;
 }
-#grade {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
+
+@media screen and (max-width: 600px) {
+    .formulario {
+        flex-grow: 1;
+        padding: 0;
+    }
+    #grade {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 100%;
+    }
 }
-.formulario {
-    flex-grow: 1;
-    padding: 20px 60px;
+@media screen and (min-width: 600px) {
+    .formulario {
+        flex-grow: 1;
+        padding: 20px 60px;
+    }
+    #grade {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+    }
 }
-#grade {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-}
+
 button {
     width: 25%;
     float: right;

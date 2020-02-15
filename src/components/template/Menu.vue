@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import "bootstrap";
 
 export default {
     name: "Menu"
