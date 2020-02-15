@@ -7,7 +7,6 @@
 <script>
 
 import Container from "./components/template/Container"
-import "bootstrap"
 
 export default {
     name: "App",

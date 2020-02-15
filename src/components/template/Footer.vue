@@ -89,54 +89,56 @@
                 </a>
             </div>
         </div>
-
         <div id="rodape">
-            <div>
-                <ul id="social">
-                    <li>
-                        <a href="https://www.facebook.com/cefetmg" target="_blank">
-                            <img
-                                src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/ico_facebook.png"
-                                alt="Facebook"
-                            />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/cefet_mg" target="_blank">
-                            <img
-                                src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/ico_twitter.png"
-                                alt="Twitter"
-                            />
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="https://www.linkedin.com/edu/school?id=10506&amp;trk=prof-following-school-logo"
-                            target="_blank"
-                        >
-                            <img
-                                src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/ico_linkedin.png"
-                                alt="Linkedin"
-                            />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/cefetmg/" target="_blank">
-                            <img
-                                src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/ico_instagram.png"
-                                alt="Instagram"
-                            />
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <ul id="social">
+                <li>
+                    <a href="https://www.facebook.com/cefetmg" target="_blank">
+                        <img
+                            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/ico_facebook.png"
+                            alt="Facebook"
+                        />
+                    </a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/cefet_mg" target="_blank">
+                        <img
+                            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/ico_twitter.png"
+                            alt="Twitter"
+                        />
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://www.linkedin.com/edu/school?id=10506&amp;trk=prof-following-school-logo"
+                        target="_blank"
+                    >
+                        <img
+                            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/ico_linkedin.png"
+                            alt="Linkedin"
+                        />
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://www.instagram.com/cefetmg/"
+                        target="_blank"
+                    >
+                        <img
+                            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/ico_instagram.png"
+                            alt="Instagram"
+                        />
+                    </a>
+                </li>
+            </ul>
             <div id="info">
                 <h4>
-                    <a href="http://www.divinopolis.cefetmg.br">Unidade Divinópolis</a>
+                    <a href="http://www.divinopolis.cefetmg.br"
+                        >Unidade Divinópolis</a
+                    >
                 </h4>
                 <p>
-                    Rua Álvares de Azevedo 400 - Bela Vista - Divinópolis - MG - Brasil -
-                    CEP 35503-822
+                    Rua Álvares de Azevedo 400 - Bela Vista - Divinópolis - MG -
+                    Brasil - CEP 35503-822
                 </p>
                 <p>Telefone: +55 (37) 3229-1150 - +55 (37) 3229-1180</p>
             </div>
@@ -161,32 +163,58 @@ export default {
 </script>
 
 <style>
+/* * {
+    border: 1px solid;
+    padding: 2px;
+    margin: 1px;
+} */
+
+@media screen and (max-width: 600px) {
+    #rodape {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #unidades {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    #rodape {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #unidades {
+        padding: 20px 0px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
 footer {
     background-color: white;
     box-sizing: border-box;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-#unidades {
-    padding: 20px 0px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
 #social {
     display: flex;
     flex-direction: row;
     list-style-type: none;
+    border: 0px;
+    padding: 20px 0px;
+    margin: 0px;
 }
 
 #rodape {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
     color: white;
     height: 100%;
     padding: 20px;

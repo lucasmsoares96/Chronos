@@ -15,6 +15,8 @@ export default {
         clickOnCell(e) {
             // console.log([e.srcElement.parentNode.rowIndex]);
             // console.log([e.srcElement.cellIndex]);
+            // console.log(e.target.className)
+            e.target.className = 'table-warning'
             const table = document.getElementsByTagName("table")[0]
             let row = table.rows[e.srcElement.parentNode.rowIndex].cells[0].innerHTML
             let column = table.rows[0].cells[e.srcElement.cellIndex].innerHTML
@@ -58,13 +60,15 @@ export default {
         }
     },
     mounted() {
-        this.catchCell(), this.$store.commit("resSchedule");
+        this.catchCell(),
+        this.$store.commit("resSchedule");
     }
 };
 </script>
 
 <style>
 #schedule {
+    overflow: scroll;
     background-color: white;
     display: flex;
     flex-direction: column;
