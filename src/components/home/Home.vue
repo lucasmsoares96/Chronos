@@ -53,6 +53,9 @@
                         placeholder="Informe sua senha"
                     />
                 </b-form-group>
+                <b-button variant="primary" v-on:click="sendUserData"
+                    >enviar</b-button
+                >
             </b-form>
         </div>
     </section>
@@ -92,6 +95,20 @@ export default {
                     console.log(obj);
                     this.$store.commit("setObj", obj);
                     this.$router.push("/schedule");
+                });
+        },
+        sendUserData() {
+            let data = this.formData;
+            let tipoRecurso = this.selected;
+            let obj = [data, tipoRecurso];
+            axios
+                .post("http://localhost:3000/data", {
+                    data
+                })
+                .then(() => {
+                    console.log(obj);
+                    this.$store.commit("setObj", obj);
+                    this.$router.push("/teacher");
                 });
         }
     },
