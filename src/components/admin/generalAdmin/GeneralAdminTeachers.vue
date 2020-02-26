@@ -14,6 +14,7 @@
                             v-model="user.name"
                             required
                             placeholder="Informe o nome do professor..."
+                            :readonly="mode === 'remove'"
                         ></b-form-input>
                     </b-form-group>
                 </b-col>
@@ -25,11 +26,12 @@
                             v-model="user.email"
                             required
                             placeholder="Informe o E-mail do professor..."
+                            :readonly="mode === 'remove'"
                         ></b-form-input>
                     </b-form-group>
                 </b-col>
             </b-row>
-            <b-row>
+            <b-row v-show="mode === 'save'">
                 <b-col md="6" sm="12">
                     <b-form-group label="Senha: " label-for="user-password">
                         <b-form-input
@@ -56,7 +58,7 @@
                     </b-form-group>
                 </b-col>
             </b-row>
-            <b-row>
+            <b-row v-show="mode === 'save'">
                 <b-col md="6" sm="12">
                     <b-form-checkbox
                         id="user-general-admin"
@@ -76,17 +78,46 @@
                     </b-form-checkbox>
                 </b-col>
             </b-row>
-            <b-button variant="primary" v-if="mode === 'save'" @click="save"
-                >Salvar</b-button
-            >
-            <b-button variant="danger" v-if="mode === 'remove'" @click="remove"
-                >Excluir</b-button
-            >
-            <b-button class="ml-2" @click="reset">Cancelar</b-button>
+            <b-row>
+                <b-col xs="12">
+                    <b-button
+                        variant="primary"
+                        v-if="mode === 'save'"
+                        @click="save"
+                        >Salvar</b-button
+                    >
+                    <b-button
+                        variant="danger"
+                        v-if="mode === 'remove'"
+                        @click="remove"
+                        >Excluir</b-button
+                    >
+                    <b-button class="ml-2" @click="reset">Cancelar</b-button>
+                </b-col>
+            </b-row>
         </b-form>
         <hr />
         <div id="table">
-            <b-table striped :items="getTeachers" :fields="fields"></b-table>
+            <b-table striped :items="getTeachers" :fields="fields">
+                <template v-slot:cell(actions)="data">
+                    <b-button
+                        variant="warning"
+                        @click="loadUser(data.item)"
+                        class="btn2 mr-2"
+                    >
+                        <font-awesome-icon
+                            icon="pencil-alt"
+                        ></font-awesome-icon>
+                    </b-button>
+                    <b-button
+                        variant="danger"
+                        class="btn2"
+                        @click="loadUser(data.item, 'remove')"
+                    >
+                        <font-awesome-icon icon="trash"></font-awesome-icon>
+                    </b-button>
+                </template>
+            </b-table>
         </div>
     </div>
 </template>
@@ -101,15 +132,15 @@ export default {
             mode: "save",
             user: {},
             fields: [
-                { key: "nome", label: "Nome", sortable: true },
+                { key: "name", label: "Nome", sortable: true },
                 { key: "email", label: "E-mail", sortable: true },
                 {
-                    key: "administrador geral",
+                    key: "genAdmin",
                     label: "Administrador Geral",
                     sortable: true
                 },
                 {
-                    key: "administrador de reservas",
+                    key: "recAdmin",
                     label: "Administrador de Reservas",
                     sortable: true
                 },
@@ -118,7 +149,7 @@ export default {
                     label: "Número de Reservas",
                     sortable: true
                 },
-                { key: "action", label: "Ações" }
+                { key: "actions", label: "Ações" },
             ]
         };
     },
@@ -131,21 +162,32 @@ export default {
         reset() {
             this.mode = "save";
             this.user = {};
+            // this.loadUsers();
         },
         save() {
             const method = this.user.id ? "put" : "post";
             const id = this.user.id ? `/${this.user.id}` : "";
-            axios[method](`${baseApiUrl}/users${id}`,this.user).then(() => {
-                this.$toasted.global.defaultSucess()
-                this.reset()
-            }).catch(showError)
+            axios[method](`${baseApiUrl}/users${id}`, this.user)
+                .then(() => {
+                    this.$toasted.global.defaultSuccess();
+                    this.reset();
+                })
+                .catch(showError);
         },
-        remove(){
-            const id = this.user.id
-            axios.delete(`${baseApiUrl}/users/${id}`).then(() => {
-                this.$toasted.global.defaultSucess()
-                this.reset()
-            }).catch(showError)
+        remove() {
+            const id = this.user.id;
+            axios
+                .delete(`${baseApiUrl}/users/${id}`)
+                .then(() => {
+                    this.$toasted.global.defaultSuccess();
+                    this.reset();
+                })
+                .catch(showError);
+        },
+        loadUser(user, mode = "save") {
+            this.mode = mode;
+            this.user = { ...user };
+            console.log(this.user)
         }
     }
 };

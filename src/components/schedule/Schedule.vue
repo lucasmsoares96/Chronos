@@ -27,6 +27,7 @@
                         placeholder="Digite o seu motivo..."
                         rows="5"
                         max-rows="10"
+                        maxlength="255"
                     >
                     </b-form-textarea>
                 </div>

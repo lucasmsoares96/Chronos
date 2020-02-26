@@ -44,6 +44,7 @@ header {
     );
     display: flex;
     flex-direction: column;
+    color: white;
 }
 #cabecalho {
     min-height: 162px;

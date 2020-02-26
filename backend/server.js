@@ -137,7 +137,8 @@ const analysis = [
         "numero": 303,
         "data": "2020-02-16T03:00:00.000Z",
         "nome": "Sala",
-        "status": 0
+        "status": 0,
+        "motivo": "asldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdf",
     },
     {
         "email": "123",
@@ -146,7 +147,8 @@ const analysis = [
         "numero": 303,
         "data": "2020-02-16T03:00:00.000Z",
         "nome": "Sala",
-        "status": 0
+        "status": 0,
+        "motivo": "asldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdf",
     },
     {
         "email": "123",
@@ -155,7 +157,8 @@ const analysis = [
         "numero": 611,
         "data": "2020-02-16T03:00:00.000Z",
         "nome": "Laboratorio",
-        "status": 0
+        "status": 0,
+        "motivo": "asldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdf",
     },
     {
         "email": "123",
@@ -164,7 +167,8 @@ const analysis = [
         "numero": 611,
         "data": "2020-02-16T03:00:00.000Z",
         "nome": "Laboratorio",
-        "status": 0
+        "status": 0,
+        "motivo": "asldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdf",
     }
 ]
 
@@ -189,31 +193,31 @@ const listResources = [
 
 const listTeacher =[
     {
-        "nome": "Emerson",
+        "name": "Emerson",
         "email": "emersonsouza@cefetmg.br",
-        "administrador geral": "sim",
-        "administrador de reservas": "sim",
+        "genAdmin": true,
+        "recAdmin": true,
         "numero de reservas": 24,
     },
     {
-        "nome": "Emerson",
+        "name": "Emerson",
         "email": "emersonsouza@cefetmg.br",
-        "administrador geral": "sim",
-        "administrador de reservas": "sim",
+        "genAdmin": true,
+        "recAdmin": true,
         "numero de reservas": 24,
     },
     {
-        "nome": "Emerson",
+        "name": "Emerson",
         "email": "emersonsouza@cefetmg.br",
-        "administrador geral": "sim",
-        "administrador de reservas": "sim",
+        "genAdmin": true,
+        "recAdmin": true,
         "numero de reservas": 24,
     },
     {
-        "nome": "Emerson",
+        "name": "Emerson",
         "email": "emersonsouza@cefetmg.br",
-        "administrador geral": "sim",
-        "administrador de reservas": "sim",
+        "genAdmin": true,
+        "recAdmin": true,
         "numero de reservas": 24,
     },
 ]
@@ -253,12 +257,12 @@ app.get("/getTeacher", (req, resp) => {
 app.post("/data", (req, resp) => {
     console.log(req.body)
     // console.log(req.query);
-    resp.json(schedule);
+    resp.send("ok");
 });
 app.post("/professorhorario", (req, resp) => {
     console.log(req.body)
     // console.log(req.query);
-    resp.json(schedule);
+    resp.send("ok");
 });
 
 app.listen(3000);
