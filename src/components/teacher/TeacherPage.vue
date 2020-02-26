@@ -1,29 +1,66 @@
 <template>
-    <div>
-        <b-card title="Card Title" no-body>
-            <b-card-header header-tag="nav">
-                <b-nav card-header tabs>
-                    <b-nav-item active>Active</b-nav-item>
-                    <b-nav-item>Inactive</b-nav-item>
-                    <b-nav-item disabled>Disabled</b-nav-item>
-                </b-nav>
-            </b-card-header>
-
-            <b-card-body class="text-center">
-                <b-card-text>
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                </b-card-text>
-
-                <b-button variant="primary">Go somewhere</b-button>
-            </b-card-body>
+    <div class="teacher-page-tabs">
+        <b-card no-body>
+            <b-tabs card>
+                <b-tab title="Suas Reservas">
+                    <div id="table">
+                        <b-table
+                            hover
+                            striped
+                            :fields="fields"
+                            :items="items"
+                            :sort-by.sync="sortBy"
+                        ></b-table>
+                    </div>
+                </b-tab>
+            </b-tabs>
         </b-card>
     </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     name: "TeacherPage",
+    data() {
+        return {
+            sortBy: "status",
+            fields: [
+                { key: "status", label: "Situação", sortable: true },
+                { key: "nome", label: "Tipo", sortable: true },
+                { key: "numero", label: "Recurso", sortable: true },
+                { key: "data", label: "Data", sortable: true },
+                { key: "horario", label: "Horário", sortable: true },
+                { key: "actions", label: "Ações" }
+            ],
+            items: []
+        };
+    },
+    methods: {
+        getItems() {
+            axios
+                .get("http://localhost:3000/selectProfessorHorario")
+                .then(res => {
+                    this.items = res.data;
+                    this.items.forEach(e => {
+                        if (e.status == 0) {
+                            e._cellVariants = { status: "warning" };
+                            e.status = "Em espera";
+                        } else if (e.status == 1) {
+                            e._cellVariants = { status: "info" };
+                            e.status = "Aprovado";
+                        } else if (e.status == 2) {
+                            e._cellVariants = { status: "danger" };
+                            e.status = "Recusado";
+                        }
+                    });
+                });
+        }
+    },
+    mounted() {
+        this.getItems();
+    }
 };
 </script>
 

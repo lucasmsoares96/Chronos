@@ -3,7 +3,7 @@
         <div id="cabecalho">
             <div style="align-self: flex-start">
                 <h1>
-                    <router-link to="/">Chonus</router-link>
+                    <router-link to="/">Assistente de Reserva de Recursos</router-link>
                 </h1>
             </div>
             <div style="align-self: flex-end">
@@ -25,12 +25,8 @@ import NavBar from "./NavBar";
 export default {
     name: "Header",
     props: {
-        hideUserDropdown: Boolean
     },
     computed: {
-        user() {
-            return this.$store.state.user;
-        }
     },
     components: {
         NavBar
@@ -39,10 +35,6 @@ export default {
 </script>
 
 <style>
-#busca {
-    height: 64px;
-    background-color: #e1e1e1;
-}
 header {
     background-color: #004c84;
     background-image: linear-gradient(
@@ -54,7 +46,7 @@ header {
     flex-direction: column;
 }
 #cabecalho {
-    height: 162px;
+    min-height: 162px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -67,16 +59,4 @@ header a:hover {
     text-decoration: none;
 }
 
-body {
-    margin: 0;
-    font-family: Arial;
-}
-
-.topnav {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: #E1E1E1;
-    height: 53px;
-}
 </style>

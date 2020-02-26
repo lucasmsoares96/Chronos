@@ -163,11 +163,6 @@ export default {
 </script>
 
 <style>
-/* * {
-    border: 1px solid;
-    padding: 2px;
-    margin: 1px;
-} */
 
 @media screen and (max-width: 600px) {
     #rodape {

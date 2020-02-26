@@ -7,14 +7,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(bodyParser.json());
 
-let resorces = [
+const typeResorces = [
     { nome: "Salas de Aula", idTipoDeRecursos: "sala" },
     { nome: "Laboratórios", idTipoDeRecursos: "lab" },
     { nome: "Ginásio", idTipoDeRecursos: "gin" },
     { nome: "Veículo", idTipoDeRecursos: "vei" }
 ];
 
-let schedule = [
+const schedule = [
     {
         numero: 303,
         idhorario: 1,
@@ -90,16 +90,166 @@ let schedule = [
     }
 ];
 
+const reservations = [
+    {
+        "email": "123",
+        "nomeP": "123",
+        "horario": "07:00:00",
+        "numero": 303,
+        "data": "2020-02-16T03:00:00.000Z",
+        "nome": "Sala",
+        "status": 0
+    },
+    {
+        "email": "123",
+        "nomeP": "123",
+        "horario": "07:50:00",
+        "numero": 303,
+        "data": "2020-02-16T03:00:00.000Z",
+        "nome": "Sala",
+        "status": 1
+    },
+    {
+        "email": "123",
+        "nomeP": "123",
+        "horario": "07:00:00",
+        "numero": 611,
+        "data": "2020-02-16T03:00:00.000Z",
+        "nome": "Laboratorio",
+        "status": 2
+    },
+    {
+        "email": "123",
+        "nomeP": "123",
+        "horario": "07:50:00",
+        "numero": 611,
+        "data": "2020-02-16T03:00:00.000Z",
+        "nome": "Laboratorio",
+        "status": 1
+    }
+]
+
+const analysis = [
+    {
+        "email": "123",
+        "nomeP": "123",
+        "horario": "07:00:00",
+        "numero": 303,
+        "data": "2020-02-16T03:00:00.000Z",
+        "nome": "Sala",
+        "status": 0
+    },
+    {
+        "email": "123",
+        "nomeP": "123",
+        "horario": "07:50:00",
+        "numero": 303,
+        "data": "2020-02-16T03:00:00.000Z",
+        "nome": "Sala",
+        "status": 0
+    },
+    {
+        "email": "123",
+        "nomeP": "123",
+        "horario": "07:00:00",
+        "numero": 611,
+        "data": "2020-02-16T03:00:00.000Z",
+        "nome": "Laboratorio",
+        "status": 0
+    },
+    {
+        "email": "123",
+        "nomeP": "123",
+        "horario": "07:50:00",
+        "numero": 611,
+        "data": "2020-02-16T03:00:00.000Z",
+        "nome": "Laboratorio",
+        "status": 0
+    }
+]
+
+const listResources = [
+    {
+    "tipo": "Sala de aula",
+    "Salas": 303,
+    },
+    {
+    "tipo": "Sala de aula",
+    "Salas": 303,
+    },
+    {
+    "tipo": "Sala de aula",
+    "Salas": 303,
+    },
+    {
+    "tipo": "Sala de aula",
+    "Salas": 303,
+    },
+]
+
+const listTeacher =[
+    {
+        "nome": "Emerson",
+        "email": "emersonsouza@cefetmg.br",
+        "administrador geral": "sim",
+        "administrador de reservas": "sim",
+        "numero de reservas": 24,
+    },
+    {
+        "nome": "Emerson",
+        "email": "emersonsouza@cefetmg.br",
+        "administrador geral": "sim",
+        "administrador de reservas": "sim",
+        "numero de reservas": 24,
+    },
+    {
+        "nome": "Emerson",
+        "email": "emersonsouza@cefetmg.br",
+        "administrador geral": "sim",
+        "administrador de reservas": "sim",
+        "numero de reservas": 24,
+    },
+    {
+        "nome": "Emerson",
+        "email": "emersonsouza@cefetmg.br",
+        "administrador geral": "sim",
+        "administrador de reservas": "sim",
+        "numero de reservas": 24,
+    },
+]
+
 app.get("/tipoderecursos", (req, resp) => {
     // console.log(req.body)
     console.log(req.query);
-    resp.json(resorces);
+    resp.json(typeResorces);
 });
 app.get("/dataRecursos", (req, resp) => {
     // console.log(req.body)
     console.log(req.query);
     resp.json(schedule);
 });
+app.get("/selectProfessorHorario", (req, resp) => {
+    // console.log(req.body)
+    console.log(req.query);
+    resp.json(reservations);
+});
+app.get("/analysis", (req, resp) => {
+    // console.log(req.body)
+    console.log(req.query);
+    resp.json(analysis);
+});
+app.get("/getResources", (req, resp) => {
+    // console.log(req.body)
+    console.log(req.query);
+    resp.json(listResources);
+});
+app.get("/getTeacher", (req, resp) => {
+    // console.log(req.body)
+    console.log(req.query);
+    resp.json(listTeacher);
+});
+
+
 app.post("/data", (req, resp) => {
     console.log(req.body)
     // console.log(req.query);
@@ -112,23 +262,3 @@ app.post("/professorhorario", (req, resp) => {
 });
 
 app.listen(3000);
-
-// schedule.forEach((e, index1) => {
-//     schedule[index1]["_cellVariants"] = {};
-//     Object.values(e).forEach((el, index2) => {
-//         if (el == 2 && Object.keys(schedule[index1])[index2] != "idhorario") {
-//             let col = String(Object.keys(schedule[index1])[index2]);
-//             console.log(el, col);
-//             schedule[index1]["_cellVariants"][col] = "danger";
-//         }else if (el == 1 && Object.keys(schedule[index1])[index2] != "idhorario") {
-//             let col = String(Object.keys(schedule[index1])[index2]);
-//             console.log(el, col);
-//             schedule[index1]["_cellVariants"][col] = "warning";
-//         } else if (el == 0 && Object.keys(schedule[index1])[index2] != "idhorario") {
-//             let col = String(Object.keys(schedule[index1])[index2]);
-//             console.log(el, col);
-//             schedule[index1]["_cellVariants"][col] = "info";
-//         }
-//     });
-// });
-// console.log(schedule)
