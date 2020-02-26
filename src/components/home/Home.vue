@@ -68,20 +68,27 @@ export default {
 </script>
 
 <style>
+/* *{
+    border: solid 1px;
+    margin: 5px;
+    padding: 2px;
+} */
+
 section {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
 }
-@media screen and (max-width: 600px) {
-    #grade {
-        width: 80%;
-    }
+#grade{
+    width: 70%;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 20px;
 }
-@media screen and (min-width: 600px) {
-    #grade {
-        width: 50%;
-    }
-}
+
+
 </style>

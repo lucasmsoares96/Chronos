@@ -10,7 +10,20 @@
                             :fields="fields"
                             :items="items"
                             :sort-by.sync="sortBy"
-                        ></b-table>
+                        >
+                            <template v-slot:cell(actions)="data">
+                                <b-button
+                                    v-b-tooltip.hover
+                                    title="Cancelar reserva?"
+                                    variant="danger"
+                                    class="btn2"
+                                    @click="loadUser(data.item, 'remove')"
+                                    ><font-awesome-icon
+                                        icon="times"
+                                    ></font-awesome-icon>
+                                </b-button>
+                            </template>
+                        </b-table>
                     </div>
                 </b-tab>
             </b-tabs>

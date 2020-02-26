@@ -1,49 +1,43 @@
 <template>
-    <b-form class="formulario">
-        <b-form-group label="1) Selecione data desejada">
-            <input
-                id="calendar"
-                type="date"
-                name="calendario"
-                autofocus
-                v-model="formData"
-            />
-        </b-form-group>
+    <b-form id="formulario">
+        <b-calendar hide-header v-model="value" locale="pt-BR"></b-calendar>
         <br />
         Selected:
-        <strong>{{ formData }}</strong>
+        <strong>{{ value }}</strong>
         <br />
         <br />
-        <b-form-group label="2) Selecione o recurso desejado">
-            <b-form-radio-group
-                v-model="selected"
-                :options="options"
-                class="mb-3"
-                value-field="idTipoDeRecursos"
-                text-field="nome"
-                disabled-field="notEnabled"
-                stacked
-            ></b-form-radio-group>
-        </b-form-group>
+        <div id="form2">
+            <b-form-group label="Selecione o recurso desejado">
+                <b-form-radio-group
+                    v-model="selected"
+                    :options="options"
+                    class="mb-3"
+                    value-field="idTipoDeRecursos"
+                    text-field="nome"
+                    disabled-field="notEnabled"
+                    stacked
+                ></b-form-radio-group>
+            </b-form-group>
+                <b-button class="btn" variant="primary" v-on:click="sendDateRec"
+                    >enviar</b-button
+                >
+        </div>
         <div>
             Selected:
             <strong>{{ selected }}</strong>
         </div>
-        <b-button variant="primary" v-on:click="sendDateRec">enviar</b-button>
     </b-form>
 </template>
 
 <script>
 import axios from "axios";
 
-let date = new Date();
-
 export default {
-    name: 'DateRec',
+    name: "DateRec",
     data() {
         return {
-            formData: date.toISOString().slice(0, 10),
             selected: "",
+            value: "",
             options: []
         };
     },
@@ -55,7 +49,7 @@ export default {
             });
         },
         sendDateRec() {
-            let data = this.formData;
+            let data = this.value;
             let tipoRecurso = this.selected;
             let obj = [data, tipoRecurso];
             axios
@@ -67,7 +61,7 @@ export default {
                     this.$store.commit("setObj", obj);
                     this.$router.push("/schedule");
                 });
-        },
+        }
     },
     mounted() {
         this.reqTable();
@@ -76,4 +70,35 @@ export default {
 </script>
 
 <style>
+@media screen and (max-width: 600px) {
+    #formulario {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin: 10px;
+    }
+}
+@media screen and (min-width: 600px) {
+    #formulario {
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 20px;
+    }
+}
+
+.btn {
+    /* float: right; */
+    width: 120px;
+    margin-top: 0px 10px;
+}
+
+#form2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
 </style>
