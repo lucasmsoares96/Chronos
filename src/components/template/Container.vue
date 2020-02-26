@@ -7,20 +7,19 @@
 </template>
 
 <script>
-
 import Header from "./Header.vue";
 import Footer from "./Footer.vue";
 import Main from "./Main.vue";
 
 export default {
-    name: 'Container',
+    name: "Container",
     components: {
-        Header, Footer, Main,
-        
+        Header,
+        Footer,
+        Main
     }
-}
+};
 </script>
 
 <style>
-
 </style>
