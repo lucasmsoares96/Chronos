@@ -15,6 +15,7 @@
                             id="user-email"
                             type="text"
                             placeholder="Informe seu email"
+                            v-model="user.email"
                         />
                     </b-form-group>
                     <b-form-group label="Senha:" label-for="user-password">
@@ -22,6 +23,7 @@
                             id="user-password"
                             type="password"
                             placeholder="Informe sua senha"
+                            v-model="user.password"
                         />
                     </b-form-group>
                 </b-form>
@@ -46,6 +48,11 @@ import axios from "axios";
 
 export default {
     name: "Home",
+    data(){
+        return {
+            user: {},
+        }
+    },
     components: {
         DataRec
         //  SingIn,
@@ -54,7 +61,7 @@ export default {
         sendUserData() {
             axios
                 .post("http://localhost:3000/data", {
-                    // data
+                    user : this.user,
                 })
                 .then(() => {
                     this.$router.push("/teacher");
