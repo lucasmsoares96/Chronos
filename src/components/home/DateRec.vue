@@ -2,8 +2,6 @@
     <b-form id="formulario">
         <b-calendar hide-header v-model="value" locale="pt-BR"></b-calendar>
         <br />
-        Selected:
-        <strong>{{ value }}</strong>
         <br />
         <br />
         <div id="form2">
@@ -23,8 +21,6 @@
                 >
         </div>
         <div>
-            Selected:
-            <strong>{{ selected }}</strong>
         </div>
     </b-form>
 </template>

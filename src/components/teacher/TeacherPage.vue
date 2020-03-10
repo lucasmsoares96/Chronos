@@ -40,12 +40,12 @@ export default {
         return {
             sortBy: "status",
             fields: [
-                { key: "status", label: "Situação", sortable: true },
-                { key: "nome", label: "Tipo", sortable: true },
-                { key: "numero", label: "Recurso", sortable: true },
-                { key: "data", label: "Data", sortable: true },
-                { key: "horario", label: "Horário", sortable: true },
-                { key: "actions", label: "Ações" }
+                { key: "status", label: "Situação", sortable: true, thClass:'text-center'},
+                { key: "nome", label: "Tipo", sortable: true, thClass:'text-center'},
+                { key: "numero", label: "Recurso", sortable: true, thClass:'text-center'},
+                { key: "data", label: "Data", sortable: true, thClass:'text-center'},
+                { key: "horario", label: "Horário", sortable: true, thClass:'text-center'},
+                { key: "actions", label: "Ações", thClass:'text-center', tdClass:'text-right'}
             ],
             items: []
         };
@@ -53,7 +53,7 @@ export default {
     methods: {
         getItems() {
             axios
-                .get("http://localhost:3000/selectProfessorHorario")
+                .get("http://localhost:3000/selectProfessorHorarioEspec")
                 .then(res => {
                     this.items = res.data;
                     this.items.forEach(e => {

@@ -4,6 +4,7 @@
             <h2>Informe os dados da reserva</h2>
             <DataRec />
             <b-modal
+                v-if="!this.$store.state.user"
                 id="modal1"
                 title="É professor?"
                 header-text-variant="light"
@@ -29,12 +30,8 @@
                 </b-form>
 
                 <template v-slot:modal-footer="{ cancel }">
-                    <b-button variant="primary" @click="sendUserData"
-                        >sim</b-button
-                    >
-                    <b-button @click="cancel()">
-                        não
-                    </b-button>
+                    <b-button variant="primary" @click="sendUserData">sim</b-button>
+                    <b-button @click="cancel()">não</b-button>
                 </template>
             </b-modal>
         </div>
@@ -44,6 +41,7 @@
 <script>
 import DataRec from "./DateRec";
 import axios from "axios";
+import { baseApiUrl, showError } from "@/global";
 // import SingIn from './SignIn'
 
 export default {
@@ -52,7 +50,7 @@ export default {
         return {
             user: {},
         }
-    },
+},
     components: {
         DataRec
         //  SingIn,
@@ -60,15 +58,18 @@ export default {
     methods: {
         sendUserData() {
             axios
-                .post("http://localhost:3000/data", {
-                    user : this.user,
+                .post(`${baseApiUrl}/login`, {
+                    email: this.user.email,
+                    password: this.user.password
                 })
-                .then(() => {
+                .then(res => {
+                    this.$store.commit("setUser",res.data);
                     this.$router.push("/teacher");
-                });
+                }).catch(showError);
         }
     },
     mounted() {
+        console.log(this.$store.state.user);
         this.$bvModal.show("modal1");
     }
 };
@@ -87,7 +88,7 @@ section {
     justify-content: center;
     align-items: center;
 }
-#grade{
+#grade {
     width: 70%;
     min-height: 400px;
     display: flex;
@@ -96,6 +97,4 @@ section {
     align-items: flex-start;
     margin: 20px;
 }
-
-
 </style>
