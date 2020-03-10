@@ -1,53 +1,105 @@
 <template>
-    <div class="general-admin-type-resources">
-        <h1>
-            Tipos de Recursos
-        </h1>
-        <div id="table">
-            <b-table striped :items="getTypeResources" :fields="fields">
-                <template v-slot:cell(actions)="data">
-                    <b-button
-                        variant="warning"
-                        @click="loadUser(data.item)"
-                        class="btn2 mr-2"
-                    >
-                        <font-awesome-icon
-                            icon="pencil-alt"
-                        ></font-awesome-icon>
-                    </b-button>
-                    <b-button
-                        variant="danger"
-                        class="btn2"
-                        @click="loadUser(data.item, 'remove')"
-                    >
-                        <font-awesome-icon icon="trash"></font-awesome-icon>
-                    </b-button>
-                </template>
-            </b-table>
-        </div>
+  <div class="general-admin-type-resources">
+    <h1>Tipos de Recursos</h1>
+    <b-form>
+      <b-form-group label="Tipo de Recurso: " label-for="rec-type">
+        <b-form-input
+          id="rec-type"
+          type="text"
+          v-model="recType.nome"
+          required
+          :readonly="mode === 'remove'"
+          placeholder="Informe o tipo de recurso..."
+        ></b-form-input>
+      </b-form-group>
+      <b-row>
+        <b-col xs="12">
+          <b-button variant="primary" v-if="mode === 'save'" @click="save">Salvar</b-button>
+          <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
+          <b-button class="ml-2" @click="reset">Cancelar</b-button>
+        </b-col>
+      </b-row>
+    </b-form>
+
+    <div id="table">
+      <b-table striped :items="getTypeResources" :fields="fields">
+        <template v-slot:cell(actions)="data">
+          <b-button variant="warning" @click="loadRecType(data.item)" class="btn2 mr-2">
+            <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
+          </b-button>
+          <b-button variant="danger" class="btn2" @click="loadRecType(data.item, 'remove')">
+            <font-awesome-icon icon="trash"></font-awesome-icon>
+          </b-button>
+        </template>
+      </b-table>
     </div>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
+import { baseApiUrl, showError } from "@/global";
 export default {
-    name: "GeneralAdminTypeResources",
-    data() {
-        return {
-            fields: [
-                { key: "nome", label: "Tipo de Recurso", sortable: true },
-                { key: "idTipoDeRecursos", label: "Id", sortable: true },
-                { key: "actions", label: "Ações" }
-            ]
-        };
-    },
-    methods: {
-        getTypeResources() {
-            return axios
-                .get("http://localhost:3000/tipoderecursos")
-                .then(res => res.data);
+  name: "GeneralAdminTypeResources",
+  data() {
+    return {
+      fields: [
+        {
+          key: "nome",
+          label: "Tipo de Recurso",
+          sortable: true,
+          thClass: "text-center"
+        },
+        {
+          key: "idTipoDeRecursos",
+          label: "Id",
+          sortable: true,
+          thClass: "text-center"
+        },
+        {
+          key: "actions",
+          label: "Ações",
+          tdClass: "text-right",
+          thClass: "text-center"
         }
+      ],
+      recType: {},
+      mode: "save"
+    };
+  },
+  methods: {
+    getTypeResources() {
+      return axios
+        .get("http://localhost:3000/tipoderecursos")
+        .then(res => res.data);
+    },
+    reset() {
+      this.mode = "save";
+      this.recType = {};
+    },
+    save() {
+      const method = this.recType.id ? "put" : "post";
+      const id = this.recType.id ? `/${this.recType.id}` : "";
+      axios[method](`${baseApiUrl}/recType${id}`, this.recType)
+        .then(() => {
+          this.$toasted.global.defaultSuccess();
+          this.reset();
+        })
+        .catch(showError);
+    },
+    remove() {
+      const id = this.recType.id;
+      axios.delete(`${baseApiUrl}/recType${id}`).then(() => {
+        this.$toasted.global.defaultSuccess();
+        this.reset;
+      }).catch(showError);
+    },
+    loadRecType(recType, mode = "save"){
+        this.mode = mode;
+        this.recType = { ...recType};
+        console.log(this.recType);
     }
+  }
 };
 </script>
 

@@ -9,10 +9,7 @@ export default new Vuex.Store({
         obj: {},
         items: [],
         fields: [],
-        user: {
-            nome: 'Lucas Martins',
-            email: 'lucasmartinssoares@live.com'
-        },
+        user: null,
     },
     mutations: {
         resSchedule(state) {
@@ -72,6 +69,11 @@ export default new Vuex.Store({
             state.obj.data = obj[0],
             state.obj.tipoRecurso = obj[1]
 
+        },
+        setUser(state,obj){
+            state.user = obj.payload;
+            axios.defaults.headers.common['x-access-token'] = obj.token;
+            console.log(state.user);
         }
     }
 });

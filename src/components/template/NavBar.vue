@@ -1,5 +1,5 @@
 <template>
-    <b-navbar toggleable="lg" type="light" variant="light">
+    <b-navbar v-if="user" toggleable="lg" type="light" variant="light">
         <b-navbar-brand href="#">{{user.nome}}</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>

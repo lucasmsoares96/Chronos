@@ -1,88 +1,98 @@
 <template>
-    <div class="admin-page-tabs">
-        <b-card no-body>
-            <b-tabs card>
-                <b-tab title="Reservas aguardando análise">
-                    <div id="table">
-                        <b-table striped :fields="fields" :items="getItems">
-                            <template v-slot:cell(actions)="data">
-                                <b-button
-                                    variant="success"
-                                    v-b-tooltip.hover
-                                    title="Aprovar Pedido?"
-                                    @click="allow(data.item)"
-                                    class="btn2 mr-2"
-                                    ><font-awesome-icon
-                                        icon="check"
-                                    ></font-awesome-icon>
-                                </b-button>
-                                <b-button
-                                    variant="danger"
-                                    v-b-tooltip.hover
-                                    title="Negar Pedido?"
-                                    class="btn2"
-                                    @click="deny(data.item, 'remove')"
-                                    ><font-awesome-icon
-                                        icon="times"
-                                    ></font-awesome-icon>
-                                </b-button>
-                            </template>
+  <div class="admin-page-tabs">
+    <b-card no-body>
+      <b-tabs card>
+        <b-tab title="Reservas aguardando análise">
+          <div id="table">
+            <b-table striped :fields="fields" :items="getItems">
+              <template v-slot:cell(actions)="data">
+                <b-button
+                  variant="success"
+                  v-b-tooltip.hover
+                  title="Aprovar Pedido?"
+                  @click="allow(data.item)"
+                  class="btn2 mr-2"
+                >
+                  <font-awesome-icon icon="check"></font-awesome-icon>
+                </b-button>
+                <b-button
+                  variant="danger"
+                  v-b-tooltip.hover
+                  title="Negar Pedido?"
+                  class="btn2"
+                  @click="deny(data.item, 'remove')"
+                >
+                  <font-awesome-icon icon="times"></font-awesome-icon>
+                </b-button>
+              </template>
 
-                            <template v-slot:cell(show_details)="row">
-                                <b-button
-                                    size="sm"
-                                    @click="row.toggleDetails"
-                                    class="btn2 mr-2"
-                                >
-                                    <font-awesome-icon
-                                        icon="angle-down"
-                                    ></font-awesome-icon>
-                                </b-button>
-                            </template>
-                            <template v-slot:row-details="row">
-                                <b-card style="width: 1000px">
-                                    <p>{{ row.item.motivo }}</p>
-                                </b-card>
-                            </template>
-                        </b-table>
-                    </div>
-                </b-tab>
-            </b-tabs>
-        </b-card>
-    </div>
+              <template v-slot:cell(show_details)="row">
+                <b-button size="sm" @click="row.toggleDetails" class="btn2 mr-2">
+                  <font-awesome-icon icon="angle-down"></font-awesome-icon>
+                </b-button>
+              </template>
+              <template v-slot:row-details="row">
+                <b-card style="width: 1000px">
+                  <p>{{ row.item.motivo }}</p>
+                </b-card>
+              </template>
+            </b-table>
+          </div>
+        </b-tab>
+      </b-tabs>
+    </b-card>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
 
 export default {
-    name: "ResourcesAdmin",
-    data() {
-        return {
-            fields: [
-                { key: "nomeP", label: "Nome", sortable: true },
-                { key: "email", label: "E-mail", sortable: true },
-                { key: "data", label: "Data", sortable: true },
-                { key: "horario", label: "Horário", sortable: true },
-                { key: "nome", label: "Tipo", sortable: true },
-                { key: "numero", label: "Recurso", sortable: true },
-                { key: "actions", label: "Ação" },
-                { key: "show_details", label: "Motivo" }
-            ]
-        };
-    },
-    methods: {
-        getItems() {
-            return axios
-                .get("http://localhost:3000/analysis")
-                .then(res => res.data);
+  name: "ResourcesAdmin",
+  data() {
+    return {
+      fields: [
+        { key: "nomeP", label: "Nome", sortable: true, thClass: "text-center" },
+        {
+          key: "email",
+          label: "E-mail",
+          sortable: true,
+          thClass: "text-center"
+        },
+        { key: "data", label: "Data", sortable: true, thClass: "text-center" },
+        {
+          key: "horario",
+          label: "Horário",
+          sortable: true,
+          thClass: "text-center"
+        },
+        { key: "nome", label: "Tipo", sortable: true, thClass: "text-center" },
+        {
+          key: "numero",
+          label: "Recurso",
+          sortable: true,
+          thClass: "text-center"
+        },
+        { key: "show_details", label: "Motivo", thClass: "text-center" },
+        {
+          key: "actions",
+          label: "Ação",
+          thClass: "text-center",
+          tdClass: "text-right"
         }
+      ]
+    };
+  },
+  methods: {
+    getItems() {
+      return axios.get("http://localhost:3000/analysis").then(res => res.data);
     }
+  }
 };
 </script>
 
 <style>
 .btn2 {
-    width: 60px;
+  width: 60px;
 }
 </style>
