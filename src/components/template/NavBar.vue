@@ -6,12 +6,12 @@
 
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
-                    <b-nav-item href="/teacher">Suas Reservas</b-nav-item>
+                    <b-nav-item to="/teacher">Suas Reservas</b-nav-item>
                     <b-nav-item
                         v-if="user.admRecursos"
-                        href="/resourcesAdmin"
+                        to="/resourcesAdmin"
                     >Administração de Recursos</b-nav-item>
-                    <b-nav-item v-if="user.admGeral" href="/generalAdmin">Administração Geral</b-nav-item>
+                    <b-nav-item v-if="user.admGeral" to="/generalAdmin">Administração Geral</b-nav-item>
                 </b-navbar-nav>
 
                 <!-- Right aligned nav items -->

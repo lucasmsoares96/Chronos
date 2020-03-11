@@ -9,7 +9,7 @@ export default new Vuex.Store({
         obj: {},
         items: [],
         fields: [],
-        user: null,
+        user: {},
     },
     mutations: {
         resSchedule(state) {
