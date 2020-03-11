@@ -17,10 +17,9 @@
                                     title="Cancelar reserva?"
                                     variant="danger"
                                     class="btn2"
-                                    @click="loadUser(data.item, 'remove')"
-                                    ><font-awesome-icon
-                                        icon="times"
-                                    ></font-awesome-icon>
+                                    @click="removeItem(data.item)"
+                                >
+                                    <font-awesome-icon icon="times"></font-awesome-icon>
                                 </b-button>
                             </template>
                         </b-table>
@@ -38,14 +37,46 @@ export default {
     name: "TeacherPage",
     data() {
         return {
+            boxOne: "",
+            reserva: {},
             sortBy: "status",
             fields: [
-                { key: "status", label: "Situação", sortable: true, thClass:'text-center'},
-                { key: "nome", label: "Tipo", sortable: true, thClass:'text-center'},
-                { key: "numero", label: "Recurso", sortable: true, thClass:'text-center'},
-                { key: "data", label: "Data", sortable: true, thClass:'text-center'},
-                { key: "horario", label: "Horário", sortable: true, thClass:'text-center'},
-                { key: "actions", label: "Ações", thClass:'text-center', tdClass:'text-right'}
+                {
+                    key: "status",
+                    label: "Situação",
+                    sortable: true,
+                    thClass: "text-center"
+                },
+                {
+                    key: "nome",
+                    label: "Tipo",
+                    sortable: true,
+                    thClass: "text-center"
+                },
+                {
+                    key: "numero",
+                    label: "Recurso",
+                    sortable: true,
+                    thClass: "text-center"
+                },
+                {
+                    key: "data",
+                    label: "Data",
+                    sortable: true,
+                    thClass: "text-center"
+                },
+                {
+                    key: "horario",
+                    label: "Horário",
+                    sortable: true,
+                    thClass: "text-center"
+                },
+                {
+                    key: "actions",
+                    label: "Ações",
+                    thClass: "text-center",
+                    tdClass: "text-right"
+                }
             ],
             items: []
         };
@@ -68,6 +99,18 @@ export default {
                             e.status = "Recusado";
                         }
                     });
+                });
+        },
+        removeItem(item) {
+            this.boxOne = "";
+            this.$bvModal
+                .msgBoxConfirm("Deseja cancelar a reserva?")
+                .then(value => {
+                    this.boxOne = value;
+                    if (this.boxOne == true) {
+                        console.log(this.boxOne);
+                        console.log(item);
+                    }
                 });
         }
     },
