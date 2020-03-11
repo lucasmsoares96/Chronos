@@ -4,7 +4,7 @@
     <b-form>
       <input id="user-id" type="hidden" v-model="user.id" />
       <b-row>
-        <b-col md="6" sm="12">
+        <b-col sm="12">
           <b-form-group label="Nome: " label-for="user-name">
             <b-form-input
               id="user-nome"
@@ -16,7 +16,9 @@
             ></b-form-input>
           </b-form-group>
         </b-col>
-        <b-col md="6" sm="12">
+        </b-row>
+        <b-row>
+        <b-col sm="12">
           <b-form-group label="E-mail: " label-for="user-email">
             <b-form-input
               id="user-email"
@@ -29,7 +31,7 @@
           </b-form-group>
         </b-col>
       </b-row>
-      <b-row v-show="mode === 'save'">
+      <!-- <b-row v-show="mode === 'save'">
         <b-col md="6" sm="12">
           <b-form-group label="Senha: " label-for="user-password">
             <b-form-input
@@ -52,23 +54,25 @@
             ></b-form-input>
           </b-form-group>
         </b-col>
-      </b-row>
-      <b-row v-show="mode === 'save'">
-        <b-col md="6" sm="12">
+      </b-row> -->
+      <!-- <b-row v-show="mode === 'save'"> -->
+        <!-- <b-col md="6" sm="12"> -->
           <b-form-checkbox
+          v-show="mode === 'save'"
             id="user-general-admin"
             v-model="user.genAdmin"
             class="mt-3 mb-3"
           >Administrador Geral?</b-form-checkbox>
-        </b-col>
-        <b-col md="6" sm="12">
+        <!-- </b-col> -->
+        <!-- <b-col md="6" sm="12"> -->
           <b-form-checkbox
+          v-show="mode === 'save'"
             id="user-resources-admin"
             v-model="user.recAdmin"
             class="mt-3 mb-3"
           >Administrador de Recursos?</b-form-checkbox>
-        </b-col>
-      </b-row>
+        <!-- </b-col> -->
+      <!-- </b-row> -->
       <b-row>
         <b-col xs="12">
           <b-button variant="primary" v-if="mode === 'save'" @click="save">Salvar</b-button>
@@ -178,4 +182,14 @@ export default {
 </script>
 
 <style>
+@media screen and (max-width: 600px) {
+    #general-admin-teachers {
+        padding: 5px;
+    }
+}
+@media screen and (min-width: 600px) {
+    #general-admin-teachers {
+        padding: 20px;
+    }
+}
 </style>

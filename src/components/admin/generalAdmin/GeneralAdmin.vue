@@ -30,5 +30,7 @@ export default {
 </script>
 
 <style>
-
+hr{
+  margin: 20px 0px;
+}
 </style>
