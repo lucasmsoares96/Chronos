@@ -84,7 +84,7 @@ export default {
             ],
             resource: {},
             mode: "save",
-            types: []
+            types: [],
         };
     },
     methods: {

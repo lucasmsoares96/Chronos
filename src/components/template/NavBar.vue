@@ -22,33 +22,53 @@
             </b-navbar-nav>
         </b-collapse>
     </b-navbar>
+
     <b-navbar v-else toggleable="lg" type="light" variant="light">
-        <b-dropdown id="dropdown-form" text="Log In" ref="dropdown">
-            <b-dropdown-form>
-                <b-form-group label="Email" label-for="dropdown-form-email" @submit.stop.prevent>
-                    <b-form-input
-                        id="dropdown-form-email"
-                        size="sm"
-                        placeholder="email@example.com"
-                    ></b-form-input>
-                </b-form-group>
+        <b-navbar-brand href="#"></b-navbar-brand>
 
-                <b-form-group label="Password" label-for="dropdown-form-password">
-                    <b-form-input
-                        id="dropdown-form-password"
-                        type="password"
-                        size="sm"
-                        placeholder="Password"
-                    ></b-form-input>
-                </b-form-group>
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-                <b-form-checkbox class="mb-3">Remember me</b-form-checkbox>
-                <b-button variant="primary" size="sm" @click="onClick">Sign In</b-button>
-            </b-dropdown-form>
-            <b-dropdown-divider></b-dropdown-divider>
-            <b-dropdown-item-button>New around here? Sign up</b-dropdown-item-button>
-            <b-dropdown-item-button>Forgot Password?</b-dropdown-item-button>
-        </b-dropdown>
+        <b-collapse id="nav-collapse" is-nav>
+            <b-navbar-nav></b-navbar-nav>
+
+            <!-- Right aligned nav items -->
+            <b-navbar-nav class="ml-auto">
+                <b-nav-item-dropdown right>
+                    <!-- Using 'button-content' slot -->
+                    <template v-slot:button-content>
+                        <em>User</em>
+                    </template>
+                    <b-dropdown-form>
+                        <b-form-group
+                            label="Email"
+                            label-for="dropdown-form-email"
+                            @submit.stop.prevent
+                        >
+                            <b-form-input
+                                id="dropdown-form-email"
+                                size="sm"
+                                placeholder="email@example.com"
+                            ></b-form-input>
+                        </b-form-group>
+
+                        <b-form-group label="Password" label-for="dropdown-form-password">
+                            <b-form-input
+                                id="dropdown-form-password"
+                                type="password"
+                                size="sm"
+                                placeholder="Password"
+                            ></b-form-input>
+                        </b-form-group>
+
+                        <b-form-checkbox class="mb-3">Remember me</b-form-checkbox>
+                        <b-button variant="primary" size="sm" @click="onClick">Sign In</b-button>
+                    </b-dropdown-form>
+                    <b-dropdown-divider></b-dropdown-divider>
+                    <b-dropdown-item-button>New around here? Sign up</b-dropdown-item-button>
+                    <b-dropdown-item-button>Forgot Password?</b-dropdown-item-button>
+                </b-nav-item-dropdown>
+            </b-navbar-nav>
+        </b-collapse>
     </b-navbar>
 </template>
 

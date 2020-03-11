@@ -55,6 +55,9 @@ export default {
 </script>
 
 <style>
+*{
+    outline: none;
+}
 #table{
     width: 100%;
     overflow: scroll;

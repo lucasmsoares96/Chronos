@@ -32,6 +32,7 @@
 
 <script>
 import axios from "axios";
+import { baseApiUrl, showError } from "@/global";
 
 export default {
     name: "TeacherPage",
@@ -78,7 +79,8 @@ export default {
                     tdClass: "text-right"
                 }
             ],
-            items: []
+            items: [],
+            boxOne: '',
         };
     },
     methods: {
@@ -108,7 +110,10 @@ export default {
                 .then(value => {
                     this.boxOne = value;
                     if (this.boxOne == true) {
-                        console.log(this.boxOne);
+                        axios.delete(`${baseApiUrl}/deleteProfessorHorarioEspec`,{
+                            item : item,
+                            payload : this.$store.state.user,
+                        })
                         console.log(item);
                     }
                 });
