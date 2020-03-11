@@ -46,6 +46,7 @@
 
 <script>
 import axios from "axios";
+import { baseApiUrl, showError } from "@/global";
 
 export default {
     name: "ResourcesAdmin",
@@ -99,7 +100,8 @@ export default {
                     thClass: "text-center",
                     tdClass: "text-right"
                 }
-            ]
+            ],
+            boxOne: '',
         };
     },
     methods: {
@@ -115,7 +117,10 @@ export default {
                 .then(value => {
                     this.boxOne = value;
                     if (this.boxOne == true) {
-                        console.log(this.boxOne);
+                        axios.delete(`${baseApiUrl}/updateAprovadoProfessorHorario`,{
+                            item : item,
+                            payload : this.$store.state.user,
+                        })
                         console.log(item);
                     }
                 });
@@ -127,7 +132,10 @@ export default {
                 .then(value => {
                     this.boxOne = value;
                     if (this.boxOne == true) {
-                        console.log(this.boxOne);
+                        axios.delete(`${baseApiUrl}/updateRecusadoProfessorHorario`,{
+                            item : item,
+                            payload : this.$store.state.user,
+                        })
                         console.log(item);
                     }
                 });
