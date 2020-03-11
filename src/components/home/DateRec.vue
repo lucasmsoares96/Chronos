@@ -49,8 +49,10 @@ export default {
             let tipoRecurso = this.selected;
             let obj = [data, tipoRecurso];
             axios
-                .post("http://localhost:3000/data", {
+                .get("http://localhost:3000/dataRecursos", {
+                    params: {
                     data
+                    }
                 })
                 .then(() => {
                     console.log(obj);
