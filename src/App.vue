@@ -28,7 +28,11 @@ export default {
             if (userData) {
             this.$store.commit('setUser',userData)
             }else {
-                this.$store.commit('setUser',{})
+                this.$store.commit('setUser',{
+                auth: false,
+                token: null,
+                payload: {},
+            })
                 this.validatingToken = false
                 // this.$router.push("/")
                 return
@@ -44,7 +48,7 @@ export default {
             // })
         }
     },
-    mounted(){
+    created(){
         this.validateToken();
     }
 }
@@ -57,7 +61,7 @@ export default {
 }
 
 h2 {
-    margin: 20px 0px;
+    margin-bottom: 20px;
     color: #007bff;
     font-size: 2rem;
 }

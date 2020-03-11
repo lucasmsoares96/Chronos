@@ -59,6 +59,9 @@ export default {
         };
     },
     methods: {
+        cancel(){
+
+        },
         login() {
             axios
                 .post(`${baseApiUrl}/login`, this.user)
@@ -86,8 +89,9 @@ export default {
         }
     },
     mounted() {
-        console.log(this.$store.state.user);
-        if (!this.$store.state.user) {
+        // const obj = {}
+        // console.log(obj)
+        if (Object.keys(this.$store.state.user).length==0) {
             this.$bvModal.show("modal1");
         }
     }
