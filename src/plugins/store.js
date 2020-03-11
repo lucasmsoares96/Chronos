@@ -75,7 +75,6 @@ export default new Vuex.Store({
             // state.user.admGeral = obj.admGeral;
             // state.user.admRecursos = obj.admRecursos;
             axios.defaults.headers.common['x-access-token'] = obj.token;
-            console.log(state.user);
         }
     }
 });
