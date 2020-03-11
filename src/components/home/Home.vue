@@ -21,11 +21,12 @@ export default {
 </script>
 
 <style>
-/* *{
-    border: solid 1px;
+*{
+    outline: none;
+    /* border: solid 1px;
     margin: 5px;
-    padding: 2px;
-} */
+    padding: 2px; */
+}
 
 section {
     display: flex;

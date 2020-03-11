@@ -85,7 +85,7 @@ export default {
   },
   methods: {
     getItems() {
-      return axios.get("http://localhost:3000/analysis").then(res => res.data);
+      return axios.get("http://localhost:3000/selectProfessorHorarioEspec").then(res => res.data);
     }
   }
 };
