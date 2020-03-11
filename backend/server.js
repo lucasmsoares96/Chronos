@@ -174,48 +174,48 @@ const analysis = [
 
 const listResources = [
     {
-    "tipo": "Sala de aula",
-    "Salas": 303,
+        "tipo": "Sala de aula",
+        "Salas": 303,
     },
     {
-    "tipo": "Sala de aula",
-    "Salas": 303,
+        "tipo": "Sala de aula",
+        "Salas": 303,
     },
     {
-    "tipo": "Sala de aula",
-    "Salas": 303,
+        "tipo": "Sala de aula",
+        "Salas": 303,
     },
     {
-    "tipo": "Sala de aula",
-    "Salas": 303,
+        "tipo": "Sala de aula",
+        "Salas": 303,
     },
 ]
 
-const listTeacher =[
+const listTeacher = [
     {
         "name": "Emerson",
-        "email": "emersonsouza@cefetmg.br",
+        "email": "emersonsousa@cefetmg.br",
         "genAdmin": true,
         "recAdmin": true,
         "numero de reservas": 24,
     },
     {
         "name": "Emerson",
-        "email": "emersonsouza@cefetmg.br",
+        "email": "emersonsousa@cefetmg.br",
         "genAdmin": true,
         "recAdmin": true,
         "numero de reservas": 24,
     },
     {
         "name": "Emerson",
-        "email": "emersonsouza@cefetmg.br",
+        "email": "emersonsousa@cefetmg.br",
         "genAdmin": true,
         "recAdmin": true,
         "numero de reservas": 24,
     },
     {
         "name": "Emerson",
-        "email": "emersonsouza@cefetmg.br",
+        "email": "emersonsousa@cefetmg.br",
         "genAdmin": true,
         "recAdmin": true,
         "numero de reservas": 24,
@@ -237,7 +237,7 @@ app.get("/selectProfessorHorario", (req, resp) => {
     console.log(req.query);
     resp.json(reservations);
 });
-app.get("/analysis", (req, resp) => {
+app.get("/selectProfessorHorarioEspec", (req, resp) => {
     // console.log(req.body)
     console.log(req.query);
     resp.json(analysis);
@@ -254,22 +254,25 @@ app.get("/getTeacher", (req, resp) => {
 });
 
 
-app.post("/data", (req, resp) => {
+app.post("/login", (req, resp) => {
     console.log(req.body)
     // console.log(req.query);
     resp.json({
         "auth": true,
         "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ2aXRvckAiLCJzZW5oYSI6IjEyMyIsImFyZWFEb0NvbmhlY2ltZW50byI6IjEyMyIsImNwZiI6IjExMTExMTExMTIyIiwiYWRtR2VyYWwiOjEsImFkbVJlY3Vyc29zIjoxLCJpYXQiOjE1ODM3OTkyNDEsImV4cCI6MTU4Mzc5OTU0MX0.4rwhsNvgCPxzBC6Gj4A8-xworrS5zmOMI3MjsMWYvueMyTwTiv0BHG0z5X6c99R_PPrlWnib3dWXMvubvTfDDDBifjxyE0EtSHSwPtFflIBThVZKYilRsHT88n8Xyxof_9Hk1EPyyS928AWchSGW--TGO4sdymw-IvD5fmtDz7E",
         "payload": {
-            "nome": "vitor",
             "id": 1,
+            "nome": "vitor",
             "email": "vitor@",
+            "senha": "123",
             "areaDoConhecimento": "123",
             "cpf": "11111111122",
             "admGeral": 1,
             "admRecursos": 1
         }
+
     });
+    resp.send("ok");
 });
 app.post("/professorhorario", (req, resp) => {
     console.log(req.body)

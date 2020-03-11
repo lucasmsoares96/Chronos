@@ -1,6 +1,7 @@
 import Vue from 'vue'
 
 export const baseApiUrl = 'http://localhost:3000'
+export const userKey = '__reserva_recurso'
 
 export function showError(e){
     if(e && e.response && e.reponse.data){
