@@ -4,7 +4,7 @@
             <b-tabs card>
                 <b-tab title="Reservas aguardando análise">
                     <div id="table">
-                        <b-table striped :fields="fields" :items="getItems">
+                        <b-table striped :fields="fields" :items="items">
                             <template v-slot:cell(actions)="data">
                                 <b-button
                                     variant="success"
@@ -104,14 +104,15 @@ export default {
                     tdClass: "text-right"
                 }
             ],
+            items: [],
             boxOne: ""
         };
     },
     methods: {
         getItems() {
-            return axios
-                .get("http://localhost:3000/selectProfessorHorarioEspec")
-                .then(res => res.data);
+            axios
+                .get(`${baseApiUrl}/selectProfessorHorarioEspec`)
+                .then(res => this.items=res.data);
         },
         approveItem(item) {
             this.boxOne = "";
