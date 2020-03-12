@@ -32,7 +32,7 @@
 
 <script>
 import axios from "axios";
-import { baseApiUrl, showError } from "@/global";
+import { baseApiUrl } from "@/global";
 
 export default {
     name: "TeacherPage",
@@ -80,7 +80,6 @@ export default {
                 }
             ],
             items: [],
-            boxOne: '',
         };
     },
     methods: {
