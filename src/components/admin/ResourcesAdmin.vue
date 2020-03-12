@@ -36,6 +36,9 @@
                                     <p>{{ row.item.motivo }}</p>
                                 </b-card>
                             </template>
+                            <template v-slot:cell(data)="data">
+                                {{ data.value.slice(0, 10) }}
+                            </template>
                         </b-table>
                     </div>
                 </b-tab>
@@ -101,7 +104,7 @@ export default {
                     tdClass: "text-right"
                 }
             ],
-            boxOne: '',
+            boxOne: ""
         };
     },
     methods: {
@@ -117,10 +120,13 @@ export default {
                 .then(value => {
                     this.boxOne = value;
                     if (this.boxOne == true) {
-                        axios.delete(`${baseApiUrl}/updateAprovadoProfessorHorario`,{
-                            item : item,
-                            payload : this.$store.state.user,
-                        })
+                        axios.delete(
+                            `${baseApiUrl}/updateAprovadoProfessorHorario`,
+                            {
+                                item: item,
+                                payload: this.$store.state.user
+                            }
+                        );
                         console.log(item);
                     }
                 });
@@ -132,10 +138,13 @@ export default {
                 .then(value => {
                     this.boxOne = value;
                     if (this.boxOne == true) {
-                        axios.delete(`${baseApiUrl}/updateRecusadoProfessorHorario`,{
-                            item : item,
-                            payload : this.$store.state.user,
-                        })
+                        axios.delete(
+                            `${baseApiUrl}/updateRecusadoProfessorHorario`,
+                            {
+                                item: item,
+                                payload: this.$store.state.user
+                            }
+                        );
                         console.log(item);
                     }
                 });
