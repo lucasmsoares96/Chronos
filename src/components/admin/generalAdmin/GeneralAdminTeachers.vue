@@ -144,14 +144,14 @@ export default {
                     thClass: "text-center"
                 }
             ],
-            items: []
+            items: [],
         };
     },
     methods: {
         getTeachers() {
             axios
                 .get("http://localhost:3000/getTeacher")
-                .then(res => (this.items = res.data));
+                .then(res => this.items = res.data);
         },
         reset() {
             this.mode = "save";
@@ -165,6 +165,7 @@ export default {
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset();
+                    this.getTeachers()
                 })
                 .catch(showError);
         },
@@ -175,6 +176,7 @@ export default {
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset();
+                    this.getTeachers()
                 })
                 .catch(showError);
         },

@@ -36,9 +36,7 @@
                                     <p>{{ row.item.motivo }}</p>
                                 </b-card>
                             </template>
-                            <template v-slot:cell(data)="data">
-                                {{ data.value.slice(0, 10) }}
-                            </template>
+                            <template v-slot:cell(data)="data">{{ data.value.slice(0, 10) }}</template>
                         </b-table>
                     </div>
                 </b-tab>
@@ -111,10 +109,10 @@ export default {
     methods: {
         getItems() {
             return axios
-                .post("http://localhost:3000/selectProfessorHorario",{
-                    payload: this.$store.state.user,
+                .post("http://localhost:3000/selectProfessorHorario", {
+                    payload: this.$store.state.user
                 })
-                .then(res => res.data);
+                .then(res => (this.items = res.data));
         },
         approveItem(item) {
             this.boxOne = "";
@@ -123,11 +121,20 @@ export default {
                 .then(value => {
                     this.boxOne = value;
                     if (this.boxOne == true) {
-                        axios.post(`${baseApiUrl}/updateAprovadoProfessorHorario`,{
-                            item : item,
-                            payload : this.$store.state.user,
-                        })
-                        console.log(item);
+                        axios
+                            .post(
+                                `${baseApiUrl}/updateAprovadoProfessorHorario`,
+                                {
+                                    item: item,
+                                    payload: this.$store.state.user
+                                }
+                            )
+                            .then(() => {
+                                this.$toasted.global.defaultSuccess();
+                                this.getItems();
+                                console.log(item);
+                            })
+                            .catch(showError);
                     }
                 });
         },
@@ -138,18 +145,22 @@ export default {
                 .then(value => {
                     this.boxOne = value;
                     if (this.boxOne == true) {
-                        axios.post(`${baseApiUrl}/updateRecusadoProfessorHorario`,{
-                            item : item,
-                            payload : this.$store.state.user,
-                        })
-
+                        axios
+                            .post(
+                                `${baseApiUrl}/updateRecusadoProfessorHorario`,
+                                {
+                                    item: item,
+                                    payload: this.$store.state.user
+                                }
+                            )
+                            .then(() => this.getItems());
                         console.log(item);
                     }
                 });
         }
     },
-    mounted(){
-        this.getItems()
+    mounted() {
+        this.getItems();
     }
 };
 </script>

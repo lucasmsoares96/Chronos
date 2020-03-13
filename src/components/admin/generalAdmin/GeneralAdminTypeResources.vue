@@ -93,6 +93,7 @@ export default {
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset();
+                    this.getTypeResources()
                 })
                 .catch(showError);
         },
@@ -103,6 +104,7 @@ export default {
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset;
+                    this.getTypeResources()
                 })
                 .catch(showError);
         },
