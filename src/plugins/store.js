@@ -54,7 +54,7 @@ export default new Vuex.Store({
                                     Object.keys(state.items[index1])[index2]
                                 );
                                 state.items[index1]["_cellVariants"][col] =
-                                    "info";
+                                    "success";
                             }
                         });
                     });

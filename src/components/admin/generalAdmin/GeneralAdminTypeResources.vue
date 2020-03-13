@@ -22,7 +22,7 @@
         </b-form>
         <hr />
         <div id="table">
-            <b-table striped :items="getTypeResources" :fields="fields">
+            <b-table striped :items="items" :fields="fields">
                 <template v-slot:cell(actions)="data">
                     <b-button variant="warning" @click="loadRecType(data.item)" class="btn2 mr-2">
                         <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
@@ -68,14 +68,15 @@ export default {
                 }
             ],
             recType: {},
-            mode: "save"
+            mode: "save",
+            items: [],
         };
     },
     methods: {
         getTypeResources() {
-            return axios
+            axios
                 .get("http://localhost:3000/tipoderecursos")
-                .then(res => res.data);
+                .then(res => this.items=res.data);
         },
         reset() {
             this.mode = "save";

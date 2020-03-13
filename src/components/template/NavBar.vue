@@ -9,6 +9,7 @@
 
         <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav>
+                <b-nav-item to="/">Quadro de Horários</b-nav-item>
                 <b-nav-item to="/teacher">Suas Reservas</b-nav-item>
                 <b-nav-item v-if="user.admRecursos" to="/resourcesAdmin">Administração de Recursos</b-nav-item>
                 <b-nav-item v-if="user.admGeral" to="/generalAdmin">Administração Geral</b-nav-item>
@@ -35,9 +36,7 @@
             <b-navbar-nav class="ml-auto">
                 <b-nav-item-dropdown right>
                     <!-- Using 'button-content' slot -->
-                    <template v-slot:button-content>
-                        <em>User</em>
-                    </template>
+                    <template v-slot:button-content>Sign In</template>
                     <b-dropdown-form>
                         <b-form-group
                             label="Email"
@@ -89,7 +88,9 @@ export default {
                 token: null,
                 payload: {}
             });
-            this.$router.push("/");
+            if (window.location.pathname != "/") {
+                this.$router.push("/");
+            }
         },
         onClick() {
             // Close the menu and (by passing true) return focus to the toggle button

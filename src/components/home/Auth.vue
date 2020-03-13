@@ -1,5 +1,5 @@
 <template>
-    <b-modal id="modal1" :title="title" header-text-variant="light">
+    <b-modal id="modal1" :title="title" header-text-variant="light" hide-header-close no-close-on-esc no-close-on-backdrop>
         <b-form class="formulario">
             <h6 v-if="!showSignUp">Conecte-se:</h6>
             <h6 v-else>Cadastre-se:</h6>
@@ -35,7 +35,6 @@
             />
         </b-form>
 
-
         <template v-slot:modal-footer="{ cancel }">
             <b-button variant="primary" @click="login">sim</b-button>
             <b-button @click="cancel()">não</b-button>
@@ -68,7 +67,8 @@ export default {
                 .then(res => {
                     this.$store.commit("setUser", res.data);
                     localStorage.setItem(userKey, JSON.stringify(res.data));
-                    this.$router.push("/teacher");
+                    // this.$router.push("/teacher");
+                    this.$bvModal.hide("modal1");
                 })
                 .catch(showError);
         },

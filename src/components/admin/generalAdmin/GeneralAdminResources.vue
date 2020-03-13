@@ -37,7 +37,7 @@
         </b-form>
         <hr />
         <div id="table">
-            <b-table striped :fields="fields" :items="getResources">
+            <b-table striped :fields="fields" :items="items">
                 <template v-slot:cell(actions)="data">
                     <b-button variant="warning" @click="loadResource(data.item)" class="btn2 mr-2">
                         <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
@@ -85,6 +85,7 @@ export default {
             resource: {},
             mode: "save",
             types: [],
+            items: [],
         };
     },
     methods: {
@@ -103,9 +104,9 @@ export default {
             });
         },
         getResources() {
-            return axios
+            axios
                 .get("http://localhost:3000/getResources")
-                .then(res => res.data);
+                .then(res => this.items=res.data);
         },
         reset() {
             this.mode = "save";
