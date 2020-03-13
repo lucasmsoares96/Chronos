@@ -107,9 +107,9 @@ export default {
                 token: null,
                 payload: {}
             });
-            // if (window.location.pathname != "/") {
-            //     this.$router.push("/");
-            // }
+            if (window.location.pathname != "/" && window.location.pathname != "/schedule") {
+                this.$router.push("/");
+            }
         },
         onClick() {
             // Close the menu and (by passing true) return focus to the toggle button
