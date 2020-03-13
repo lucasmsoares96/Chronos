@@ -34,7 +34,7 @@ export default {
                 payload: {},
             })
                 this.validatingToken = false
-                // this.$router.push("/")
+                this.$router.push("/")
                 return
             }
             // axios.post(`${baseApiUrl}/validateToken`,userData).then(res => {
