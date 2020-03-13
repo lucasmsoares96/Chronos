@@ -183,6 +183,9 @@ export default {
             this.user = { ...user };
             console.log(this.user);
         }
+    },
+    mounted(){
+        this.getTeachers()
     }
 };
 </script>

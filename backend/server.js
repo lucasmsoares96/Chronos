@@ -175,18 +175,22 @@ const analysis = [
 const listResources = [
     {
         "tipo": "Sala de aula",
+        "idTipoDeRecursos": "sala",
         "Salas": 303,
     },
     {
         "tipo": "Sala de aula",
+        "idTipoDeRecursos": "sala",
         "Salas": 303,
     },
     {
         "tipo": "Sala de aula",
+        "idTipoDeRecursos": "sala",
         "Salas": 303,
     },
     {
         "tipo": "Sala de aula",
+        "idTipoDeRecursos": "sala",
         "Salas": 303,
     },
 ]
