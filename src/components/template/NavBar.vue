@@ -46,7 +46,7 @@
                             <b-form-input
                                 id="dropdown-form-email"
                                 size="sm"
-                                v-model="user.email"
+                                v-model="user2.email"
                                 placeholder="email@example.com"
                             ></b-form-input>
                         </b-form-group>
@@ -56,7 +56,7 @@
                                 id="dropdown-form-password"
                                 type="password"
                                 size="sm"
-                                v-model="user.password"
+                                v-model="user2.password"
                                 placeholder="senha"
                             ></b-form-input>
                         </b-form-group>
@@ -91,7 +91,7 @@ export default {
     methods: {
         login() {
             axios
-                .post(`${baseApiUrl}/login`, {user : this.user2})
+                .post(`${baseApiUrl}/login`, this.user2)
                 .then(res => {
                     this.$store.commit("setUser", res.data);
                     localStorage.setItem(userKey, JSON.stringify(res.data));
