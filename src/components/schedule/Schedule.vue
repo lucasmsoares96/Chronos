@@ -2,7 +2,7 @@
     <div id="schedule">
         <b-row cols="12" style="width: 100%" align-h="between">
             <h2>Quadro de horarios</h2>
-            <b-button variant="primary" v-b-modal.modal1 class="mb-2">Solcitar Resesrva</b-button>
+            <b-button variant="primary" v-b-modal.modal1 class="mb-2">Solicitar Reserva</b-button>
         </b-row>
         <div id="table">
             <b-table @click.native="clickOnCell" bordered :items="items" :fields="fields">

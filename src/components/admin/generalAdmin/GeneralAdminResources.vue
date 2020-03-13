@@ -114,14 +114,14 @@ export default {
         },
         save() {
             console.log(this.resource)
-            // const method = this.resource.id ? "put" : "post";
-            // const id = this.resource.id ? `/${this.resource.id}` : "";
-            // axios[method](`${baseApiUrl}/resource${id}`, this.resource)
-            //     .then(() => {
-            //         this.$toasted.global.defaultSuccess();
-            //         this.reset();
-            //     })
-            //     .catch(showError);
+            const method = this.resource.id ? "put" : "post";
+            const id = this.resource.id ? `/${this.resource.id}` : "";
+            axios[method](`${baseApiUrl}/resource${id}`, this.resource)
+                .then(() => {
+                    this.$toasted.global.defaultSuccess();
+                    this.reset();
+                })
+                .catch(showError);
         },
         remove() {
             const id = this.resource.id;
