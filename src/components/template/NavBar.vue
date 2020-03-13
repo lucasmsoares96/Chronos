@@ -46,25 +46,27 @@
                             <b-form-input
                                 id="dropdown-form-email"
                                 size="sm"
+                                v-model="user.email"
                                 placeholder="email@example.com"
                             ></b-form-input>
                         </b-form-group>
 
-                        <b-form-group label="Password" label-for="dropdown-form-password">
+                        <b-form-group label="Senha" label-for="dropdown-form-password">
                             <b-form-input
                                 id="dropdown-form-password"
                                 type="password"
                                 size="sm"
-                                placeholder="Password"
+                                v-model="user.password"
+                                placeholder="senha"
                             ></b-form-input>
                         </b-form-group>
 
-                        <b-form-checkbox class="mb-3">Remember me</b-form-checkbox>
-                        <b-button variant="primary" size="sm" @click="onClick">Sign In</b-button>
+                        <b-form-checkbox class="mb-3">Lembrar-me</b-form-checkbox>
+                        <b-button variant="primary" size="sm" @click="login">Sign In</b-button>
                     </b-dropdown-form>
                     <b-dropdown-divider></b-dropdown-divider>
-                    <b-dropdown-item-button>New around here? Sign up</b-dropdown-item-button>
-                    <b-dropdown-item-button>Forgot Password?</b-dropdown-item-button>
+                    <b-dropdown-item-button>Não tem cadastro? Registre-se</b-dropdown-item-button>
+                    <b-dropdown-item-button>Esqueceu sua Senha?</b-dropdown-item-button>
                 </b-nav-item-dropdown>
             </b-navbar-nav>
         </b-collapse>
@@ -72,15 +74,32 @@
 </template>
 
 <script>
-import { userKey } from "@/global";
+import { baseApiUrl, showError, userKey } from "@/global";
+import axios from 'axios';
 export default {
     name: "NavBar",
+    data(){
+        return{
+            user2:{},
+        }
+    },
     computed: {
         user() {
             return this.$store.state.user;
         }
     },
     methods: {
+        login() {
+            axios
+                .post(`${baseApiUrl}/login`, this.user2)
+                .then(res => {
+                    this.$store.commit("setUser", res.data);
+                    localStorage.setItem(userKey, JSON.stringify(res.data));
+                    // this.$router.push("/teacher");
+                    this.$bvModal.hide("modal1");
+                })
+                .catch(showError);
+        },
         logOut() {
             localStorage.removeItem(userKey);
             this.$store.commit("setUser", {
@@ -88,9 +107,9 @@ export default {
                 token: null,
                 payload: {}
             });
-            if (window.location.pathname != "/") {
-                this.$router.push("/");
-            }
+            // if (window.location.pathname != "/") {
+            //     this.$router.push("/");
+            // }
         },
         onClick() {
             // Close the menu and (by passing true) return focus to the toggle button
