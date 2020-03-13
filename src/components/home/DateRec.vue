@@ -49,11 +49,7 @@ export default {
             let tipoRecurso = this.selected;
             let obj = [data, tipoRecurso];
             axios
-                .get("http://localhost:3000/data", {
-                    params: {
-                        data,
-                    }
-                })
+                .post("http://localhost:3000/data",data)
                 .then(() => {
                     console.log(obj);
                     this.$store.commit("setObj", obj);
