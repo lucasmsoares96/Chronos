@@ -14,8 +14,7 @@ const typeResorces = [
     { nome: "Veículo", idTipoDeRecursos: "vei" }
 ];
 
-const schedule = [
-    {
+const schedule = [{
         numero: 303,
         idhorario: 1,
         "07:00-07:50": 0,
@@ -90,8 +89,7 @@ const schedule = [
     }
 ];
 
-const reservations = [
-    {
+const reservations = [{
         "email": "123",
         "nomeP": "123",
         "horario": "07:00:00",
@@ -129,8 +127,7 @@ const reservations = [
     }
 ]
 
-const analysis = [
-    {
+const analysis = [{
         "email": "123",
         "nomeP": "123",
         "horario": "07:00:00",
@@ -172,8 +169,7 @@ const analysis = [
     }
 ]
 
-const listResources = [
-    {
+const listResources = [{
         "tipo": "Sala de aula",
         "idTipoDeRecursos": "sala",
         "Salas": 303,
@@ -195,8 +191,7 @@ const listResources = [
     },
 ]
 
-const listTeacher = [
-    {
+const listTeacher = [{
         "name": "Emerson",
         "email": "emersonsousa@cefetmg.br",
         "genAdmin": true,
@@ -236,14 +231,20 @@ app.get("/dataRecursos", (req, resp) => {
     console.log(req.query);
     resp.json(schedule);
 });
-app.get("/selectProfessorHorario", (req, resp) => {
-    // console.log(req.body)
-    console.log(req.query);
+app.post("/data", (req, resp) => {
+    console.log(req.body)
+        // console.log(req.query);
+    resp.json(schedule);
+    resp.status(400).send("falta algo")
+});
+app.post("/selectProfessorHorario", (req, resp) => {
+    console.log(req.body)
+        // console.log(req.query);
     resp.json(reservations);
 });
-app.get("/selectProfessorHorarioEspec", (req, resp) => {
-    // console.log(req.body)
-    console.log(req.query);
+app.post("/selectProfessorHorarioEspec", (req, resp) => {
+    console.log(req.body)
+        // console.log(req.query);
     resp.json(analysis);
 });
 app.get("/getResources", (req, resp) => {
@@ -260,7 +261,7 @@ app.get("/getTeacher", (req, resp) => {
 
 app.post("/login", (req, resp) => {
     console.log(req.body)
-    // console.log(req.query);
+        // console.log(req.query);
     resp.json({
         "auth": true,
         "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ2aXRvckAiLCJzZW5oYSI6IjEyMyIsImFyZWFEb0NvbmhlY2ltZW50byI6IjEyMyIsImNwZiI6IjExMTExMTExMTIyIiwiYWRtR2VyYWwiOjEsImFkbVJlY3Vyc29zIjoxLCJpYXQiOjE1ODM3OTkyNDEsImV4cCI6MTU4Mzc5OTU0MX0.4rwhsNvgCPxzBC6Gj4A8-xworrS5zmOMI3MjsMWYvueMyTwTiv0BHG0z5X6c99R_PPrlWnib3dWXMvubvTfDDDBifjxyE0EtSHSwPtFflIBThVZKYilRsHT88n8Xyxof_9Hk1EPyyS928AWchSGW--TGO4sdymw-IvD5fmtDz7E",
@@ -280,7 +281,7 @@ app.post("/login", (req, resp) => {
 });
 app.post("/professorhorario", (req, resp) => {
     console.log(req.body)
-    // console.log(req.query);
+        // console.log(req.query);
     resp.send("ok");
 });
 

@@ -27,6 +27,7 @@
 
 <script>
 import axios from "axios";
+import {showError} from "@/global"
 
 export default {
     name: "DateRec",
@@ -54,7 +55,7 @@ export default {
                     console.log(obj);
                     this.$store.commit("setObj", obj);
                     this.$router.push("/schedule");
-                });
+                }).catch(showError);
         }
     },
     mounted() {

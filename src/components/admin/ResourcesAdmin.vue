@@ -153,7 +153,10 @@ export default {
                                     payload: this.$store.state.user
                                 }
                             )
-                            .then(() => this.getItems());
+                            .then(() => {
+                                this.$toasted.global.defaultSuccess();
+                                this.getItems();
+                            });
                         console.log(item);
                     }
                 });
