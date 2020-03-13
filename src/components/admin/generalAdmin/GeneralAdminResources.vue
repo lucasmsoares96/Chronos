@@ -114,7 +114,10 @@ export default {
         save() {
             const method = this.resource.id ? "put" : "post";
             const id = this.resource.id ? `/${this.resource.id}` : "";
-            axios[method](`${baseApiUrl}/resource${id}`, this.resource)
+            axios[method](`${baseApiUrl}/insertRecursos${id}`, {
+                recursos: this.resource,
+                payload : this.$store.state.user
+            })
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset();

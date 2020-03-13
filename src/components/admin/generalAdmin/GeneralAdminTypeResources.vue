@@ -82,9 +82,13 @@ export default {
             this.recType = {};
         },
         save() {
+            console.log("teste")
             const method = this.recType.id ? "put" : "post";
             const id = this.recType.id ? `/${this.recType.id}` : "";
-            axios[method](`${baseApiUrl}/recType${id}`, this.recType)
+            axios[method](`${baseApiUrl}/insertTipoDeRecursos${id}`,{
+                recType: this.recType,
+                payload : this.$store.state.user
+            })
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset();

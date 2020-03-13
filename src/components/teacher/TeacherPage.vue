@@ -32,7 +32,7 @@
 
 <script>
 import axios from "axios";
-import { baseApiUrl, showError } from "@/global";
+import { baseApiUrl } from "@/global";
 
 export default {
     name: "TeacherPage",
@@ -80,13 +80,16 @@ export default {
                 }
             ],
             items: [],
-            boxOne: '',
         };
     },
     methods: {
         getItems() {
+            console.log(this.$store.state.user)
+            console.log(typeof(this.$store.state.user))
             axios
-                .get("http://localhost:3000/selectProfessorHorarioEspec")
+                .post("http://localhost:3000/selectProfessorHorarioEspec", {
+                        payload: this.$store.state.user,
+                })
                 .then(res => {
                     this.items = res.data;
                     this.items.forEach(e => {
@@ -110,7 +113,7 @@ export default {
                 .then(value => {
                     this.boxOne = value;
                     if (this.boxOne == true) {
-                        axios.delete(`${baseApiUrl}/deleteProfessorHorarioEspec`,{
+                        axios.post(`${baseApiUrl}/deleteProfessorHorarioEspec`,{
                             item : item,
                             payload : this.$store.state.user,
                         })

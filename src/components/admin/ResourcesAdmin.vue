@@ -46,7 +46,7 @@
 
 <script>
 import axios from "axios";
-import { baseApiUrl, showError } from "@/global";
+import { baseApiUrl } from "@/global";
 
 export default {
     name: "ResourcesAdmin",
@@ -107,7 +107,9 @@ export default {
     methods: {
         getItems() {
             return axios
-                .get("http://localhost:3000/selectProfessorHorarioEspec")
+                .post("http://localhost:3000/selectProfessorHorario",{
+                    payload: this.$store.state.user,
+                })
                 .then(res => res.data);
         },
         approveItem(item) {
@@ -117,7 +119,7 @@ export default {
                 .then(value => {
                     this.boxOne = value;
                     if (this.boxOne == true) {
-                        axios.delete(`${baseApiUrl}/updateAprovadoProfessorHorario`,{
+                        axios.post(`${baseApiUrl}/updateAprovadoProfessorHorario`,{
                             item : item,
                             payload : this.$store.state.user,
                         })
@@ -132,7 +134,7 @@ export default {
                 .then(value => {
                     this.boxOne = value;
                     if (this.boxOne == true) {
-                        axios.delete(`${baseApiUrl}/updateRecusadoProfessorHorario`,{
+                        axios.post(`${baseApiUrl}/updateRecusadoProfessorHorario`,{
                             item : item,
                             payload : this.$store.state.user,
                         })
