@@ -47,7 +47,7 @@
 
 <script>
 import axios from "axios";
-import { baseApiUrl } from "@/global";
+import { baseApiUrl, showError } from "@/global";
 
 export default {
     name: "ResourcesAdmin",
@@ -108,7 +108,7 @@ export default {
     },
     methods: {
         getItems() {
-            return axios
+            axios
                 .post("http://localhost:3000/selectProfessorHorario", {
                     payload: this.$store.state.user
                 })
