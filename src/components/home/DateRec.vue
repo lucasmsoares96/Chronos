@@ -51,7 +51,8 @@ export default {
             axios
                 .get("http://localhost:3000/dataRecursos", {
                     params: {
-                    data
+                    data,
+                    tipoRecurso
                     }
                 })
                 .then(() => {
