@@ -123,6 +123,7 @@ export default {
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset();
+                    this.getResources();
                 })
                 .catch(showError);
         },
@@ -133,6 +134,7 @@ export default {
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset;
+                    this.getResources();
                 })
                 .catch(showError);
         },

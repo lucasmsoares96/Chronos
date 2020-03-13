@@ -22,9 +22,7 @@
                                     <font-awesome-icon icon="times"></font-awesome-icon>
                                 </b-button>
                             </template>
-                            <template v-slot:cell(data)="data">
-                                {{ data.value.slice(0, 10) }}
-                            </template>
+                            <template v-slot:cell(data)="data">{{ data.value.slice(0, 10) }}</template>
                         </b-table>
                     </div>
                 </b-tab>
@@ -35,7 +33,7 @@
 
 <script>
 import axios from "axios";
-import { baseApiUrl } from "@/global";
+import { baseApiUrl,showError } from "@/global";
 
 export default {
     name: "TeacherPage",
@@ -82,16 +80,16 @@ export default {
                     tdClass: "text-right"
                 }
             ],
-            items: [],
+            items: []
         };
     },
     methods: {
         getItems() {
-            console.log(this.$store.state.user)
-            console.log(typeof(this.$store.state.user))
+            console.log(this.$store.state.user);
+            console.log(typeof this.$store.state.user);
             axios
                 .post("http://localhost:3000/selectProfessorHorarioEspec", {
-                        payload: this.$store.state.user,
+                    payload: this.$store.state.user
                 })
                 .then(res => {
                     this.items = res.data;
@@ -116,10 +114,13 @@ export default {
                 .then(value => {
                     this.boxOne = value;
                     if (this.boxOne == true) {
-                        axios.post(`${baseApiUrl}/deleteProfessorHorarioEspec`,{
-                            item : item,
-                            payload : this.$store.state.user,
-                        })
+                        axios
+                            .post(`${baseApiUrl}/deleteProfessorHorarioEspec`, {
+                                item: item,
+                                payload: this.$store.state.user
+                            })
+                            .then(() => this.getItems())
+                            .catch(showError);
                         console.log(item);
                     }
                 });
