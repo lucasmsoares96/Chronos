@@ -1,17 +1,15 @@
 <template>
     <div id="schedule">
-        <h1>Quadro de horarios</h1>
+        <b-row cols="12" style="width: 100%" align-h="between">
+            <h2>Quadro de horarios</h2>
+            <b-button variant="primary" v-b-modal.modal1 class="mb-2">Solcitar Resesrva</b-button>
+        </b-row>
         <div id="table">
-            <b-table
-                @click.native="clickOnCell"
-                bordered
-                :items="items"
-                :fields="fields"
-            >
-                <template v-slot:cell()=""> </template>
-                <template v-slot:cell(numero)="data">
-                    {{ data.value }}
+            <b-table @click.native="clickOnCell" bordered :items="items" :fields="fields">
+                <template v-slot:cell()="data">
+                    <div style="display:none">{{ data.value }}</div>
                 </template>
+                <template v-slot:cell(numero)="data">{{ data.value }}</template>
             </b-table>
         </div>
         <div>
@@ -28,16 +26,11 @@
                         rows="5"
                         max-rows="10"
                         maxlength="255"
-                    >
-                    </b-form-textarea>
+                    ></b-form-textarea>
                 </div>
                 <template v-slot:modal-footer="{ cancel }">
-                    <b-button variant="primary" @click="sendData">
-                        OK
-                    </b-button>
-                    <b-button @click="cancel()">
-                        Cancelar
-                    </b-button>
+                    <b-button variant="primary" @click="sendData">OK</b-button>
+                    <b-button @click="cancel()">Cancelar</b-button>
                 </template>
             </b-modal>
         </div>
@@ -53,33 +46,76 @@ export default {
         return {
             text: "",
             recurso: "",
-            horario: ""
+            horario: "",
+            vet: []
         };
     },
     methods: {
         clickOnCell(e) {
             // console.log([e.srcElement.parentNode.rowIndex]);
             // console.log([e.srcElement.cellIndex]);
-            // console.log(e.target.className)
-            (this.text = ""), console.log(e);
-            const table = document.getElementsByTagName("table")[0];
-            let row =
-                table.rows[e.srcElement.parentNode.rowIndex].cells[0].innerHTML;
-            let column = table.rows[0].cells[e.srcElement.cellIndex].innerHTML;
-            console.log("linha  " + row);
-            console.log("coluna " + column);
-            this.recurso = row;
-            this.horario = column;
-
-            // if (e.target.className == )
-            this.$bvModal.show("modal1");
+            // this.click += 1;
+            // console.log(this.click);
+            // console.log(e.target.className);
+            if (Object.keys(this.$store.state.user).length) {
+                this.text = "";
+                console.log(e);
+                const table = document.getElementsByTagName("table")[0];
+                let row =
+                    table.rows[e.srcElement.parentNode.rowIndex].cells[0]
+                        .innerHTML;
+                let column =
+                    table.rows[0].cells[e.srcElement.cellIndex].innerHTML;
+                console.log("linha  " + row);
+                console.log("coluna " + column);
+                this.recurso = row;
+                this.horario = column;
+                let obj = {};
+                obj.recurso = this.recurso;
+                obj.horario = this.horario;
+                if (
+                    e.toElement.children[0].innerHTML == 0 ||
+                    e.toElement.children[0].innerHTML == 1
+                ) {
+                    if (
+                        e.target.className == "table-success" ||
+                        e.target.className == "table-warning"
+                    ) {
+                        this.vet.push(obj);
+                        e.target.className = "table-primary";
+                    } else if (e.toElement.children[0].innerHTML == 0) {
+                        for (let cell in this.vet) {
+                            // console.log(cell);
+                            if (
+                                this.vet[cell].recurso == row &&
+                                this.vet[cell].horario == column
+                            ) {
+                                this.vet.splice(cell, 1);
+                            }
+                        }
+                        // console.log(this.vet);
+                        e.target.className = "table-success";
+                    } else {
+                        e.target.className = "table-warning";
+                    }
+                    // e.target.className = "table-primary";
+                    // this.$bvModal.show("modal1");
+                } else {
+                    this.$bvModal.msgBoxOk("Esse horário não está disponível");
+                }
+            } else {
+                this.$bvModal.msgBoxOk(
+                    "É preciso estar logado para solicitar uma reserva"
+                );
+            }
+            console.log(this.vet);
         },
         sendData() {
             axios
                 .post("http://localhost:3000/professorhorario", {
                     data: this.data,
                     recurso: this.recurso,
-                    horario: this.horario,
+                    horario: this.vet,
                     texto: this.text
                 })
                 .then(this.$bvModal.hide("modal1"));
@@ -98,6 +134,9 @@ export default {
     },
     mounted() {
         this.$store.commit("resSchedule");
+        this.$bvModal.msgBoxOk(
+            "selecione um ou mais horarios em seguida click em Solicitar Reserva"
+        );
     }
 };
 </script>

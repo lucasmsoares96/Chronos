@@ -4,7 +4,7 @@
             <b-tabs card>
                 <b-tab title="Reservas aguardando análise">
                     <div id="table">
-                        <b-table striped :fields="fields" :items="getItems">
+                        <b-table striped :fields="fields" :items="items">
                             <template v-slot:cell(actions)="data">
                                 <b-button
                                     variant="success"
@@ -35,6 +35,9 @@
                                 <b-card style="width: 1000px">
                                     <p>{{ row.item.motivo }}</p>
                                 </b-card>
+                            </template>
+                            <template v-slot:cell(data)="data">
+                                {{ data.value.slice(0, 10) }}
                             </template>
                         </b-table>
                     </div>
@@ -101,7 +104,8 @@ export default {
                     tdClass: "text-right"
                 }
             ],
-            boxOne: '',
+            items: [],
+            boxOne: ""
         };
     },
     methods: {
@@ -138,6 +142,7 @@ export default {
                             item : item,
                             payload : this.$store.state.user,
                         })
+
                         console.log(item);
                     }
                 });
