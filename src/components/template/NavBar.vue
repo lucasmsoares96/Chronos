@@ -2,7 +2,7 @@
     <b-navbar v-if="user.nome" toggleable="lg" type="light" variant="light">
         <b-navbar-brand href="#">
             <font-awesome-icon icon="user" class="mr-2"></font-awesome-icon>
-            {{this.$store.state.user.nome}}
+            {{user.nome}}
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -11,8 +11,8 @@
             <b-navbar-nav>
                 <b-nav-item to="/">Quadro de Horários</b-nav-item>
                 <b-nav-item to="/teacher">Suas Reservas</b-nav-item>
-                <b-nav-item v-if="this.$store.state.user.admRecursos" to="/resourcesAdmin">Administração de Recursos</b-nav-item>
-                <b-nav-item v-if="this.$store.state.user.admGeral" to="/generalAdmin">Administração Geral</b-nav-item>
+                <b-nav-item v-if="user.admRecursos" to="/resourcesAdmin">Administração de Recursos</b-nav-item>
+                <b-nav-item v-if="user.admGeral" to="/generalAdmin">Administração Geral</b-nav-item>
             </b-navbar-nav>
 
             <!-- Right aligned nav items -->
@@ -46,7 +46,7 @@
                             <b-form-input
                                 id="dropdown-form-email"
                                 size="sm"
-                                v-model="user.email"
+                                v-model="user2.email"
                                 placeholder="email@example.com"
                             ></b-form-input>
                         </b-form-group>
@@ -56,7 +56,7 @@
                                 id="dropdown-form-password"
                                 type="password"
                                 size="sm"
-                                v-model="user.password"
+                                v-model="user2.password"
                                 placeholder="senha"
                             ></b-form-input>
                         </b-form-group>
@@ -80,13 +80,19 @@ export default {
     name: "NavBar",
     data(){
         return{
-            user:{},
+            user2:{},
+        }
+    },
+    computed: {
+        user() {
+            return this.$store.state.user;
         }
     },
     methods: {
         login() {
+
             axios
-                .post(`${baseApiUrl}/login`, this.user)
+                .post(`${baseApiUrl}/login`, this.user2)
                 .then(res => {
                     this.$store.commit("setUser", res.data);
                     localStorage.setItem(userKey, JSON.stringify(res.data));
