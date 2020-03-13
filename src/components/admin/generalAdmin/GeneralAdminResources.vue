@@ -17,13 +17,13 @@
                     v-if="mode === 'save'"
                     id="type"
                     :options="types"
-                    v-model="resource.tipo"
+                    v-model="resource.idTipoDeRecursos"
                 />
                 <b-form-input
                     v-else
-                    id="resource.tipo"
+                    id="type"
                     type="text"
-                    v-model="resource.tipo"
+                    v-model="resource.idTipoDeRecursos"
                     readonly
                 />
             </b-form-group>
@@ -95,7 +95,7 @@ export default {
                 // this.categories = res.data
                 this.types = res.data.map(types => {
                     return {
-                        ...types,
+                        // ...types,
                         value: types.idTipoDeRecursos,
                         text: types.nome
                     };
@@ -113,14 +113,15 @@ export default {
             this.resource = {};
         },
         save() {
-            const method = this.resource.id ? "put" : "post";
-            const id = this.resource.id ? `/${this.resource.id}` : "";
-            axios[method](`${baseApiUrl}/resource${id}`, this.resource)
-                .then(() => {
-                    this.$toasted.global.defaultSuccess();
-                    this.reset();
-                })
-                .catch(showError);
+            console.log(this.resource)
+            // const method = this.resource.id ? "put" : "post";
+            // const id = this.resource.id ? `/${this.resource.id}` : "";
+            // axios[method](`${baseApiUrl}/resource${id}`, this.resource)
+            //     .then(() => {
+            //         this.$toasted.global.defaultSuccess();
+            //         this.reset();
+            //     })
+            //     .catch(showError);
         },
         remove() {
             const id = this.resource.id;
@@ -133,13 +134,15 @@ export default {
                 .catch(showError);
         },
         loadResource(resource, mode = "save") {
+
             this.mode = mode;
-            this.resource = { ...resource };
+            this.resource = {...resource};
             console.log(this.resource);
         }
     },
     mounted() {
         this.loadTypes();
+        this.getResources();
     }
 };
 </script>

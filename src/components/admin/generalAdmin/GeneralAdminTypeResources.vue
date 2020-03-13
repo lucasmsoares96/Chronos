@@ -107,6 +107,9 @@ export default {
             this.recType = { ...recType };
             console.log(this.recType);
         }
+    },
+    mounted(){
+        this.getTypeResources()
     }
 };
 </script>
