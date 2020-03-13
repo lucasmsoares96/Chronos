@@ -49,10 +49,9 @@ export default {
             let tipoRecurso = this.selected;
             let obj = [data, tipoRecurso];
             axios
-                .get("http://localhost:3000/dataRecursos", {
+                .get("http://localhost:3000/data", {
                     params: {
-                    data,
-                    tipoRecurso
+                        data,
                     }
                 })
                 .then(() => {
