@@ -3,7 +3,7 @@
         <b-row cols="12" style="width: 100%" align-h="between">
             <h2>Quadro de horarios</h2>
             <h3>
-                {{data.toString().split("-").reverse().join("-")}}
+                {{data.split("-").reverse().join("-")}}
             </h3>
             <b-button variant="primary" v-b-modal.modal1 class="mb-2">Solicitar Reserva</b-button>
         </b-row>
