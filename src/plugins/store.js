@@ -8,7 +8,7 @@ export default new Vuex.Store({
     state: {
         obj: {},
         items: [],
-        fields: [],
+        // fields: [],
         user: {},
     },
     mutations: {
@@ -28,7 +28,7 @@ export default new Vuex.Store({
                             if (
                                 el == 2 &&
                                 Object.keys(state.items[index1])[index2] !=
-                                    "idhorario"
+                                "idhorario"
                             ) {
                                 let col = String(
                                     Object.keys(state.items[index1])[index2]
@@ -38,7 +38,7 @@ export default new Vuex.Store({
                             } else if (
                                 el == 1 &&
                                 Object.keys(state.items[index1])[index2] !=
-                                    "idhorario"
+                                "idhorario"
                             ) {
                                 let col = String(
                                     Object.keys(state.items[index1])[index2]
@@ -48,7 +48,7 @@ export default new Vuex.Store({
                             } else if (
                                 el == 0 &&
                                 Object.keys(state.items[index1])[index2] !=
-                                    "idhorario"
+                                "idhorario"
                             ) {
                                 let col = String(
                                     Object.keys(state.items[index1])[index2]
@@ -58,19 +58,19 @@ export default new Vuex.Store({
                             }
                         });
                     });
-                    state.fields = Object.keys(state.items[0]).filter(obj => {
-                        return obj == "idhorario" || obj == "_cellVariants"
-                            ? false
-                            : true;
-                    });
+                    // state.fields = Object.keys(state.items[0]).filter(obj => {
+                    //     return obj == "idhorario" || obj == "_cellVariants"
+                    //         ? false
+                    //         : true;
+                    // });
                 });
         },
-        setObj(state,obj){
+        setObj(state, obj) {
             state.obj.data = obj[0],
-            state.obj.tipoRecurso = obj[1]
+                state.obj.tipoRecurso = obj[1]
 
         },
-        setUser(state,obj){
+        setUser(state, obj) {
             state.user = obj.payload;
             // state.user.admGeral = obj.admGeral;
             // state.user.admRecursos = obj.admRecursos;

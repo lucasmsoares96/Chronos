@@ -2,6 +2,9 @@
     <div id="schedule">
         <b-row cols="12" style="width: 100%" align-h="between">
             <h2>Quadro de horarios</h2>
+            <h3>
+                {{data.toString().split("-").reverse().join("-")}}
+            </h3>
             <b-button variant="primary" v-b-modal.modal1 class="mb-2">Solicitar Reserva</b-button>
         </b-row>
         <div id="table">
@@ -47,7 +50,24 @@ export default {
             text: "",
             recurso: "",
             horario: "",
-            vet: []
+            vet: [],
+            fields: [
+                {key: "numero", label: "Identificação"},
+                {key: "07:00-07:50"},
+                {key: "07:50-08:40"},
+                {key: "09:45-10:35"},
+                {key: "10:50-11:40"},
+                {key: "11:40-12:30"},
+                {key: "12:30-13:50"},
+                {key: "13:50-14:40"},
+                {key: "15:50-16:40"},
+                {key: "16:40-17:30"},
+                {key: "17:30-19:00"},
+                {key: "19:00-19:50"},
+                {key: "19:50-20:40"},
+                {key: "20:55-21:45"},
+                {key: "21:45-22:35"},
+            ],
         };
     },
     methods: {
@@ -59,15 +79,15 @@ export default {
             // console.log(e.target.className);
             if (Object.keys(this.$store.state.user).length) {
                 this.text = "";
-                console.log(e);
+                // console.log(e);
                 const table = document.getElementsByTagName("table")[0];
                 let row =
                     table.rows[e.srcElement.parentNode.rowIndex].cells[0]
                         .innerHTML;
                 let column =
                     table.rows[0].cells[e.srcElement.cellIndex].innerHTML;
-                console.log("linha  " + row);
-                console.log("coluna " + column);
+                // console.log("linha  " + row);
+                // console.log("coluna " + column);
                 this.recurso = row;
                 this.horario = column;
                 let obj = {};
@@ -108,7 +128,7 @@ export default {
                     "É preciso estar logado para solicitar uma reserva"
                 );
             }
-            console.log(this.vet);
+            // console.log(this.vet);
         },
         sendData() {
             axios
@@ -122,9 +142,9 @@ export default {
         }
     },
     computed: {
-        fields() {
-            return this.$store.state.fields;
-        },
+        // fields() {
+        //     return this.$store.state.fields;
+        // },
         items() {
             return this.$store.state.items;
         },
