@@ -100,7 +100,7 @@ export default {
                         text: types.nome
                     };
                 });
-                console.log(this.types);
+                // console.log(this.types);
             });
         },
         getResources() {
@@ -113,7 +113,7 @@ export default {
             this.resource = {};
         },
         save() {
-            console.log(this.resource)
+            // console.log(this.resource)
             const method = this.resource.id ? "put" : "post";
             const id = this.resource.id ? `/${this.resource.id}` : "";
             axios[method](`${baseApiUrl}/insertRecursos${id}`, {
@@ -139,10 +139,9 @@ export default {
                 .catch(showError);
         },
         loadResource(resource, mode = "save") {
-
             this.mode = mode;
             this.resource = {...resource};
-            console.log(this.resource);
+            // console.log(this.resource);
         }
     },
     mounted() {

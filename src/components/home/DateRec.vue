@@ -42,7 +42,7 @@ export default {
         reqTable() {
             axios.get("http://localhost:3000/tipoderecursos").then(res => {
                 this.options = res.data;
-                console.log(this.options);
+                // console.log(this.options);
             });
         },
         sendDateRec() {

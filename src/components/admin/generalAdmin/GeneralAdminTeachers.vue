@@ -183,7 +183,7 @@ export default {
         loadUser(user, mode = "save") {
             this.mode = mode;
             this.user = { ...user };
-            console.log(this.user);
+            // console.log(this.user);
         }
     },
     mounted(){
