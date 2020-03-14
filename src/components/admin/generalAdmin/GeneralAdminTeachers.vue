@@ -5,13 +5,41 @@
             <input id="user-id" type="hidden" v-model="user.id" />
             <b-row>
                 <b-col sm="12">
-                    <b-form-group label="Nome: " label-for="user-name">
+                    <b-form-group label="Nome: " label-for="user-nomeP">
                         <b-form-input
                             id="user-nome"
                             type="text"
-                            v-model="user.name"
+                            v-model="user.nomeP"
                             required
                             placeholder="Informe o nome do professor..."
+                            :readonly="mode === 'remove'"
+                        ></b-form-input>
+                    </b-form-group>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col sm="12">
+                    <b-form-group label="CPF: " label-for="user-cpf">
+                        <b-form-input
+                            id="user-cpf"
+                            type="text"
+                            v-model="user.cpf"
+                            required
+                            placeholder="Informe o cpf do professor..."
+                            :readonly="mode === 'remove'"
+                        ></b-form-input>
+                    </b-form-group>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col sm="12">
+                    <b-form-group label="Área do conhecimento: " label-for="user-areaDoConhecimento">
+                        <b-form-input
+                            id="user-areaDoConhecimento"
+                            type="text"
+                            v-model="user.areaDoConhecimento"
+                            required
+                            placeholder="Informe a Área do conhecimento do professor..."
                             :readonly="mode === 'remove'"
                         ></b-form-input>
                     </b-form-group>
@@ -60,7 +88,7 @@
             <b-form-checkbox
                 v-show="mode === 'save'"
                 id="user-general-admin"
-                v-model="user.genAdmin"
+                v-model="user.admGeral"
                 class="mt-3 mb-3"
             >Administrador Geral?</b-form-checkbox>
             <!-- </b-col> -->
@@ -68,7 +96,7 @@
             <b-form-checkbox
                 v-show="mode === 'save'"
                 id="user-resources-admin"
-                v-model="user.recAdmin"
+                v-model="user.admRecursos"
                 class="mt-3 mb-3"
             >Administrador de Recursos?</b-form-checkbox>
             <!-- </b-col> -->
@@ -108,40 +136,52 @@ export default {
             user: {},
             fields: [
                 {
-                    key: "name",
+                    key: "nomeP",
                     label: "Nome",
                     sortable: true,
-                    thClass: "text-center"
+                    thClass: "text-center",
+                    tdClass: "text-center",
                 },
                 {
                     key: "email",
                     label: "E-mail",
                     sortable: true,
-                    thClass: "text-center"
+                    thClass: "text-center",
+                    tdClass: "text-center",
                 },
                 {
-                    key: "genAdmin",
+                    key: "cpf",
+                    label: "CPF",
+                    sortable: true,
+                    thClass: "text-center",
+                    tdClass: "text-center",
+                },
+                {
+                    key: "admGeral",
                     label: "Administrador Geral",
                     sortable: true,
-                    thClass: "text-center"
+                    thClass: "text-center",
+                    formatter: value => value ? "Sim" : "Não"
                 },
                 {
-                    key: "recAdmin",
+                    key: "admRecursos",
                     label: "Administrador de Reservas",
                     sortable: true,
-                    thClass: "text-center"
+                    thClass: "text-center",
+                    formatter: value => value ? "Sim" : "Não"
                 },
                 {
-                    key: "numero de reservas",
-                    label: "Número de Reservas",
+                    key: "areaDoConhecimento",
+                    label: "Area do Conhecimento",
                     sortable: true,
-                    thClass: "text-center"
+                    thClass: "text-center",
+                    tdClass: "text-center",
                 },
                 {
                     key: "actions",
                     label: "Ações",
                     tdClass: "text-right",
-                    thClass: "text-center"
+                    thClass: "text-center",
                 }
             ],
             items: [],
@@ -183,7 +223,17 @@ export default {
         loadUser(user, mode = "save") {
             this.mode = mode;
             this.user = { ...user };
-            // console.log(this.user);
+            if (this.user.admGeral == 1) {
+                this.user.admGeral = true
+            }else{
+                this.user.admGeral = false
+            }
+            if (this.user.admRecursos == 1) {
+                this.user.admRecursos = true
+            }else{
+                this.user.admRecursos = false
+            }
+            // console.log(this.user.admGeral);
         }
     },
     mounted(){
