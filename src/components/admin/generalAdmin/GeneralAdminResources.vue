@@ -83,7 +83,7 @@ export default {
         return {
             fields: [
                 {
-                    key: "idTipoDeRecursos",
+                    key: "nome",
                     label: "Tipo",
                     sortable: true,
                     thClass: "text-center",

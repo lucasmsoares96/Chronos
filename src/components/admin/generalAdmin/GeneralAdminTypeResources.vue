@@ -12,6 +12,31 @@
                     placeholder="Informe o tipo de recurso..."
                 ></b-form-input>
             </b-form-group>
+            <b-form-group label="Descrição: " label-for="descricao">
+                <b-form-input
+                    id="descricao"
+                    type="text"
+                    v-model="recType.descricao"
+                    required
+                    :readonly="mode === 'remove'"
+                    placeholder="Informe a descrição do recurso..."
+                ></b-form-input>
+            </b-form-group>
+            <b-form-group label="Responsável:" label-for="teachers">
+                <b-form-select
+                    v-if="mode === 'save'"
+                    id="teachers"
+                    :options="teachers"
+                    v-model="recType.idProfessor"
+                />
+                <b-form-input
+                    v-else
+                    id="type"
+                    type="text"
+                    v-model="recType.email"
+                    readonly
+                />
+            </b-form-group>
             <b-row>
                 <b-col xs="12">
                     <b-button variant="primary" v-if="mode === 'save'" @click="save">Salvar</b-button>
@@ -55,8 +80,14 @@ export default {
                     thClass: "text-center"
                 },
                 {
-                    key: "idTipoDeRecursos",
-                    label: "Id",
+                    key: "email",
+                    label: "Responsável",
+                    sortable: true,
+                    thClass: "text-center"
+                },
+                {
+                    key: "descricao",
+                    label: "Descrição",
                     sortable: true,
                     thClass: "text-center"
                 },
@@ -70,6 +101,7 @@ export default {
             recType: {},
             mode: "save",
             items: [],
+            teachers:[],
         };
     },
     methods: {
@@ -111,10 +143,19 @@ export default {
             this.mode = mode;
             this.recType = { ...recType };
             console.log(this.recType);
+        },
+        loadTeachers() {
+            const url = `${baseApiUrl}/getTeacher`
+            axios.get(url).then(res => {
+                this.teachers = res.data.map(teachers => {
+                    return { value: teachers.idProfessor, text: `${teachers.nomeP} - ${teachers.areaDoConhecimento} - ${teachers.email}` }
+                })
+            })
         }
     },
     mounted(){
         this.getTypeResources()
+        this.loadTeachers()
     }
 };
 </script>

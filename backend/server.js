@@ -7,12 +7,87 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(bodyParser.json());
 
-const typeResorces = [
-    { nome: "Salas de Aula", idTipoDeRecursos: "1" },
-    { nome: "Laboratórios", idTipoDeRecursos: "2" },
-    { nome: "Ginásio", idTipoDeRecursos: "3" },
-    { nome: "Veículo", idTipoDeRecursos: "4" }
-];
+const typeResorces = [{
+        "idTipoDeRecursos": 1,
+        "descricao": "adsdasda",
+        "nome": "Sala",
+        "idProfessor": 1,
+        "email": "vitor@",
+        "nomeP": "123"
+    },
+    {
+        "idTipoDeRecursos": 2,
+        "descricao": "asddasd",
+        "nome": "Laboratorio",
+        "idProfessor": 1,
+        "email": "vitor@",
+        "nomeP": "123"
+    },
+    {
+        "idTipoDeRecursos": 3,
+        "descricao": "adsasdasd",
+        "nome": "Ginasio",
+        "idProfessor": 1,
+        "email": "vitor@",
+        "nomeP": "123"
+    },
+    {
+        "idTipoDeRecursos": 4,
+        "descricao": "dasdas",
+        "nome": "Auditorio",
+        "idProfessor": 2,
+        "email": "lucas@",
+        "nomeP": "321"
+    },
+    {
+        "idTipoDeRecursos": 5,
+        "descricao": "asddasasd",
+        "nome": "Automoveis",
+        "idProfessor": 2,
+        "email": "lucas@",
+        "nomeP": "321"
+    },
+    {
+        "idTipoDeRecursos": 6,
+        "descricao": "asdasdasjdas",
+        "nome": "Restaurantes",
+        "idProfessor": 4,
+        "email": "martins@",
+        "nomeP": "sudhuasda"
+    },
+    {
+        "idTipoDeRecursos": 7,
+        "descricao": null,
+        "nome": "Galpão",
+        "idProfessor": 1,
+        "email": "vitor@",
+        "nomeP": "123"
+    },
+    {
+        "idTipoDeRecursos": 8,
+        "descricao": null,
+        "nome": "fdhgfhhfghdfg",
+        "idProfessor": 1,
+        "email": "vitor@",
+        "nomeP": "123"
+    },
+    {
+        "idTipoDeRecursos": 9,
+        "descricao": null,
+        "nome": "Bla Bla",
+        "idProfessor": 1,
+        "email": "vitor@",
+        "nomeP": "123"
+    },
+    {
+        "idTipoDeRecursos": 10,
+        "descricao": null,
+        "nome": "fucka",
+        "idProfessor": 1,
+        "email": "vitor@",
+        "nomeP": "123"
+    }
+]
 
 const schedule = [{
         numero: 303,
@@ -172,6 +247,7 @@ const analysis = [{
 const listResources = [{
         "idRecursos": 1,
         "numero": 303,
+        "nome": "Sala",
         "capacidade": 40,
         "informacao": "asd",
         "idTipoDeRecursos": 1
@@ -179,6 +255,7 @@ const listResources = [{
     {
         "idRecursos": 2,
         "numero": 305,
+        "nome": "Sala",
         "capacidade": 40,
         "informacao": "asd",
         "idTipoDeRecursos": 1
@@ -186,6 +263,7 @@ const listResources = [{
     {
         "idRecursos": 3,
         "numero": 307,
+        "nome": "Sala",
         "capacidade": 40,
         "informacao": "asd",
         "idTipoDeRecursos": 1
@@ -193,6 +271,7 @@ const listResources = [{
     {
         "idRecursos": 4,
         "numero": 311,
+        "nome": "Sala",
         "capacidade": 40,
         "informacao": "asd",
         "idTipoDeRecursos": 1
@@ -200,6 +279,7 @@ const listResources = [{
     {
         "idRecursos": 5,
         "numero": 314,
+        "nome": "Sala",
         "capacidade": 40,
         "informacao": "asd",
         "idTipoDeRecursos": 1
@@ -207,13 +287,15 @@ const listResources = [{
     {
         "idRecursos": 6,
         "numero": 609,
+        "nome": "Laboratorio",
         "capacidade": 20,
         "informacao": "dsa",
-        "idTipoDeRecursos": 3
+        "idTipoDeRecursos": 2
     },
     {
         "idRecursos": 7,
         "numero": 611,
+        "nome": "Laboratorio",
         "capacidade": 20,
         "informacao": "dsa",
         "idTipoDeRecursos": 2
@@ -221,6 +303,7 @@ const listResources = [{
     {
         "idRecursos": 8,
         "numero": 606,
+        "nome": "Laboratorio",
         "capacidade": 20,
         "informacao": "dsa",
         "idTipoDeRecursos": 2
@@ -228,6 +311,7 @@ const listResources = [{
     {
         "idRecursos": 9,
         "numero": 607,
+        "nome": "Laboratorio",
         "capacidade": 20,
         "informacao": "dsa",
         "idTipoDeRecursos": 2
@@ -235,6 +319,7 @@ const listResources = [{
     {
         "idRecursos": 10,
         "numero": 610,
+        "nome": "Laboratorio",
         "capacidade": 20,
         "informacao": "dsa",
         "idTipoDeRecursos": 2
@@ -242,6 +327,7 @@ const listResources = [{
     {
         "idRecursos": 11,
         "numero": 109,
+        "nome": "Sala",
         "capacidade": null,
         "informacao": null,
         "idTipoDeRecursos": 1
