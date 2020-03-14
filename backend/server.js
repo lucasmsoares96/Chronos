@@ -192,33 +192,41 @@ const listResources = [{
 ]
 
 const listTeacher = [{
-        "name": "Emerson",
-        "email": "emersonsousa@cefetmg.br",
-        "genAdmin": true,
-        "recAdmin": true,
-        "numero de reservas": 24,
+        "idProfessor": 1,
+        "email": "vitor@",
+        "nomeP": "123",
+        "cpf": "11111111122",
+        "areaDoConhecimento": "123",
+        "admGeral": 1,
+        "admRecursos": 1
     },
     {
-        "name": "Emerson",
-        "email": "emersonsousa@cefetmg.br",
-        "genAdmin": true,
-        "recAdmin": true,
-        "numero de reservas": 24,
+        "idProfessor": 2,
+        "email": "lucas@",
+        "nomeP": "321",
+        "cpf": "11111111123",
+        "areaDoConhecimento": "321",
+        "admGeral": 0,
+        "admRecursos": 1
     },
     {
-        "name": "Emerson",
-        "email": "emersonsousa@cefetmg.br",
-        "genAdmin": true,
-        "recAdmin": true,
-        "numero de reservas": 24,
+        "idProfessor": 4,
+        "email": "martins@",
+        "nomeP": "sudhuasda",
+        "cpf": "22222222222",
+        "areaDoConhecimento": "Matematica",
+        "admGeral": 0,
+        "admRecursos": 0
     },
     {
-        "name": "Emerson",
-        "email": "emersonsousa@cefetmg.br",
-        "genAdmin": true,
-        "recAdmin": true,
-        "numero de reservas": 24,
-    },
+        "idProfessor": 5,
+        "email": null,
+        "nomeP": null,
+        "cpf": "33333333333",
+        "areaDoConhecimento": null,
+        "admGeral": null,
+        "admRecursos": null
+    }
 ]
 
 app.get("/tipoderecursos", (req, resp) => {
