@@ -107,7 +107,7 @@ export default {
     methods: {
         getTypeResources() {
             axios
-                .get("http://localhost:3000/tipoderecursos")
+                .get("http://localhost:3000/selectTabelaTipoDeRecursos")
                 .then(res => this.items=res.data);
         },
         reset() {
@@ -145,7 +145,7 @@ export default {
             console.log(this.recType);
         },
         loadTeachers() {
-            const url = `${baseApiUrl}/getTeacher`
+            const url = `${baseApiUrl}/selectTabelaProfessor`
             axios.get(url).then(res => {
                 this.teachers = res.data.map(teachers => {
                     return { value: teachers.idProfessor, text: `${teachers.nomeP} - ${teachers.areaDoConhecimento} - ${teachers.email}` }

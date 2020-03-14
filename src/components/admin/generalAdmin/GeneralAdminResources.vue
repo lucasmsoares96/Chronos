@@ -140,7 +140,7 @@ export default {
         },
         getResources() {
             axios
-                .get("http://localhost:3000/getResources")
+                .get("http://localhost:3000/selectTabelaRecursos")
                 .then(res => this.items=res.data);
         },
         reset() {

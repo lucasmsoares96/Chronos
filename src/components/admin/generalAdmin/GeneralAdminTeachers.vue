@@ -192,7 +192,7 @@ export default {
     methods: {
         getTeachers() {
             axios
-                .get("http://localhost:3000/getTeacher")
+                .get("http://localhost:3000/selectTabelaProfessor")
                 .then(res => this.items = res.data);
         },
         reset() {
