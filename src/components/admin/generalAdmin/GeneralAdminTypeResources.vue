@@ -84,9 +84,8 @@ export default {
         },
         save() {
             console.log("teste")
-            const method = this.recType.id ? "put" : "post";
-            const id = this.recType.id ? `/${this.recType.id}` : "";
-            axios[method](`${baseApiUrl}/insertTipoDeRecursos${id}`,{
+            const method = this.recType.idTipoDeRecursos ? "put" : "post";
+            axios[method](`${baseApiUrl}/insertTipoDeRecursos`,{
                 recType: this.recType,
                 payload : this.$store.state.user
             })
