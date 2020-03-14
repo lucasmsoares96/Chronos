@@ -161,6 +161,7 @@ export default {
                     label: "Administrador Geral",
                     sortable: true,
                     thClass: "text-center",
+                    tdClass: "text-center",
                     formatter: value => value ? "Sim" : "Não"
                 },
                 {
@@ -168,6 +169,7 @@ export default {
                     label: "Administrador de Reservas",
                     sortable: true,
                     thClass: "text-center",
+                    tdClass: "text-center",
                     formatter: value => value ? "Sim" : "Não"
                 },
                 {

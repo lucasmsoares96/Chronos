@@ -6,10 +6,29 @@
                 <b-form-input
                     id="resource"
                     type="text"
-                    v-model="resource.Salas"
+                    v-model="resource.numero"
                     required
                     :readonly="mode === 'remove'"
                     placeholder="Informe o recurso..."
+                ></b-form-input>
+            </b-form-group>
+            <b-form-group label="Capacidade: " label-for="capacidade">
+                <b-form-input
+                    id="capacidade"
+                    type="text"
+                    v-model="resource.capacidade"
+                    required
+                    :readonly="mode === 'remove'"
+                    placeholder="Informe a Capacidade..."
+                ></b-form-input>
+            </b-form-group>
+            <b-form-group label="Informacao: " label-for="informacao">
+                <b-form-input
+                    id="informacao"
+                    type="text"
+                    v-model="resource.informacao"
+                    :readonly="mode === 'remove'"
+                    placeholder="Se houver alguma informação adicional..."
                 ></b-form-input>
             </b-form-group>
             <b-form-group label="Tipo de Recurso:" label-for="type">
@@ -64,22 +83,38 @@ export default {
         return {
             fields: [
                 {
-                    key: "tipo",
+                    key: "idTipoDeRecursos",
                     label: "Tipo",
                     sortable: true,
-                    thClass: "text-center"
+                    thClass: "text-center",
+                    tdClass: "text-center",
                 },
                 {
-                    key: "Salas",
+                    key: "numero",
                     label: "Salas",
                     sortable: true,
-                    thClass: "text-center"
+                    thClass: "text-center",
+                    tdClass: "text-center",
+                },
+                {
+                    key: "capacidade",
+                    label: "Capacidade",
+                    sortable: true,
+                    thClass: "text-center",
+                    tdClass: "text-center",
+                },
+                {
+                    key: "informacao",
+                    label: "Informações",
+                    sortable: true,
+                    thClass: "text-center",
+                    tdClass: "text-center",
                 },
                 {
                     key: "actions",
                     label: "Ações",
                     tdClass: "text-right",
-                    thClass: "text-center"
+                    thClass: "text-center",
                 }
             ],
             resource: {},

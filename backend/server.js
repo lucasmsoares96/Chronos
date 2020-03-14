@@ -8,10 +8,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const typeResorces = [
-    { nome: "Salas de Aula", idTipoDeRecursos: "sala" },
-    { nome: "Laboratórios", idTipoDeRecursos: "lab" },
-    { nome: "Ginásio", idTipoDeRecursos: "gin" },
-    { nome: "Veículo", idTipoDeRecursos: "vei" }
+    { nome: "Salas de Aula", idTipoDeRecursos: "1" },
+    { nome: "Laboratórios", idTipoDeRecursos: "2" },
+    { nome: "Ginásio", idTipoDeRecursos: "3" },
+    { nome: "Veículo", idTipoDeRecursos: "4" }
 ];
 
 const schedule = [{
@@ -170,25 +170,82 @@ const analysis = [{
 ]
 
 const listResources = [{
-        "tipo": "Sala de aula",
-        "idTipoDeRecursos": "sala",
-        "Salas": 303,
+        "idRecursos": 1,
+        "numero": 303,
+        "capacidade": 40,
+        "informacao": "asd",
+        "idTipoDeRecursos": 1
     },
     {
-        "tipo": "Sala de aula",
-        "idTipoDeRecursos": "sala",
-        "Salas": 303,
+        "idRecursos": 2,
+        "numero": 305,
+        "capacidade": 40,
+        "informacao": "asd",
+        "idTipoDeRecursos": 1
     },
     {
-        "tipo": "Sala de aula",
-        "idTipoDeRecursos": "sala",
-        "Salas": 303,
+        "idRecursos": 3,
+        "numero": 307,
+        "capacidade": 40,
+        "informacao": "asd",
+        "idTipoDeRecursos": 1
     },
     {
-        "tipo": "Sala de aula",
-        "idTipoDeRecursos": "sala",
-        "Salas": 303,
+        "idRecursos": 4,
+        "numero": 311,
+        "capacidade": 40,
+        "informacao": "asd",
+        "idTipoDeRecursos": 1
     },
+    {
+        "idRecursos": 5,
+        "numero": 314,
+        "capacidade": 40,
+        "informacao": "asd",
+        "idTipoDeRecursos": 1
+    },
+    {
+        "idRecursos": 6,
+        "numero": 609,
+        "capacidade": 20,
+        "informacao": "dsa",
+        "idTipoDeRecursos": 3
+    },
+    {
+        "idRecursos": 7,
+        "numero": 611,
+        "capacidade": 20,
+        "informacao": "dsa",
+        "idTipoDeRecursos": 2
+    },
+    {
+        "idRecursos": 8,
+        "numero": 606,
+        "capacidade": 20,
+        "informacao": "dsa",
+        "idTipoDeRecursos": 2
+    },
+    {
+        "idRecursos": 9,
+        "numero": 607,
+        "capacidade": 20,
+        "informacao": "dsa",
+        "idTipoDeRecursos": 2
+    },
+    {
+        "idRecursos": 10,
+        "numero": 610,
+        "capacidade": 20,
+        "informacao": "dsa",
+        "idTipoDeRecursos": 2
+    },
+    {
+        "idRecursos": 11,
+        "numero": 109,
+        "capacidade": null,
+        "informacao": null,
+        "idTipoDeRecursos": 1
+    }
 ]
 
 const listTeacher = [{
