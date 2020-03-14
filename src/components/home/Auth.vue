@@ -12,6 +12,22 @@
                 class="mb-3"
             />
             <b-form-input
+                v-if="showSignUp"
+                id="user-cpf"
+                type="text"
+                placeholder="Informe seu cpf"
+                v-model="user.cpf"
+                class="mb-3"
+            />
+            <b-form-input
+                v-if="showSignUp"
+                id="user-area"
+                type="text"
+                placeholder="Informe seu Area do Conhecimento"
+                v-model="user.areaDoConhecimento"
+                class="mb-3"
+            />
+            <b-form-input
                 id="user-email"
                 type="text"
                 placeholder="Informe seu email"
