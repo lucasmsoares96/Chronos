@@ -66,9 +66,8 @@ export default new Vuex.Store({
                 });
         },
         setObj(state, obj) {
-            state.obj.data = obj[0],
-                state.obj.tipoRecurso = obj[1]
-
+            state.obj.data = obj[0]
+            state.obj.tipoRecurso = obj[1]
         },
         setUser(state, obj) {
             state.user = obj.payload;

@@ -3,7 +3,7 @@
         <b-row cols="12" style="width: 100%" align-h="between">
             <h2>Quadro de horarios</h2>
             <h3>
-                {{data.split("-").reverse().join("-")}}
+                {{userData.dataRec[0].split("-").reverse().join(" / ")}}
             </h3>
             <b-button variant="primary" v-b-modal.modal1 class="mb-2">Solicitar Reserva</b-button>
         </b-row>
@@ -42,6 +42,7 @@
 
 <script>
 import axios from "axios";
+import { userKey } from "@/global";
 
 export default {
     name: "Schedule",
@@ -68,6 +69,7 @@ export default {
                 {key: "20:55-21:45"},
                 {key: "21:45-22:35"},
             ],
+            userData : {},
         };
     },
     methods: {
@@ -128,7 +130,7 @@ export default {
                     "É preciso estar logado para solicitar uma reserva"
                 );
             }
-            // console.log(this.vet);
+            console.log(this.vet);
         },
         sendData() {
             axios
@@ -148,11 +150,10 @@ export default {
         items() {
             return this.$store.state.items;
         },
-        data() {
-            return this.$store.state.obj.data;
-        }
     },
     mounted() {
+        this.userData = JSON.parse(localStorage.getItem(userKey))
+        this.$store.commit("setObj", this.userData.dataRec);
         this.$store.commit("resSchedule");
         this.$bvModal.msgBoxOk(
             "selecione um ou mais horarios em seguida click em Solicitar Reserva"

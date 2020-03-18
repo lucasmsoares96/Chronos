@@ -27,7 +27,7 @@
 
 <script>
 import axios from "axios";
-import {showError} from "@/global"
+import {showError, userKey} from "@/global"
 
 export default {
     name: "DateRec",
@@ -49,11 +49,14 @@ export default {
             let data = this.value;
             let tipoRecurso = this.selected;
             let obj = [data, tipoRecurso];
+            const userData = JSON.parse(localStorage.getItem(userKey))
+            userData.dataRec = obj;
             axios
                 .post("http://localhost:3000/data",{data,tipoRecurso})
                 .then(() => {
                     console.log(obj);
                     this.$store.commit("setObj", obj);
+                    localStorage.setItem(userKey, JSON.stringify(userData));
                     this.$router.push("/schedule");
                 }).catch(showError);
         }

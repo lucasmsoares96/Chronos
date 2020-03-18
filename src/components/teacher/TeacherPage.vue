@@ -22,7 +22,7 @@
                                     <font-awesome-icon icon="times"></font-awesome-icon>
                                 </b-button>
                             </template>
-                            <template v-slot:cell(data)="data">{{ data.value.slice(0, 10).split("-").reverse().join("-") }}</template>
+                            <template v-slot:cell(data)="data">{{ data.value.slice(0, 10).split("-").reverse().join(" / ") }}</template>
                         </b-table>
                     </div>
                 </b-tab>
