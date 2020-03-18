@@ -95,6 +95,7 @@ export default {
                 let obj = {};
                 obj.recurso = this.recurso;
                 obj.horario = this.horario;
+                obj.valor = e.toElement.children[0].innerHTML
                 if (
                     e.toElement.children[0].innerHTML == 0 ||
                     e.toElement.children[0].innerHTML == 1
