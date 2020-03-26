@@ -1,4 +1,4 @@
-# Chonus
+# Chronus
 
 ## Como executar o projeto
 
