@@ -88,7 +88,7 @@ export default {
             if (Object.keys(this.$store.state.user).length) {
                 this.text = "";
                 // console.log(e);
-                const table = document.getElementsByTagName("table")[0];
+                const table = document.getElementsByTagName("table")[1];
                 let row =
                     table.rows[e.srcElement.parentNode.rowIndex].cells[0]
                         .innerHTML;
