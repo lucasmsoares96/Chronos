@@ -136,8 +136,8 @@ export default {
         sendData() {
             axios
                 .post("http://localhost:3000/insertProfessorHorario", {
-                    data: userData.dataRec[0],
-                    payload: $store.state.user,
+                    data: this.userData.dataRec[0],
+                    payload: this.$store.state.user,
                     horario: this.vet,
                     texto: this.text
                 })
