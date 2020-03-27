@@ -16,7 +16,7 @@
                                     v-b-tooltip.hover
                                     title="Cancelar reserva?"
                                     variant="danger"
-                                    class="btn2"
+                                    class="btn2 mr-2"
                                     @click="removeItem(data.item)"
                                 >
                                     <font-awesome-icon icon="times"></font-awesome-icon>

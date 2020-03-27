@@ -54,7 +54,7 @@
                     </b-button>
                     <b-button
                         variant="danger"
-                        class="btn2"
+                        class="btn2 mr-2"
                         @click="loadRecType(data.item, 'remove')"
                     >
                         <font-awesome-icon icon="trash"></font-awesome-icon>

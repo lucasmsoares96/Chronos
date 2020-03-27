@@ -19,7 +19,7 @@
                                     variant="danger"
                                     v-b-tooltip.hover
                                     title="Negar Pedido?"
-                                    class="btn2"
+                                    class="btn2 mr-2"
                                     @click="denyItem(data.item, 'remove')"
                                 >
                                     <font-awesome-icon icon="times"></font-awesome-icon>

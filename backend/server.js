@@ -376,6 +376,11 @@ const listTeacher = [{
     }
 ]
 
+app.get("/selectTabelaTipoDeRecursos", (req, resp) => {
+    // console.log(req.body)
+    console.log(req.query);
+    resp.json(typeResorces);
+});
 app.get("/tipoderecursos", (req, resp) => {
     // console.log(req.body)
     console.log(req.query);
@@ -402,7 +407,7 @@ app.post("/selectProfessorHorarioEspec", (req, resp) => {
         // console.log(req.query);
     resp.json(analysis);
 });
-app.get("/getResources", (req, resp) => {
+app.get("/selectTabelaRecursos", (req, resp) => {
     // console.log(req.body)
     console.log(req.query);
     resp.json(listResources);
@@ -438,6 +443,12 @@ app.post("/insertProfessorHorario", (req, resp) => {
     console.log(req.body)
         // console.log(req.query);
     resp.send("ok");
+});
+
+app.post("/insertRecursos", (req, resp) => {
+    console.log(req.body)
+        // console.log(req.query);
+    resp.status(400).send('Informe o nome do recurso!');
 });
 
 app.listen(3000);

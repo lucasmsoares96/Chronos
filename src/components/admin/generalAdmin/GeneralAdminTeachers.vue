@@ -116,7 +116,7 @@
                     <b-button variant="warning" @click="loadUser(data.item)" class="btn2 mr-2">
                         <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
                     </b-button>
-                    <b-button variant="danger" class="btn2" @click="loadUser(data.item, 'remove')">
+                    <b-button variant="danger" class="btn2 mr-2" @click="loadUser(data.item, 'remove')">
                         <font-awesome-icon icon="trash"></font-awesome-icon>
                     </b-button>
                 </template>
