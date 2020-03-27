@@ -2,9 +2,7 @@
     <div id="schedule">
         <b-row cols="12" style="width: 100%" align-h="between">
             <h2>Quadro de horarios</h2>
-            <h3>
-                {{userData.dataRec[0].split("-").reverse().join(" / ")}}
-            </h3>
+            <h3>{{userData.dataRec[0].split("-").reverse().join(" / ")}}</h3>
             <b-button variant="primary" v-b-modal.modal1 class="mb-2">Solicitar Reserva</b-button>
         </b-row>
         <div id="table">
@@ -53,23 +51,23 @@ export default {
             horario: "",
             vet: [],
             fields: [
-                {key: "numero", label: "Identificação"},
-                {key: "07:00-07:50"},
-                {key: "07:50-08:40"},
-                {key: "09:45-10:35"},
-                {key: "10:50-11:40"},
-                {key: "11:40-12:30"},
-                {key: "12:30-13:50"},
-                {key: "13:50-14:40"},
-                {key: "15:50-16:40"},
-                {key: "16:40-17:30"},
-                {key: "17:30-19:00"},
-                {key: "19:00-19:50"},
-                {key: "19:50-20:40"},
-                {key: "20:55-21:45"},
-                {key: "21:45-22:35"},
+                { key: "numero", label: "Identificação" },
+                { key: "07:00-07:50" },
+                { key: "07:50-08:40" },
+                { key: "09:45-10:35" },
+                { key: "10:50-11:40" },
+                { key: "11:40-12:30" },
+                { key: "12:30-13:50" },
+                { key: "13:50-14:40" },
+                { key: "15:50-16:40" },
+                { key: "16:40-17:30" },
+                { key: "17:30-19:00" },
+                { key: "19:00-19:50" },
+                { key: "19:50-20:40" },
+                { key: "20:55-21:45" },
+                { key: "21:45-22:35" }
             ],
-            userData : {},
+            userData: {}
         };
     },
     methods: {
@@ -95,7 +93,7 @@ export default {
                 let obj = {};
                 obj.recurso = this.recurso;
                 obj.horario = this.horario;
-                obj.valor = e.toElement.children[0].innerHTML
+                obj.valor = e.toElement.children[0].innerHTML;
                 if (
                     e.toElement.children[0].innerHTML == 0 ||
                     e.toElement.children[0].innerHTML == 1
@@ -106,7 +104,10 @@ export default {
                     ) {
                         this.vet.push(obj);
                         e.target.className = "table-primary";
-                    } else if (e.toElement.children[0].innerHTML == 0) {
+                    } else if (
+                        e.toElement.children[0].innerHTML == 0 ||
+                        e.toElement.children[0].innerHTML == 1
+                    ) {
                         for (let cell in this.vet) {
                             // console.log(cell);
                             if (
@@ -150,10 +151,10 @@ export default {
         // },
         items() {
             return this.$store.state.items;
-        },
+        }
     },
     mounted() {
-        this.userData = JSON.parse(localStorage.getItem(userKey))
+        this.userData = JSON.parse(localStorage.getItem(userKey));
         this.$store.commit("setObj", this.userData.dataRec);
         this.$store.commit("resSchedule");
         this.$bvModal.msgBoxOk(
