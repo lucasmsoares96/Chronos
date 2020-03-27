@@ -94,6 +94,7 @@ const schedule = [{
         idhorario: 1,
         "07:00-07:50": 0,
         "07:50-08:40": 0,
+        "08:55-09:45": 1,
         "09:45-10:35": 0,
         "10:50-11:40": 0,
         "11:40-12:30": 0,
@@ -112,6 +113,7 @@ const schedule = [{
         idhorario: 2,
         "07:00-07:50": 0,
         "07:50-08:40": 0,
+        "08:55-09:45": 1,
         "09:45-10:35": 0,
         "10:50-11:40": 1,
         "11:40-12:30": 0,
@@ -130,6 +132,7 @@ const schedule = [{
         idhorario: 3,
         "07:00-07:50": 1,
         "07:50-08:40": 1,
+        "08:55-09:45": 1,
         "09:45-10:35": 1,
         "10:50-11:40": 1,
         "11:40-12:30": 1,
@@ -148,6 +151,7 @@ const schedule = [{
         idhorario: 4,
         "07:00-07:50": 2,
         "07:50-08:40": 2,
+        "08:55-09:45": 1,
         "09:45-10:35": 2,
         "10:50-11:40": 2,
         "11:40-12:30": 2,
@@ -403,7 +407,7 @@ app.get("/getResources", (req, resp) => {
     console.log(req.query);
     resp.json(listResources);
 });
-app.get("/getTeacher", (req, resp) => {
+app.get("/selectTabelaProfessor", (req, resp) => {
     // console.log(req.body)
     console.log(req.query);
     resp.json(listTeacher);
