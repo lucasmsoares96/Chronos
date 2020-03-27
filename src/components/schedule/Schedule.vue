@@ -3,17 +3,20 @@
         <b-row cols="12" style="width: 100%" align-h="between">
             <h2>Quadro de horarios</h2>
             <h3>{{userData.dataRec[0].split("-").reverse().join(" / ")}}</h3>
+            <!-- gera erro -->
         </b-row>
         <b-row cols="12" style="width: 100%" align-h="between">
             <table>
-                <tr><td id="model" class="table-success">livre</td>
-                <td id="model" class="table-warning">1 em análise</td>
-                <td id="model" class="table-danger">ocupado</td></tr>
+                <tr>
+                    <td id="model" class="table-success">livre</td>
+                    <td id="model" class="table-warning">1 em análise</td>
+                    <td id="model" class="table-danger">ocupado</td>
+                </tr>
             </table>
             <b-button variant="primary" v-b-modal.modal1 class="mb-2">Solicitar Reserva</b-button>
         </b-row>
         <div id="table">
-            <b-table @click.native="clickOnCell" bordered :items="items" :fields="fields">
+            <b-table @click.native="clickOnCell" bordered :items="this.$store.state.items" :fields="fields">
                 <template v-slot:cell()="data">
                     <div style="display:none">{{ data.value }}</div>
                 </template>
@@ -112,9 +115,7 @@ export default {
                     ) {
                         this.vet.push(obj);
                         e.target.className = "table-primary";
-                    } else if (
-                        e.toElement.children[0].innerHTML == 0
-                    ) {
+                    } else if (e.toElement.children[0].innerHTML == 0) {
                         for (let cell in this.vet) {
                             // console.log(cell);
                             if (
@@ -158,16 +159,19 @@ export default {
                     horario: this.vet,
                     texto: this.text
                 })
-                .then(this.$bvModal.hide("modal1"));
+                .then(
+                    this.$bvModal.hide("modal1"),
+                    this.$store.commit("resSchedule")
+                );
         }
     },
     computed: {
         // fields() {
         //     return this.$store.state.fields;
         // },
-        items() {
-            return this.$store.state.items;
-        }
+        // items() {
+        //     return this.$store.state.items;
+        // }
     },
     mounted() {
         this.userData = JSON.parse(localStorage.getItem(userKey));
@@ -181,8 +185,7 @@ export default {
 </script>
 
 <style>
-
-#model{
+#model {
     width: 100px;
     text-align: center;
 }
