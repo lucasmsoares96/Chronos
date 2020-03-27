@@ -8,7 +8,7 @@
                 id="user-name"
                 type="text"
                 placeholder="Informe seu nome"
-                v-model="user.email"
+                v-model="user.nome"
                 class="mb-3"
             />
             <b-form-input
@@ -35,6 +35,14 @@
                 class="mb-3"
             />
             <b-form-input
+                v-if="showSignUp"
+                id="user-email"
+                type="text"
+                placeholder="Informe seu email"
+                v-model="user.confirmEmail"
+                class="mb-3"
+            />
+            <b-form-input
                 id="user-password"
                 type="password"
                 placeholder="Informe sua senha"
@@ -46,13 +54,14 @@
                 id="confirm-password"
                 type="password"
                 placeholder="Confirme sua senha"
-                v-model="user.password"
+                v-model="user.confirmPassword"
                 class="mb-3"
             />
         </b-form>
 
         <template v-slot:modal-footer="{ cancel }">
-            <b-button variant="primary" @click="login">sim</b-button>
+            <b-button v-if="!showSignUp" variant="primary" @click="login">sim</b-button>
+            <b-button v-else variant="primary" @click="siginUp">sim</b-button>
             <b-button @click="cancel()">não</b-button>
         <a href @click.prevent="showSignUp = !showSignUp">
             <span v-if="showSignUp">Já tem cadastro? Faça seu LogIn!</span>
