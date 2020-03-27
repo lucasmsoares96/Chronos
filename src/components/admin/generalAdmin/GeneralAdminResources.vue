@@ -149,9 +149,8 @@ export default {
         },
         save() {
             // console.log(this.resource)
-            const method = this.resource.id ? "put" : "post";
-            const id = this.resource.id ? `/${this.resource.id}` : "";
-            axios[method](`${baseApiUrl}/insertRecursos${id}`, {
+            const method = this.resource.idRecursos ? "put" : "post"; 
+            axios[method](`${baseApiUrl}/insertRecursos`, {
                 recursos: this.resource,
                 payload : this.$store.state.user
             })
@@ -163,9 +162,9 @@ export default {
                 .catch(showError);
         },
         remove() {
-            const id = this.resource.id;
+            const id = this.resource.idRecursos;
             axios
-                .delete(`${baseApiUrl}/resource${id}`)
+                .delete(`${baseApiUrl}/deleteRecursos/${id}`)
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset;
