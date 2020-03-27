@@ -430,7 +430,7 @@ app.post("/login", (req, resp) => {
     });
     resp.send("ok");
 });
-app.post("/professorhorario", (req, resp) => {
+app.post("/insertProfessorHorario", (req, resp) => {
     console.log(req.body)
         // console.log(req.query);
     resp.send("ok");
