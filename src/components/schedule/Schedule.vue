@@ -104,10 +104,7 @@ export default {
                     ) {
                         this.vet.push(obj);
                         e.target.className = "table-primary";
-                    } else if (
-                        e.toElement.children[0].innerHTML == 0 ||
-                        e.toElement.children[0].innerHTML == 1
-                    ) {
+                    } else if (e.toElement.children[0].innerHTML == 0) {
                         for (let cell in this.vet) {
                             // console.log(cell);
                             if (
@@ -120,6 +117,15 @@ export default {
                         // console.log(this.vet);
                         e.target.className = "table-success";
                     } else {
+                        for (let cell in this.vet) {
+                            // console.log(cell);
+                            if (
+                                this.vet[cell].recurso == row &&
+                                this.vet[cell].horario == column
+                            ) {
+                                this.vet.splice(cell, 1);
+                            }
+                        }
                         e.target.className = "table-warning";
                     }
                     // e.target.className = "table-primary";
