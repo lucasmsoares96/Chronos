@@ -75,13 +75,13 @@
 
 <script>
 import { baseApiUrl, showError, userKey } from "@/global";
-import axios from 'axios';
+import axios from "axios";
 export default {
     name: "NavBar",
-    data(){
-        return{
-            user2:{},
-        }
+    data() {
+        return {
+            user2: {}
+        };
     },
     computed: {
         user() {
@@ -101,13 +101,19 @@ export default {
                 .catch(showError);
         },
         logOut() {
-            localStorage.removeItem(userKey);
+            localStorage.setItem(
+                userKey,
+                JSON.stringify({ auth: false, token: null, payload: {} })
+            );
             this.$store.commit("setUser", {
                 auth: false,
                 token: null,
                 payload: {}
             });
-            if (window.location.pathname != "/" && window.location.pathname != "/schedule") {
+            if (
+                window.location.pathname != "/" &&
+                window.location.pathname != "/schedule"
+            ) {
                 this.$router.push("/");
             }
         },
