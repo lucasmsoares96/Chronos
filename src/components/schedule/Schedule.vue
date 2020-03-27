@@ -3,6 +3,13 @@
         <b-row cols="12" style="width: 100%" align-h="between">
             <h2>Quadro de horarios</h2>
             <h3>{{userData.dataRec[0].split("-").reverse().join(" / ")}}</h3>
+        </b-row>
+        <b-row cols="12" style="width: 100%" align-h="between">
+            <table>
+                <tr><td id="model" class="table-success">livre</td>
+                <td id="model" class="table-warning">1 em análise</td>
+                <td id="model" class="table-danger">ocupado</td></tr>
+            </table>
             <b-button variant="primary" v-b-modal.modal1 class="mb-2">Solicitar Reserva</b-button>
         </b-row>
         <div id="table">
@@ -54,6 +61,7 @@ export default {
                 { key: "numero", label: "Identificação" },
                 { key: "07:00-07:50" },
                 { key: "07:50-08:40" },
+                { key: "08:55-09:45" },
                 { key: "09:45-10:35" },
                 { key: "10:50-11:40" },
                 { key: "11:40-12:30" },
@@ -173,6 +181,12 @@ export default {
 </script>
 
 <style>
+
+#model{
+    width: 100px;
+    text-align: center;
+}
+
 #schedule {
     overflow: scroll;
     background-color: white;
