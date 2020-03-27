@@ -129,9 +129,9 @@ export default {
                 .catch(showError);
         },
         remove() {
-            const id = this.recType.id;
+            const id = this.recType.idTipoDeRecursos;
             axios
-                .delete(`${baseApiUrl}/recType${id}`)
+                .delete(`${baseApiUrl}/deleteTipoDeRecursos/${id}`)
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset;
@@ -142,7 +142,7 @@ export default {
         loadRecType(recType, mode = "save") {
             this.mode = mode;
             this.recType = { ...recType };
-            console.log(this.recType);
+            // console.log(this.recType);
         },
         loadTeachers() {
             const url = `${baseApiUrl}/selectTabelaProfessor`
