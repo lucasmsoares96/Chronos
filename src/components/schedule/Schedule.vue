@@ -3,10 +3,20 @@
         <b-row cols="12" style="width: 100%" align-h="between">
             <h2>Quadro de horarios</h2>
             <h3>{{userData.dataRec[0].split("-").reverse().join(" / ")}}</h3>
+            <!-- gera erro -->
+        </b-row>
+        <b-row cols="12" style="width: 100%" align-h="between">
+            <table>
+                <tr>
+                    <td id="model" class="table-success">livre</td>
+                    <td id="model" class="table-warning">1 em análise</td>
+                    <td id="model" class="table-danger">ocupado</td>
+                </tr>
+            </table>
             <b-button variant="primary" v-b-modal.modal1 class="mb-2">Solicitar Reserva</b-button>
         </b-row>
         <div id="table">
-            <b-table @click.native="clickOnCell" bordered :items="items" :fields="fields">
+            <b-table @click.native="clickOnCell" bordered :items="this.$store.state.items" :fields="fields">
                 <template v-slot:cell()="data">
                     <div style="display:none">{{ data.value }}</div>
                 </template>
@@ -54,6 +64,7 @@ export default {
                 { key: "numero", label: "Identificação" },
                 { key: "07:00-07:50" },
                 { key: "07:50-08:40" },
+                { key: "08:55-09:45" },
                 { key: "09:45-10:35" },
                 { key: "10:50-11:40" },
                 { key: "11:40-12:30" },
@@ -80,7 +91,7 @@ export default {
             if (Object.keys(this.$store.state.user).length) {
                 this.text = "";
                 // console.log(e);
-                const table = document.getElementsByTagName("table")[0];
+                const table = document.getElementsByTagName("table")[1];
                 let row =
                     table.rows[e.srcElement.parentNode.rowIndex].cells[0]
                         .innerHTML;
@@ -150,16 +161,19 @@ export default {
                     horario: this.vet,
                     texto: this.text
                 })
-                .then(this.$bvModal.hide("modal1"));
+                .then(
+                    this.$bvModal.hide("modal1"),
+                    this.$store.commit("resSchedule")
+                );
         }
     },
     computed: {
         // fields() {
         //     return this.$store.state.fields;
         // },
-        items() {
-            return this.$store.state.items;
-        }
+        // items() {
+        //     return this.$store.state.items;
+        // }
     },
     mounted() {
         this.userData = JSON.parse(localStorage.getItem(userKey));
@@ -173,6 +187,11 @@ export default {
 </script>
 
 <style>
+#model {
+    width: 100px;
+    text-align: center;
+}
+
 #schedule {
     overflow: scroll;
     background-color: white;
