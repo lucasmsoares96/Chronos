@@ -105,8 +105,7 @@ export default {
                         this.vet.push(obj);
                         e.target.className = "table-primary";
                     } else if (
-                        e.toElement.children[0].innerHTML == 0 ||
-                        e.toElement.children[0].innerHTML == 1
+                        e.toElement.children[0].innerHTML == 0
                     ) {
                         for (let cell in this.vet) {
                             // console.log(cell);
