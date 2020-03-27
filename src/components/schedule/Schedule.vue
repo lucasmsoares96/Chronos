@@ -162,9 +162,13 @@ export default {
                     texto: this.text
                 })
                 .then(
-                    this.$bvModal.hide("modal1"),
+                    setTimeout(() => {
+                    this.$bvModal.hide("modal1")
                     this.$store.commit("resSchedule")
+                    }, 100),
+                    console.log("then"),
                 );
+                    console.log("fora")
         }
     },
     computed: {
