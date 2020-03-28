@@ -189,7 +189,7 @@ export default {
         },
         remove() {
             const id = this.user.idProfessor;
-            console.log(this.user);
+            // console.log(this.user);
             axios
                 .delete(`${baseApiUrl}/deleteProfessor/${id}`)
                 .then(() => {
