@@ -248,6 +248,48 @@ const analysis = [{
     }
 ]
 
+const history = [{
+        "email": "123",
+        "nomeP": "123",
+        "horario": "07:00:00",
+        "numero": 303,
+        "data": "2020-02-16T03:00:00.000Z",
+        "nome": "Sala",
+        "status": 0,
+        "motivo": "asldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdf",
+    },
+    {
+        "email": "123",
+        "nomeP": "123",
+        "horario": "07:50:00",
+        "numero": 303,
+        "data": "2020-02-16T03:00:00.000Z",
+        "nome": "Sala",
+        "status": 0,
+        "motivo": "asldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdf",
+    },
+    {
+        "email": "123",
+        "nomeP": "123",
+        "horario": "07:00:00",
+        "numero": 611,
+        "data": "2020-02-16T03:00:00.000Z",
+        "nome": "Laboratorio",
+        "status": 0,
+        "motivo": "asldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdf",
+    },
+    {
+        "email": "123",
+        "nomeP": "123",
+        "horario": "07:50:00",
+        "numero": 611,
+        "data": "2020-02-16T03:00:00.000Z",
+        "nome": "Laboratorio",
+        "status": 0,
+        "motivo": "asldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdfhlaksjdfhalksjfasldkjfhaslkdjfhlkasjdfhlaksjdfhlkasjdf",
+    }
+]
+
 const listResources = [{
         "idRecursos": 1,
         "numero": 303,
@@ -401,6 +443,11 @@ app.post("/selectProfessorHorario", (req, resp) => {
     console.log(req.body)
         // console.log(req.query);
     resp.json(reservations);
+});
+app.post("/history", (req, resp) => {
+    console.log(req.body)
+        // console.log(req.query);
+    resp.json(history);
 });
 app.post("/selectProfessorHorarioEspec", (req, resp) => {
     console.log(req.body)

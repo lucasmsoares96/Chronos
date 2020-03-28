@@ -76,7 +76,7 @@
             >Administrador de Recursos?</b-form-checkbox>
             <b-row>
                 <b-col xs="12">
-                    <b-button disabled="true" variant="primary" v-if="mode === 'save'" @click="save">Adicionar</b-button>
+                    <b-button disabled variant="primary" v-if="mode === 'save'" @click="save">Adicionar</b-button>
                     <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
                     <b-button variant="warning" v-if="mode === 'edit'" @click="save">Editar</b-button>
                     <b-button class="ml-2" @click="reset">Cancelar</b-button>

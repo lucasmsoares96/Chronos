@@ -90,8 +90,6 @@ export default {
     },
     methods: {
         getItems() {
-            // console.log(this.$store.state.user);
-            // console.log(typeof this.$store.state.user);
             axios
                 .post("http://localhost:3000/selectProfessorHorarioEspec", {
                     payload: this.$store.state.user

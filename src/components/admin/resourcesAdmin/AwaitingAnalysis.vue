@@ -1,47 +1,44 @@
 <template>
-    <div class="admin-page-tabs">
-        <b-card no-body>
-            <b-tabs card>
-                <b-tab title="Reservas aguardando análise">
-                    <div id="table">
-                        <b-table striped :fields="fields" :items="items">
-                            <template v-slot:cell(actions)="data">
-                                <b-button
-                                    variant="success"
-                                    v-b-tooltip.hover
-                                    title="Aprovar Pedido?"
-                                    @click="approveItem(data.item)"
-                                    class="btn2 mr-2"
-                                >
-                                    <font-awesome-icon icon="check"></font-awesome-icon>
-                                </b-button>
-                                <b-button
-                                    variant="danger"
-                                    v-b-tooltip.hover
-                                    title="Negar Pedido?"
-                                    class="btn2 mr-2"
-                                    @click="denyItem(data.item, 'remove')"
-                                >
-                                    <font-awesome-icon icon="times"></font-awesome-icon>
-                                </b-button>
-                            </template>
+    <div>
+        <h2>Aguardando Análise</h2>
+        <div id="table">
+            <b-table striped :fields="fields" :items="items">
+                <template v-slot:cell(actions)="data">
+                    <b-button
+                        variant="success"
+                        v-b-tooltip.hover
+                        title="Aprovar Pedido?"
+                        @click="approveItem(data.item)"
+                        class="btn2 mr-2"
+                    >
+                        <font-awesome-icon icon="check"></font-awesome-icon>
+                    </b-button>
+                    <b-button
+                        variant="danger"
+                        v-b-tooltip.hover
+                        title="Negar Pedido?"
+                        class="btn2 mr-2"
+                        @click="denyItem(data.item, 'remove')"
+                    >
+                        <font-awesome-icon icon="times"></font-awesome-icon>
+                    </b-button>
+                </template>
 
-                            <template v-slot:cell(show_details)="row">
-                                <b-button size="sm" @click="row.toggleDetails" class="btn2 mr-2">
-                                    <font-awesome-icon icon="angle-down"></font-awesome-icon>
-                                </b-button>
-                            </template>
-                            <template v-slot:row-details="row">
-                                <b-card style="width: 1000px">
-                                    <p>{{ row.item.motivo }}</p>
-                                </b-card>
-                            </template>
-                            <template v-slot:cell(data)="data">{{ data.value.slice(0, 10).split("-").reverse().join(" / ") }}</template>
-                        </b-table>
-                    </div>
-                </b-tab>
-            </b-tabs>
-        </b-card>
+                <template v-slot:cell(show_details)="row">
+                    <b-button size="sm" @click="row.toggleDetails" class="btn2 mr-2">
+                        <font-awesome-icon icon="angle-down"></font-awesome-icon>
+                    </b-button>
+                </template>
+                <template v-slot:row-details="row">
+                    <b-card style="width: 1000px">
+                        <p>{{ row.item.motivo }}</p>
+                    </b-card>
+                </template>
+                <template
+                    v-slot:cell(data)="data"
+                >{{ data.value.slice(0, 10).split("-").reverse().join(" / ") }}</template>
+            </b-table>
+        </div>
     </div>
 </template>
 
@@ -50,7 +47,7 @@ import axios from "axios";
 import { baseApiUrl, showError } from "@/global";
 
 export default {
-    name: "ResourcesAdmin",
+    name: "AwaitingAnalysis",
     data() {
         return {
             fields: [
@@ -176,7 +173,4 @@ export default {
 </script>
 
 <style>
-.btn2 {
-    width: 60px;
-}
 </style>
