@@ -24,23 +24,18 @@
             </b-form-group>
             <b-form-group label="Responsável:" label-for="teachers">
                 <b-form-select
-                    v-if="mode === 'save'"
+                    v-if="mode === 'save' || 'edit'"
                     id="teachers"
                     :options="teachers"
                     v-model="recType.idProfessor"
                 />
-                <b-form-input
-                    v-else
-                    id="type"
-                    type="text"
-                    v-model="recType.email"
-                    readonly
-                />
+                <b-form-input v-else id="type" type="text" v-model="recType.email" readonly />
             </b-form-group>
             <b-row>
                 <b-col xs="12">
-                    <b-button variant="primary" v-if="mode === 'save'" @click="save">Salvar</b-button>
+                    <b-button variant="primary" v-if="mode === 'save'" @click="save">Adicionar</b-button>
                     <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
+                    <b-button variant="warning" v-if="mode === 'edit'" @click="save">Editar</b-button>
                     <b-button class="ml-2" @click="reset">Cancelar</b-button>
                 </b-col>
             </b-row>
@@ -49,7 +44,7 @@
         <div id="table">
             <b-table striped :items="items" :fields="fields">
                 <template v-slot:cell(actions)="data">
-                    <b-button variant="warning" @click="loadRecType(data.item)" class="btn2 mr-2">
+                    <b-button variant="warning" @click="loadRecType(data.item, 'edit')" class="btn2 mr-2">
                         <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
                     </b-button>
                     <b-button
@@ -77,38 +72,41 @@ export default {
                     key: "nome",
                     label: "Tipo de Recurso",
                     sortable: true,
-                    thClass: "text-center"
+                    thClass: "text-center",
+                    tdClass: "text-center"
                 },
                 {
                     key: "email",
                     label: "Responsável",
                     sortable: true,
-                    thClass: "text-center"
+                    thClass: "text-center",
+                    tdClass: "text-center"
                 },
                 {
                     key: "descricao",
                     label: "Descrição",
                     sortable: true,
-                    thClass: "text-center"
+                    thClass: "text-center",
+                    tdClass: "text-center"
                 },
                 {
                     key: "actions",
                     label: "Ações",
                     tdClass: "text-right",
-                    thClass: "text-center"
+                    thClass: "text-center",
                 }
             ],
             recType: {},
             mode: "save",
             items: [],
-            teachers:[],
+            teachers: []
         };
     },
     methods: {
         getTypeResources() {
             axios
                 .get("http://localhost:3000/selectTabelaTipoDeRecursos")
-                .then(res => this.items=res.data);
+                .then(res => (this.items = res.data));
         },
         reset() {
             this.mode = "save";
@@ -117,14 +115,14 @@ export default {
         save() {
             // console.log("teste")
             const method = this.recType.idTipoDeRecursos ? "put" : "post";
-            axios[method](`${baseApiUrl}/insertTipoDeRecursos`,{
+            axios[method](`${baseApiUrl}/insertTipoDeRecursos`, {
                 recType: this.recType,
-                payload : this.$store.state.user
+                payload: this.$store.state.user
             })
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset();
-                    this.getTypeResources()
+                    this.getTypeResources();
                 })
                 .catch(showError);
         },
@@ -135,27 +133,40 @@ export default {
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset;
-                    this.getTypeResources()
+                    this.getTypeResources();
                 })
                 .catch(showError);
         },
         loadRecType(recType, mode = "save") {
             this.mode = mode;
             this.recType = { ...recType };
-            // console.log(this.recType);
+            if (this.mode == "remove") {
+                this.$bvModal
+                    .msgBoxConfirm("Deseja excluir o tipo de recurso?", {
+                        okVariant: "danger"
+                    })
+                    .then(value => {
+                        if (value == true) {
+                            this.remove();
+                        }
+                    });
+            }
         },
         loadTeachers() {
-            const url = `${baseApiUrl}/selectTabelaProfessor`
+            const url = `${baseApiUrl}/selectTabelaProfessor`;
             axios.get(url).then(res => {
                 this.teachers = res.data.map(teachers => {
-                    return { value: teachers.idProfessor, text: `${teachers.nomeP} - ${teachers.areaDoConhecimento} - ${teachers.email}` }
-                })
-            })
+                    return {
+                        value: teachers.idProfessor,
+                        text: `${teachers.nomeP} - ${teachers.areaDoConhecimento} - ${teachers.email}`
+                    };
+                });
+            });
         }
     },
-    mounted(){
-        this.getTypeResources()
-        this.loadTeachers()
+    mounted() {
+        this.getTypeResources();
+        this.loadTeachers();
     }
 };
 </script>

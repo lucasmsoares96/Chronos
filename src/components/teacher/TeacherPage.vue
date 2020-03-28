@@ -47,31 +47,36 @@ export default {
                     key: "status",
                     label: "Situação",
                     sortable: true,
-                    thClass: "text-center"
+                    thClass: "text-center",
+                    tdClass: "text-center",
                 },
                 {
                     key: "nome",
                     label: "Tipo",
                     sortable: true,
-                    thClass: "text-center"
+                    thClass: "text-center",
+                    tdClass: "text-center",
                 },
                 {
                     key: "numero",
                     label: "Recurso",
                     sortable: true,
-                    thClass: "text-center"
+                    thClass: "text-center",
+                    tdClass: "text-center",
                 },
                 {
                     key: "data",
                     label: "Data",
                     sortable: true,
-                    thClass: "text-center"
+                    thClass: "text-center",
+                    tdClass: "text-center",
                 },
                 {
                     key: "horario",
                     label: "Horário",
                     sortable: true,
-                    thClass: "text-center"
+                    thClass: "text-center",
+                    tdClass: "text-center",
                 },
                 {
                     key: "actions",

@@ -33,7 +33,10 @@
             </b-row>
             <b-row>
                 <b-col sm="12">
-                    <b-form-group label="Área do conhecimento: " label-for="user-areaDoConhecimento">
+                    <b-form-group
+                        label="Área do conhecimento: "
+                        label-for="user-areaDoConhecimento"
+                    >
                         <b-form-input
                             id="user-areaDoConhecimento"
                             type="text"
@@ -103,8 +106,9 @@
             <!-- </b-row> -->
             <b-row>
                 <b-col xs="12">
-                    <b-button variant="primary" v-if="mode === 'save'" @click="save">Salvar</b-button>
+                    <b-button variant="primary" v-if="mode === 'save'" @click="save">Adicionar</b-button>
                     <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
+                    <b-button variant="warning" v-if="mode === 'edit'" @click="save">Editar</b-button>
                     <b-button class="ml-2" @click="reset">Cancelar</b-button>
                 </b-col>
             </b-row>
@@ -113,10 +117,14 @@
         <div id="table">
             <b-table striped :items="items" :fields="fields">
                 <template v-slot:cell(actions)="data">
-                    <b-button variant="warning" @click="loadUser(data.item)" class="btn2 mr-2">
+                    <b-button variant="warning" @click="loadUser(data.item, 'edit')" class="btn2 mr-2">
                         <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
                     </b-button>
-                    <b-button variant="danger" class="btn2 mr-2" @click="loadUser(data.item, 'remove')">
+                    <b-button
+                        variant="danger"
+                        class="btn2 mr-2"
+                        @click="loadUser(data.item, 'remove')"
+                    >
                         <font-awesome-icon icon="trash"></font-awesome-icon>
                     </b-button>
                 </template>
@@ -140,21 +148,21 @@ export default {
                     label: "Nome",
                     sortable: true,
                     thClass: "text-center",
-                    tdClass: "text-center",
+                    tdClass: "text-center"
                 },
                 {
                     key: "email",
                     label: "E-mail",
                     sortable: true,
                     thClass: "text-center",
-                    tdClass: "text-center",
+                    tdClass: "text-center"
                 },
                 {
                     key: "cpf",
                     label: "CPF",
                     sortable: true,
                     thClass: "text-center",
-                    tdClass: "text-center",
+                    tdClass: "text-center"
                 },
                 {
                     key: "admGeral",
@@ -162,7 +170,7 @@ export default {
                     sortable: true,
                     thClass: "text-center",
                     tdClass: "text-center",
-                    formatter: value => value ? "Sim" : "Não"
+                    formatter: value => (value ? "Sim" : "Não")
                 },
                 {
                     key: "admRecursos",
@@ -170,30 +178,30 @@ export default {
                     sortable: true,
                     thClass: "text-center",
                     tdClass: "text-center",
-                    formatter: value => value ? "Sim" : "Não"
+                    formatter: value => (value ? "Sim" : "Não")
                 },
                 {
                     key: "areaDoConhecimento",
                     label: "Area do Conhecimento",
                     sortable: true,
                     thClass: "text-center",
-                    tdClass: "text-center",
+                    tdClass: "text-center"
                 },
                 {
                     key: "actions",
                     label: "Ações",
                     tdClass: "text-right",
-                    thClass: "text-center",
+                    thClass: "text-center"
                 }
             ],
-            items: [],
+            items: []
         };
     },
     methods: {
         getTeachers() {
             axios
                 .get("http://localhost:3000/selectTabelaProfessor")
-                .then(res => this.items = res.data);
+                .then(res => (this.items = res.data));
         },
         reset() {
             this.mode = "save";
@@ -206,19 +214,19 @@ export default {
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset();
-                    this.getTeachers()
+                    this.getTeachers();
                 })
                 .catch(showError);
         },
         remove() {
             const id = this.user.idProfessor;
-            console.log(this.user)
+            console.log(this.user);
             axios
                 .delete(`${baseApiUrl}/deleteProfessor/${id}`)
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset();
-                    this.getTeachers()
+                    this.getTeachers();
                 })
                 .catch(showError);
         },
@@ -226,20 +234,30 @@ export default {
             this.mode = mode;
             this.user = { ...user };
             if (this.user.admGeral == 1) {
-                this.user.admGeral = true
-            }else{
-                this.user.admGeral = false
+                this.user.admGeral = true;
+            } else {
+                this.user.admGeral = false;
             }
             if (this.user.admRecursos == 1) {
-                this.user.admRecursos = true
-            }else{
-                this.user.admRecursos = false
+                this.user.admRecursos = true;
+            } else {
+                this.user.admRecursos = false;
             }
-            // console.log(this.user.admGeral);
+            if (this.mode == "remove") {
+                this.$bvModal
+                    .msgBoxConfirm("Deseja excluir o professor?", {
+                        okVariant: "danger"
+                    })
+                    .then(value => {
+                        if (value == true) {
+                            this.remove();
+                        }
+                    });
+            }
         }
     },
-    mounted(){
-        this.getTeachers()
+    mounted() {
+        this.getTeachers();
     }
 };
 </script>
