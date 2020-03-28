@@ -74,6 +74,7 @@ export default {
                 { key: "11:40-12:30" },
                 { key: "12:30-13:50" },
                 { key: "13:50-14:40" },
+                { key: "14:40-15:30" },
                 { key: "15:50-16:40" },
                 { key: "16:40-17:30" },
                 { key: "17:30-19:00" },
@@ -101,7 +102,13 @@ export default {
                 obj.recurso = this.recurso;
                 obj.horario = this.horario;
                 obj.valor = e.toElement.children[0].innerHTML;
-                if (this.vet.length == 0 || this.vet[this.vet.length-1].recurso == this.recurso) {
+                // if (table.rows[e.srcElement.parentNode.rowIndex].cells[e.srcElement.cellIndex-1].className == "table-primary" || this.vet.length == 0) {
+                //     console.log("true")
+                // }
+                if (
+                    this.vet.length == 0 ||
+                    this.vet[this.vet.length - 1].recurso == this.recurso
+                ) {
                     if (
                         e.toElement.children[0].innerHTML == 0 ||
                         e.toElement.children[0].innerHTML == 1
@@ -140,8 +147,8 @@ export default {
                     }
                 } else {
                     this.$bvModal.msgBoxOk(
-                    "Só é possível selecionar um recurso por vez"
-                );
+                        "Só é possível selecionar um recurso por vez"
+                    );
                 }
             } else {
                 this.$bvModal.msgBoxOk(

@@ -100,6 +100,7 @@ const schedule = [{
         "11:40-12:30": 0,
         "12:30-13:50": 0,
         "13:50-14:40": 0,
+        "14:40-15:30": 1,
         "15:50-16:40": 0,
         "16:40-17:30": 0,
         "17:30-19:00": 0,
@@ -119,6 +120,7 @@ const schedule = [{
         "11:40-12:30": 0,
         "12:30-13:50": 0,
         "13:50-14:40": 0,
+        "14:40-15:30": 1,
         "15:50-16:40": 0,
         "16:40-17:30": 0,
         "17:30-19:00": 0,
@@ -138,6 +140,7 @@ const schedule = [{
         "11:40-12:30": 1,
         "12:30-13:50": 1,
         "13:50-14:40": 1,
+        "14:40-15:30": 1,
         "15:50-16:40": 1,
         "16:40-17:30": 1,
         "17:30-19:00": 1,
@@ -157,6 +160,7 @@ const schedule = [{
         "11:40-12:30": 2,
         "12:30-13:50": 2,
         "13:50-14:40": 2,
+        "14:40-15:30": 1,
         "15:50-16:40": 2,
         "16:40-17:30": 2,
         "17:30-19:00": 2,
@@ -180,8 +184,8 @@ const reservations = [{
     {
         "email": "123",
         "nomeP": "123",
-        "horario": "07:50:00",
-        "numero": 303,
+        "horario": "07:00:00",
+        "numero": 611,
         "data": "2020-02-16T03:00:00.000Z",
         "nome": "Sala",
         "status": 1
@@ -189,17 +193,44 @@ const reservations = [{
     {
         "email": "123",
         "nomeP": "123",
-        "horario": "07:00:00",
+        "horario": "08:55:00",
         "numero": 611,
+        "data": "2020-02-16T03:00:00.000Z",
+        "nome": "Laboratorio",
+        "status": 1
+    },
+    {
+        "email": "lucas",
+        "nomeP": "lucas",
+        "horario": "07:00:00",
+        "numero": 100,
+        "data": "2020-02-16T03:00:00.000Z",
+        "nome": "Sala",
+        "status": 0
+    },
+    {
+        "email": "lucas",
+        "nomeP": "lucas",
+        "horario": "07:50:00",
+        "numero": 100,
+        "data": "2020-02-16T03:00:00.000Z",
+        "nome": "Sala",
+        "status": 1
+    },
+    {
+        "email": "lucas",
+        "nomeP": "lucas",
+        "horario": "08:55:00",
+        "numero": 100,
         "data": "2020-02-16T03:00:00.000Z",
         "nome": "Laboratorio",
         "status": 2
     },
     {
-        "email": "123",
-        "nomeP": "123",
-        "horario": "07:50:00",
-        "numero": 611,
+        "email": "lucas",
+        "nomeP": "lucas",
+        "horario": "09:45:00",
+        "numero": 100,
         "data": "2020-02-16T03:00:00.000Z",
         "nome": "Laboratorio",
         "status": 1
@@ -444,7 +475,7 @@ app.post("/selectProfessorHorario", (req, resp) => {
         // console.log(req.query);
     resp.json(reservations);
 });
-app.post("/history", (req, resp) => {
+app.post("/historico", (req, resp) => {
     console.log(req.body)
         // console.log(req.query);
     resp.json(history);
