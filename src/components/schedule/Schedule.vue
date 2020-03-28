@@ -2,7 +2,7 @@
     <div id="schedule">
         <b-row cols="12" style="width: 100%" align-h="between">
             <h2>Quadro de horarios</h2>
-            <h3>{{userData.dataRec[0].split("-").reverse().join(" / ")}}</h3>
+            <h3>{{dataRec[0].split("-").reverse().join(" / ")}}</h3>
             <!-- gera erro -->
         </b-row>
         <b-row cols="12" style="width: 100%" align-h="between">
@@ -55,7 +55,7 @@
 
 <script>
 import axios from "axios";
-import { userKey } from "@/global";
+// import { userKey } from "@/global";
 
 export default {
     name: "Schedule",
@@ -83,7 +83,7 @@ export default {
                 { key: "20:55-21:45" },
                 { key: "21:45-22:35" }
             ],
-            userData: {}
+            dataRec: "",
         };
     },
     methods: {
@@ -159,7 +159,7 @@ export default {
         sendData() {
             axios
                 .post("http://localhost:3000/insertProfessorHorario", {
-                    data: this.userData.dataRec[0],
+                    data: this.dataRec[0],
                     payload: this.$store.state.user,
                     horario: this.vet,
                     texto: this.text
@@ -179,8 +179,8 @@ export default {
         // }
     },
     mounted() {
-        this.userData = JSON.parse(localStorage.getItem(userKey));
-        this.$store.commit("setObj", this.userData.dataRec);
+        this.dataRec = JSON.parse(localStorage.getItem("dataRec"));
+        this.$store.commit("setObj", this.dataRec);
         this.$store.commit("resSchedule");
         this.$bvModal.msgBoxOk(
             "selecione um ou mais horarios em seguida click em Solicitar Reserva"
