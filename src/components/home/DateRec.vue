@@ -27,7 +27,7 @@
 
 <script>
 import axios from "axios";
-import {showError, userKey} from "@/global"
+import {showError} from "@/global"
 
 export default {
     name: "DateRec",
@@ -42,21 +42,18 @@ export default {
         reqTable() {
             axios.get("http://localhost:3000/tipoderecursos").then(res => {
                 this.options = res.data;
-                // console.log(this.options);
             });
         },
         sendDateRec() {
             let data = this.value;
             let tipoRecurso = this.selected;
             let obj = [data, tipoRecurso];
-            const userData = JSON.parse(localStorage.getItem(userKey))
-            userData.dataRec = obj;
+            localStorage.setItem("dataRec", JSON.stringify(obj));
             axios
                 .post("http://localhost:3000/data",{data,tipoRecurso})
                 .then(() => {
                     console.log(obj);
                     this.$store.commit("setObj", obj);
-                    localStorage.setItem(userKey, JSON.stringify(userData));
                     this.$router.push("/schedule");
                 }).catch(showError);
         }

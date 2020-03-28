@@ -128,15 +128,12 @@ export default {
         loadTypes() {
             const url = `${baseApiUrl}/tipoderecursos`;
             axios.get(url).then(res => {
-                // this.categories = res.data
                 this.types = res.data.map(types => {
                     return {
-                        // ...types,
                         value: types.idTipoDeRecursos,
                         text: types.nome
                     };
                 });
-                // console.log(this.types);
             });
         },
         getResources() {
@@ -149,7 +146,6 @@ export default {
             this.resource = {};
         },
         save() {
-            // console.log(this.resource)
             const method = this.resource.idRecursos ? "put" : "post";
             axios[method](`${baseApiUrl}/insertRecursos`, {
                 recursos: this.resource,

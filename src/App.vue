@@ -5,9 +5,7 @@
 </template>
 
 <script>
-// import { axios } from "axios";
 import { userKey } from "@/global";
-    // baseApiUrl,
 import Container from "./components/template/Container";
 
 export default {
@@ -17,7 +15,6 @@ export default {
     },
     methods:{
         validateToken(){
-            // this.validatingToken=true
             const userData = JSON.parse(localStorage.getItem(userKey))
 
             if (userData) {

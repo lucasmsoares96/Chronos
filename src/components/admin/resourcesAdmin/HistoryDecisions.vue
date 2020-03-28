@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h2>Histórico de Decisões</h2>
+    <div id="history-decisions">
+        <h2>Histórico</h2>
         <div id="table">
             <b-table striped :fields="fields" :items="items">
                 <template v-slot:cell(actions)="data">
@@ -116,10 +116,10 @@ export default {
                 .then(res => {
                     this.items = res.data;
                     this.items.forEach(e => {
-                        if (e.status == 0) {
+                        if (e.status == 1) {
                             e._cellVariants = { status: "success" };
                             e.status = "Aprovado";
-                        } else if (e.status == 1) {
+                        } else if (e.status == 2) {
                             e._cellVariants = { status: "danger" };
                             e.status = "Recusado";
                         }
@@ -145,7 +145,6 @@ export default {
                                 this.$toasted.global.defaultSuccess();
                                 this.getItems();
                             });
-                        // console.log(item);
                     }
                 });
         }
@@ -157,4 +156,14 @@ export default {
 </script>
 
 <style>
+@media screen and (max-width: 600px) {
+    #history-decisions {
+        padding: 5px;
+    }
+}
+@media screen and (min-width: 600px) {
+    #history-decisions {
+        padding: 20px;
+    }
+}
 </style>

@@ -2,7 +2,7 @@
     <div id="schedule">
         <b-row cols="12" style="width: 100%" align-h="between">
             <h2>Quadro de horarios</h2>
-            <h3>{{userData.dataRec[0].split("-").reverse().join(" / ")}}</h3>
+            <h3>{{dataRec[0].split("-").reverse().join(" / ")}}</h3>
             <!-- gera erro -->
         </b-row>
         <b-row cols="12" style="width: 100%" align-h="between">
@@ -55,7 +55,6 @@
 
 <script>
 import axios from "axios";
-import { userKey } from "@/global";
 
 export default {
     name: "Schedule",
@@ -83,83 +82,77 @@ export default {
                 { key: "20:55-21:45" },
                 { key: "21:45-22:35" }
             ],
-            userData: {}
+            dataRec: ""
         };
     },
     methods: {
         clickOnCell(e) {
-            // console.log([e.srcElement.parentNode.rowIndex]);
-            // console.log([e.srcElement.cellIndex]);
-            // this.click += 1;
-            // console.log(this.click);
-            // console.log(e.target.className);
             if (Object.keys(this.$store.state.user).length) {
                 this.text = "";
-                // console.log(e);
                 const table = document.getElementsByTagName("table")[1];
                 let row =
                     table.rows[e.srcElement.parentNode.rowIndex].cells[0]
                         .innerHTML;
                 let column =
                     table.rows[0].cells[e.srcElement.cellIndex].innerHTML;
-                // console.log("linha  " + row);
-                // console.log("coluna " + column);
                 this.recurso = row;
                 this.horario = column;
                 let obj = {};
                 obj.recurso = this.recurso;
                 obj.horario = this.horario;
                 obj.valor = e.toElement.children[0].innerHTML;
-                if (
-                    e.toElement.children[0].innerHTML == 0 ||
-                    e.toElement.children[0].innerHTML == 1
-                ) {
+                if (this.vet.length == 0 || this.vet[this.vet.length-1].recurso == this.recurso) {
                     if (
-                        e.target.className == "table-success" ||
-                        e.target.className == "table-warning"
+                        e.toElement.children[0].innerHTML == 0 ||
+                        e.toElement.children[0].innerHTML == 1
                     ) {
-                        this.vet.push(obj);
-                        e.target.className = "table-primary";
-                    } else if (e.toElement.children[0].innerHTML == 0) {
-                        for (let cell in this.vet) {
-                            // console.log(cell);
-                            if (
-                                this.vet[cell].recurso == row &&
-                                this.vet[cell].horario == column
-                            ) {
-                                this.vet.splice(cell, 1);
+                        if (
+                            e.target.className == "table-success" ||
+                            e.target.className == "table-warning"
+                        ) {
+                            this.vet.push(obj);
+                            e.target.className = "table-primary";
+                        } else if (e.toElement.children[0].innerHTML == 0) {
+                            for (let cell in this.vet) {
+                                if (
+                                    this.vet[cell].recurso == row &&
+                                    this.vet[cell].horario == column
+                                ) {
+                                    this.vet.splice(cell, 1);
+                                }
                             }
+                            e.target.className = "table-success";
+                        } else {
+                            for (let cell in this.vet) {
+                                if (
+                                    this.vet[cell].recurso == row &&
+                                    this.vet[cell].horario == column
+                                ) {
+                                    this.vet.splice(cell, 1);
+                                }
+                            }
+                            e.target.className = "table-warning";
                         }
-                        // console.log(this.vet);
-                        e.target.className = "table-success";
                     } else {
-                        for (let cell in this.vet) {
-                            // console.log(cell);
-                            if (
-                                this.vet[cell].recurso == row &&
-                                this.vet[cell].horario == column
-                            ) {
-                                this.vet.splice(cell, 1);
-                            }
-                        }
-                        e.target.className = "table-warning";
+                        this.$bvModal.msgBoxOk(
+                            "Esse horário não está disponível"
+                        );
                     }
-                    // e.target.className = "table-primary";
-                    // this.$bvModal.show("modal1");
                 } else {
-                    this.$bvModal.msgBoxOk("Esse horário não está disponível");
+                    this.$bvModal.msgBoxOk(
+                    "Só é possível selecionar um recurso por vez"
+                );
                 }
             } else {
                 this.$bvModal.msgBoxOk(
                     "É preciso estar logado para solicitar uma reserva"
                 );
             }
-            console.log(this.vet);
         },
         sendData() {
             axios
                 .post("http://localhost:3000/insertProfessorHorario", {
-                    data: this.userData.dataRec[0],
+                    data: this.dataRec[0],
                     payload: this.$store.state.user,
                     horario: this.vet,
                     texto: this.text
@@ -170,17 +163,9 @@ export default {
                 });
         }
     },
-    computed: {
-        // fields() {
-        //     return this.$store.state.fields;
-        // },
-        // items() {
-        //     return this.$store.state.items;
-        // }
-    },
     mounted() {
-        this.userData = JSON.parse(localStorage.getItem(userKey));
-        this.$store.commit("setObj", this.userData.dataRec);
+        this.dataRec = JSON.parse(localStorage.getItem("dataRec"));
+        this.$store.commit("setObj", this.dataRec);
         this.$store.commit("resSchedule");
         this.$bvModal.msgBoxOk(
             "selecione um ou mais horarios em seguida click em Solicitar Reserva"

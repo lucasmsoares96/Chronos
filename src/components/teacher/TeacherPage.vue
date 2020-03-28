@@ -124,7 +124,6 @@ export default {
                             })
                             .then(() => this.getItems())
                             .catch(showError);
-                        // console.log(item);
                     }
                 });
         }
