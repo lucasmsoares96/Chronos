@@ -136,7 +136,6 @@ export default {
                             .then(() => {
                                 this.$toasted.global.defaultSuccess();
                                 this.getItems();
-                                // console.log(item);
                             })
                             .catch(showError);
                     }
@@ -161,7 +160,6 @@ export default {
                                 this.$toasted.global.defaultSuccess();
                                 this.getItems();
                             });
-                        // console.log(item);
                     }
                 });
         }

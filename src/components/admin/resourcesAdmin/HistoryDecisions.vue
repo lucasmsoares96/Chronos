@@ -145,7 +145,6 @@ export default {
                                 this.$toasted.global.defaultSuccess();
                                 this.getItems();
                             });
-                        // console.log(item);
                     }
                 });
         }

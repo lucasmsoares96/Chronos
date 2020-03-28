@@ -176,7 +176,6 @@ export default {
         reset() {
             this.mode = "save";
             this.user = {};
-            // this.loadUsers();
         },
         save() {
             const method = this.user.idProfessor ? "put" : "post";

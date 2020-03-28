@@ -55,7 +55,6 @@
 
 <script>
 import axios from "axios";
-// import { userKey } from "@/global";
 
 export default {
     name: "Schedule",
@@ -88,29 +87,20 @@ export default {
     },
     methods: {
         clickOnCell(e) {
-            // console.log([e.srcElement.parentNode.rowIndex]);
-            // console.log([e.srcElement.cellIndex]);
-            // this.click += 1;
-            // console.log(this.click);
-            // console.log(e.target.className);
             if (Object.keys(this.$store.state.user).length) {
                 this.text = "";
-                // console.log(e);
                 const table = document.getElementsByTagName("table")[1];
                 let row =
                     table.rows[e.srcElement.parentNode.rowIndex].cells[0]
                         .innerHTML;
                 let column =
                     table.rows[0].cells[e.srcElement.cellIndex].innerHTML;
-                // console.log("linha  " + row);
-                // console.log("coluna " + column);
                 this.recurso = row;
                 this.horario = column;
                 let obj = {};
                 obj.recurso = this.recurso;
                 obj.horario = this.horario;
                 obj.valor = e.toElement.children[0].innerHTML;
-                console.log(this.vet.length)
                 if (this.vet.length == 0 || this.vet[this.vet.length-1].recurso == this.recurso) {
                     if (
                         e.toElement.children[0].innerHTML == 0 ||
@@ -124,7 +114,6 @@ export default {
                             e.target.className = "table-primary";
                         } else if (e.toElement.children[0].innerHTML == 0) {
                             for (let cell in this.vet) {
-                                // console.log(cell);
                                 if (
                                     this.vet[cell].recurso == row &&
                                     this.vet[cell].horario == column
@@ -132,11 +121,9 @@ export default {
                                     this.vet.splice(cell, 1);
                                 }
                             }
-                            // console.log(this.vet);
                             e.target.className = "table-success";
                         } else {
                             for (let cell in this.vet) {
-                                // console.log(cell);
                                 if (
                                     this.vet[cell].recurso == row &&
                                     this.vet[cell].horario == column
@@ -146,8 +133,6 @@ export default {
                             }
                             e.target.className = "table-warning";
                         }
-                        // e.target.className = "table-primary";
-                        // this.$bvModal.show("modal1");
                     } else {
                         this.$bvModal.msgBoxOk(
                             "Esse horário não está disponível"
@@ -163,7 +148,6 @@ export default {
                     "É preciso estar logado para solicitar uma reserva"
                 );
             }
-            // console.log(this.vet);
         },
         sendData() {
             axios
@@ -178,14 +162,6 @@ export default {
                     this.$store.commit("resSchedule");
                 });
         }
-    },
-    computed: {
-        // fields() {
-        //     return this.$store.state.fields;
-        // },
-        // items() {
-        //     return this.$store.state.items;
-        // }
     },
     mounted() {
         this.dataRec = JSON.parse(localStorage.getItem("dataRec"));

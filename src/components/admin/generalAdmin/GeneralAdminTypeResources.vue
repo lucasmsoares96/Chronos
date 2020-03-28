@@ -113,7 +113,6 @@ export default {
             this.recType = {};
         },
         save() {
-            // console.log("teste")
             const method = this.recType.idTipoDeRecursos ? "put" : "post";
             axios[method](`${baseApiUrl}/insertTipoDeRecursos`, {
                 recType: this.recType,
