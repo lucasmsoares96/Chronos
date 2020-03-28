@@ -201,9 +201,8 @@ export default {
             // this.loadUsers();
         },
         save() {
-            const method = this.user.id ? "put" : "post";
-            const id = this.user.id ? `/${this.user.id}` : "";
-            axios[method](`${baseApiUrl}/users${id}`, this.user)
+            const method = this.user.idProfessor ? "put" : "post";
+            axios[method](`${baseApiUrl}/cadastroDeProfessor`, this.user)
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset();
@@ -212,9 +211,10 @@ export default {
                 .catch(showError);
         },
         remove() {
-            const id = this.user.id;
+            const id = this.user.idProfessor;
+            console.log(this.user)
             axios
-                .delete(`${baseApiUrl}/users/${id}`)
+                .delete(`${baseApiUrl}/deleteProfessor/${id}`)
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
                     this.reset();
