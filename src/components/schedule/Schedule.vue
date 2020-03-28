@@ -83,7 +83,7 @@ export default {
                 { key: "20:55-21:45" },
                 { key: "21:45-22:35" }
             ],
-            dataRec: "",
+            dataRec: ""
         };
     },
     methods: {
@@ -110,51 +110,60 @@ export default {
                 obj.recurso = this.recurso;
                 obj.horario = this.horario;
                 obj.valor = e.toElement.children[0].innerHTML;
-                if (
-                    e.toElement.children[0].innerHTML == 0 ||
-                    e.toElement.children[0].innerHTML == 1
-                ) {
+                console.log(this.vet.length)
+                if (this.vet.length == 0 || this.vet[this.vet.length-1].recurso == this.recurso) {
                     if (
-                        e.target.className == "table-success" ||
-                        e.target.className == "table-warning"
+                        e.toElement.children[0].innerHTML == 0 ||
+                        e.toElement.children[0].innerHTML == 1
                     ) {
-                        this.vet.push(obj);
-                        e.target.className = "table-primary";
-                    } else if (e.toElement.children[0].innerHTML == 0) {
-                        for (let cell in this.vet) {
-                            // console.log(cell);
-                            if (
-                                this.vet[cell].recurso == row &&
-                                this.vet[cell].horario == column
-                            ) {
-                                this.vet.splice(cell, 1);
+                        if (
+                            e.target.className == "table-success" ||
+                            e.target.className == "table-warning"
+                        ) {
+                            this.vet.push(obj);
+                            e.target.className = "table-primary";
+                        } else if (e.toElement.children[0].innerHTML == 0) {
+                            for (let cell in this.vet) {
+                                // console.log(cell);
+                                if (
+                                    this.vet[cell].recurso == row &&
+                                    this.vet[cell].horario == column
+                                ) {
+                                    this.vet.splice(cell, 1);
+                                }
                             }
+                            // console.log(this.vet);
+                            e.target.className = "table-success";
+                        } else {
+                            for (let cell in this.vet) {
+                                // console.log(cell);
+                                if (
+                                    this.vet[cell].recurso == row &&
+                                    this.vet[cell].horario == column
+                                ) {
+                                    this.vet.splice(cell, 1);
+                                }
+                            }
+                            e.target.className = "table-warning";
                         }
-                        // console.log(this.vet);
-                        e.target.className = "table-success";
+                        // e.target.className = "table-primary";
+                        // this.$bvModal.show("modal1");
                     } else {
-                        for (let cell in this.vet) {
-                            // console.log(cell);
-                            if (
-                                this.vet[cell].recurso == row &&
-                                this.vet[cell].horario == column
-                            ) {
-                                this.vet.splice(cell, 1);
-                            }
-                        }
-                        e.target.className = "table-warning";
+                        this.$bvModal.msgBoxOk(
+                            "Esse horário não está disponível"
+                        );
                     }
-                    // e.target.className = "table-primary";
-                    // this.$bvModal.show("modal1");
                 } else {
-                    this.$bvModal.msgBoxOk("Esse horário não está disponível");
+                    this.$bvModal.msgBoxOk(
+                    "Só é possível selecionar um recurso por vez"
+                );
                 }
             } else {
                 this.$bvModal.msgBoxOk(
                     "É preciso estar logado para solicitar uma reserva"
                 );
             }
-            console.log(this.vet);
+            // console.log(this.vet);
         },
         sendData() {
             axios
