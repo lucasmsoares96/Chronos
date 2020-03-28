@@ -16,7 +16,12 @@
             <b-button variant="primary" v-b-modal.modal1 class="mb-2">Solicitar Reserva</b-button>
         </b-row>
         <div id="table">
-            <b-table @click.native="clickOnCell" bordered :items="this.$store.state.items" :fields="fields">
+            <b-table
+                @click.native="clickOnCell"
+                bordered
+                :items="this.$store.state.items"
+                :fields="fields"
+            >
                 <template v-slot:cell()="data">
                     <div style="display:none">{{ data.value }}</div>
                 </template>
@@ -115,9 +120,7 @@ export default {
                     ) {
                         this.vet.push(obj);
                         e.target.className = "table-primary";
-                    } else if (
-                        e.toElement.children[0].innerHTML == 0
-                    ) {
+                    } else if (e.toElement.children[0].innerHTML == 0) {
                         for (let cell in this.vet) {
                             // console.log(cell);
                             if (
@@ -161,14 +164,10 @@ export default {
                     horario: this.vet,
                     texto: this.text
                 })
-                .then(
-                    setTimeout(() => {
-                    this.$bvModal.hide("modal1")
-                    this.$store.commit("resSchedule")
-                    }, 100),
-                    console.log("then"),
-                );
-                    console.log("fora")
+                .then(() => {
+                    this.$bvModal.hide("modal1");
+                    this.$store.commit("resSchedule");
+                });
         }
     },
     computed: {
