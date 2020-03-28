@@ -110,7 +110,7 @@ export default {
     methods: {
         getItems() {
             axios
-                .post("http://localhost:3000/history", {
+                .post("http://localhost:3000/historico", {
                     payload: this.$store.state.user
                 })
                 .then(res => {
