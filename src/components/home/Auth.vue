@@ -36,7 +36,7 @@
             />
             <b-form-input
                 v-if="showSignUp"
-                id="user-email"
+                id="user-confirmEmail"
                 type="text"
                 placeholder="Informe seu email"
                 v-model="user.confirmEmail"
@@ -92,8 +92,8 @@ export default {
                 .then(res => {
                     this.$store.commit("setUser", res.data);
                     localStorage.setItem(userKey, JSON.stringify(res.data));
-                    // this.$router.push("/teacher");
                     this.$bvModal.hide("modal1");
+                    this.user = {};
                 })
                 .catch(showError);
         },
@@ -102,8 +102,8 @@ export default {
                 .post(`${baseApiUrl}/inserirProfessor`, this.user)
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
-                    this.user = {};
                     this.shwoSignUp = false;
+                    this.login();
                 })
                 .catch(showError);
         },
@@ -114,8 +114,6 @@ export default {
         }
     },
     mounted() {
-        // const obj = {}
-        // console.log(obj)
         if (Object.keys(this.$store.state.user).length==0) {
             this.$bvModal.show("modal1");
         }

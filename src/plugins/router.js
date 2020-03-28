@@ -4,14 +4,13 @@ import VueRouter from 'vue-router'
 import Home from '../components/home/Home'
 import Schedule from '../components/schedule/Schedule'
 import TeacherPage from '../components/teacher/TeacherPage'
-import ResourcesAdmin from '../components/admin/ResourcesAdmin'
+import ResourcesAdmin from '../components/admin/resourcesAdmin/ResourcesAdmin'
 import GeneralAdmin from '../components/admin/generalAdmin/GeneralAdmin'
 import { userKey } from "@/global";
 
 Vue.use(VueRouter)
 
-const routes = [
-    {
+const routes = [{
         name: 'home',
         path: '/',
         component: Home,
@@ -48,10 +47,11 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     const json = localStorage.getItem(userKey)
 
-    if(to.matched.some(record => record.meta.ResourcesAdmin)) {
+    if (to.matched.some(record => record.meta.ResourcesAdmin)) {
         const user = JSON.parse(json)
         user && user.ResourcesAdmin ? next() : next({ path: '/' })
-    } if(to.matched.some(record => record.meta.GeneralAdmin)) {
+    }
+    if (to.matched.some(record => record.meta.GeneralAdmin)) {
         const user = JSON.parse(json)
         user && user.GeneralAdmin ? next() : next({ path: '/' })
     } else {

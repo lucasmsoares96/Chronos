@@ -33,7 +33,7 @@
             </b-form-group>
             <b-form-group label="Tipo de Recurso:" label-for="type">
                 <b-form-select
-                    v-if="mode === 'save'"
+                    v-if="mode === 'save' || 'edit'"
                     id="type"
                     :options="types"
                     v-model="resource.idTipoDeRecursos"
@@ -48,8 +48,9 @@
             </b-form-group>
             <b-row>
                 <b-col xs="12">
-                    <b-button variant="primary" v-if="mode === 'save'" @click="save">Salvar</b-button>
+                    <b-button variant="primary" v-if="mode === 'save'" @click="save">Adicionar</b-button>
                     <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
+                    <b-button variant="warning" v-if="mode === 'edit'" @click="save">Editar</b-button>
                     <b-button class="ml-2" @click="reset">Cancelar</b-button>
                 </b-col>
             </b-row>
@@ -58,7 +59,7 @@
         <div id="table">
             <b-table striped :fields="fields" :items="items">
                 <template v-slot:cell(actions)="data">
-                    <b-button variant="warning" @click="loadResource(data.item)" class="btn2 mr-2">
+                    <b-button variant="warning" @click="loadResource(data.item, 'edit')" class="btn2 mr-2">
                         <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
                     </b-button>
                     <b-button
@@ -87,40 +88,40 @@ export default {
                     label: "Tipo",
                     sortable: true,
                     thClass: "text-center",
-                    tdClass: "text-center",
+                    tdClass: "text-center"
                 },
                 {
                     key: "numero",
                     label: "Salas",
                     sortable: true,
                     thClass: "text-center",
-                    tdClass: "text-center",
+                    tdClass: "text-center"
                 },
                 {
                     key: "capacidade",
                     label: "Capacidade",
                     sortable: true,
                     thClass: "text-center",
-                    tdClass: "text-center",
+                    tdClass: "text-center"
                 },
                 {
                     key: "informacao",
                     label: "Informações",
                     sortable: true,
                     thClass: "text-center",
-                    tdClass: "text-center",
+                    tdClass: "text-center"
                 },
                 {
                     key: "actions",
                     label: "Ações",
                     tdClass: "text-right",
-                    thClass: "text-center",
+                    thClass: "text-center"
                 }
             ],
             resource: {},
             mode: "save",
             types: [],
-            items: [],
+            items: []
         };
     },
     methods: {
@@ -141,7 +142,7 @@ export default {
         getResources() {
             axios
                 .get("http://localhost:3000/selectTabelaRecursos")
-                .then(res => this.items=res.data);
+                .then(res => (this.items = res.data));
         },
         reset() {
             this.mode = "save";
@@ -149,10 +150,10 @@ export default {
         },
         save() {
             // console.log(this.resource)
-            const method = this.resource.idRecursos ? "put" : "post"; 
+            const method = this.resource.idRecursos ? "put" : "post";
             axios[method](`${baseApiUrl}/insertRecursos`, {
                 recursos: this.resource,
-                payload : this.$store.state.user
+                payload: this.$store.state.user
             })
                 .then(() => {
                     this.$toasted.global.defaultSuccess();
@@ -174,8 +175,18 @@ export default {
         },
         loadResource(resource, mode = "save") {
             this.mode = mode;
-            this.resource = {...resource};
-            // console.log(this.resource);
+            this.resource = { ...resource };
+            if (this.mode == "remove") {
+                this.$bvModal
+                    .msgBoxConfirm("Deseja excluir o recurso?", {
+                        okVariant: "danger"
+                    })
+                    .then(value => {
+                        if (value == true) {
+                            this.remove();
+                        }
+                    });
+            }
         }
     },
     mounted() {

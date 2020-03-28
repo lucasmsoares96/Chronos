@@ -1,8 +1,8 @@
 <template>
-    <b-navbar v-if="user.nome" toggleable="lg" type="light" variant="light">
+    <b-navbar v-if="this.$store.state.user.nome" toggleable="lg" type="light" variant="light">
         <b-navbar-brand href="#">
             <font-awesome-icon icon="user" class="mr-2"></font-awesome-icon>
-            {{user.nome}}
+            {{this.$store.state.user.nome}}
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -11,8 +11,14 @@
             <b-navbar-nav>
                 <b-nav-item to="/">Quadro de Horários</b-nav-item>
                 <b-nav-item to="/teacher">Suas Reservas</b-nav-item>
-                <b-nav-item v-if="user.admRecursos" to="/resourcesAdmin">Administração de Recursos</b-nav-item>
-                <b-nav-item v-if="user.admGeral" to="/generalAdmin">Administração Geral</b-nav-item>
+                <b-nav-item
+                    v-if="this.$store.state.user.admRecursos"
+                    to="/resourcesAdmin"
+                >Administração de Recursos</b-nav-item>
+                <b-nav-item
+                    v-if="this.$store.state.user.admGeral"
+                    to="/generalAdmin"
+                >Administração Geral</b-nav-item>
             </b-navbar-nav>
 
             <!-- Right aligned nav items -->
@@ -34,10 +40,11 @@
 
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
-                <b-nav-item-dropdown right>
+                <b-nav-item-dropdown right ref="dropdown">
                     <!-- Using 'button-content' slot -->
                     <template v-slot:button-content>Sign In</template>
-                    <b-dropdown-form>
+                    <b-dropdown-form v-if="!signUp" style="width: 350px">
+                        <h6>Conecte-se:</h6>
                         <b-form-group
                             label="Email"
                             label-for="dropdown-form-email"
@@ -46,7 +53,7 @@
                             <b-form-input
                                 id="dropdown-form-email"
                                 size="sm"
-                                v-model="user2.email"
+                                v-model="user.email"
                                 placeholder="email@example.com"
                             ></b-form-input>
                         </b-form-group>
@@ -56,7 +63,7 @@
                                 id="dropdown-form-password"
                                 type="password"
                                 size="sm"
-                                v-model="user2.password"
+                                v-model="user.password"
                                 placeholder="senha"
                             ></b-form-input>
                         </b-form-group>
@@ -64,8 +71,67 @@
                         <b-form-checkbox class="mb-3">Lembrar-me</b-form-checkbox>
                         <b-button variant="primary" size="sm" @click="login">Sign In</b-button>
                     </b-dropdown-form>
+                    <b-dropdown-form v-if="signUp" style="width: 350px">
+                        <h6>Cadastre-se:</h6>
+                        <b-form-input
+                            id="user-name"
+                            type="text"
+                            placeholder="Informe seu nome"
+                            v-model="user.nome"
+                            class="mb-3"
+                        />
+                        <b-form-input
+                            id="user-cpf"
+                            type="text"
+                            placeholder="Informe seu cpf"
+                            v-model="user.cpf"
+                            class="mb-3"
+                        />
+                        <b-form-input
+                            id="user-area"
+                            type="text"
+                            placeholder="Informe seu Area do Conhecimento"
+                            v-model="user.areaDoConhecimento"
+                            class="mb-3"
+                        />
+                        <b-form-input
+                            id="user-email"
+                            type="text"
+                            placeholder="Informe seu email"
+                            v-model="user.email"
+                            class="mb-3"
+                        />
+                        <b-form-input
+                            id="user-confirmEmail"
+                            type="text"
+                            placeholder="Informe seu email"
+                            v-model="user.confirmEmail"
+                            class="mb-3"
+                        />
+                        <b-form-input
+                            id="user-password"
+                            type="password"
+                            placeholder="Informe sua senha"
+                            v-model="user.password"
+                            class="mb-3"
+                        />
+                        <b-form-input
+                            id="confirm-password"
+                            type="password"
+                            placeholder="Confirme sua senha"
+                            v-model="user.confirmPassword"
+                            class="mb-3"
+                        />
+
+                        <b-form-checkbox class="mb-3">Lembrar-me</b-form-checkbox>
+                        <b-button variant="primary" size="sm" @click="siginUp">Sign Up</b-button>
+                    </b-dropdown-form>
                     <b-dropdown-divider></b-dropdown-divider>
-                    <b-dropdown-item-button>Não tem cadastro? Registre-se</b-dropdown-item-button>
+                    <b-dropdown-item-button
+                        v-if="!signUp"
+                        @click="onClick"
+                    >Não tem cadastro? Registre-se</b-dropdown-item-button>
+                    <b-dropdown-item-button v-else @click="onClick">Já tem cadastro? Faça LogIn</b-dropdown-item-button>
                     <b-dropdown-item-button>Esqueceu sua Senha?</b-dropdown-item-button>
                 </b-nav-item-dropdown>
             </b-navbar-nav>
@@ -80,23 +146,28 @@ export default {
     name: "NavBar",
     data() {
         return {
-            user2: {}
+            signUp: false,
+            user: {}
         };
-    },
-    computed: {
-        user() {
-            return this.$store.state.user;
-        }
     },
     methods: {
         login() {
             axios
-                .post(`${baseApiUrl}/login`, this.user2)
+                .post(`${baseApiUrl}/login`, this.user)
                 .then(res => {
                     this.$store.commit("setUser", res.data);
                     localStorage.setItem(userKey, JSON.stringify(res.data));
-                    // this.$router.push("/teacher");
-                    this.$bvModal.hide("modal1");
+                    this.user = {};
+                })
+                .catch(showError);
+        },
+        siginUp() {
+            axios
+                .post(`${baseApiUrl}/inserirProfessor`, this.user)
+                .then(() => {
+                    this.$toasted.global.defaultSuccess();
+                    this.shwoSignUp = false;
+                    this.login();
                 })
                 .catch(showError);
         },
@@ -118,8 +189,11 @@ export default {
             }
         },
         onClick() {
+            this.signUp = !this.signUp;
             // Close the menu and (by passing true) return focus to the toggle button
-            this.$refs.dropdown.hide(true);
+            this.$refs.dropdown.show();
+            // console.log(bvEvt)
+            // bvEvt.preventDefault()
         }
     }
 };

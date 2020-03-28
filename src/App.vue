@@ -15,14 +15,9 @@ export default {
     components: {
         Container
     },
-    data(){
-        return {
-            validatingToken: true
-        }
-    },
     methods:{
         validateToken(){
-            this.validatingToken=true
+            // this.validatingToken=true
             const userData = JSON.parse(localStorage.getItem(userKey))
 
             if (userData) {
@@ -33,19 +28,9 @@ export default {
                 token: null,
                 payload: {},
             })
-                this.validatingToken = false
                 this.$router.push("/")
                 return
             }
-            // axios.post(`${baseApiUrl}/validateToken`,userData).then(res => {
-            //     if (res.data) {
-            //         this.$store.commit('setUser',userData)
-            //     }else{
-            //         localStorage.removeItem(userKey)
-            //         this.$router.push('/')
-            //     }
-            //     this.validatingToken = false
-            // })
         }
     },
     created(){
