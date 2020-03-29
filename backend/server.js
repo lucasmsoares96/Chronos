@@ -173,67 +173,202 @@ const schedule = [{
 ];
 
 const reservations = [{
-        "email": "123",
-        "nomeP": "123",
-        "horario": "07:00:00",
-        "numero": 303,
-        "data": "2020-02-16T03:00:00.000Z",
-        "nome": "Sala",
-        "status": 0
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "10:50:00",
+        "numero": "303",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
     },
     {
-        "email": "123",
-        "nomeP": "123",
-        "horario": "07:00:00",
-        "numero": 611,
-        "data": "2020-02-16T03:00:00.000Z",
-        "nome": "Sala",
-        "status": 1
+        "email": "lucas@",
+        "nomeP": "lucas@",
+        "motivo": null,
+        "horario": "10:50:00",
+        "numero": "303",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
     },
     {
-        "email": "123",
-        "nomeP": "123",
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "11:40:00",
+        "numero": "303",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "12:30:00",
+        "numero": "303",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
         "horario": "08:55:00",
-        "numero": 611,
-        "data": "2020-02-16T03:00:00.000Z",
-        "nome": "Laboratorio",
-        "status": 1
+        "numero": "305",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
     },
     {
-        "email": "lucas",
-        "nomeP": "lucas",
-        "horario": "07:00:00",
-        "numero": 100,
-        "data": "2020-02-16T03:00:00.000Z",
-        "nome": "Sala",
-        "status": 0
-    },
-    {
-        "email": "lucas",
-        "nomeP": "lucas",
-        "horario": "07:50:00",
-        "numero": 100,
-        "data": "2020-02-16T03:00:00.000Z",
-        "nome": "Sala",
-        "status": 1
-    },
-    {
-        "email": "lucas",
-        "nomeP": "lucas",
-        "horario": "08:55:00",
-        "numero": 100,
-        "data": "2020-02-16T03:00:00.000Z",
-        "nome": "Laboratorio",
-        "status": 2
-    },
-    {
-        "email": "lucas",
-        "nomeP": "lucas",
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
         "horario": "09:45:00",
-        "numero": 100,
-        "data": "2020-02-16T03:00:00.000Z",
-        "nome": "Laboratorio",
-        "status": 1
+        "numero": "305",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "10:50:00",
+        "numero": "305",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "11:40:00",
+        "numero": "305",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "12:30:00",
+        "numero": "305",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "08:55:00",
+        "numero": "307",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "09:45:00",
+        "numero": "307",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "10:50:00",
+        "numero": "307",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "08:55:00",
+        "numero": "311",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "08:55:00",
+        "numero": "109",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "08:55:00",
+        "numero": "123",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "07:00:00",
+        "numero": "1234",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "07:50:00",
+        "numero": "1234",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "08:55:00",
+        "numero": "1234",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "09:45:00",
+        "numero": "1234",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "10:50:00",
+        "numero": "1234",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "11:40:00",
+        "numero": "1234",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
+    },
+    {
+        "email": "vitor@",
+        "nomeP": "vitor@",
+        "motivo": "",
+        "horario": "12:30:00",
+        "numero": "1234",
+        "data": "2020-03-27T03:00:00.000Z",
+        "nome": "Sala"
     }
 ]
 
@@ -522,9 +657,14 @@ app.post("/insertProfessorHorario", (req, resp) => {
         // console.log(req.query);
     resp.send("ok");
 });
+app.post("/updateAprovadoProfessorHorario", (req, resp) => {
+    console.log(req.body)
+        // console.log(req.query);
+    resp.send("ok");
+});
 
 app.post("/insertRecursos", (req, resp) => {
-    console.log(req.body)
+    console.log(req.body.item)
         // console.log(req.query);
     resp.status(400).send('Informe o nome do recurso!');
 });
