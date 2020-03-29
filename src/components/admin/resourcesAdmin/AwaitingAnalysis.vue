@@ -1,6 +1,26 @@
 <template>
   <div id="awaiting-analysis">
     <h2>Aguardando Análise</h2>
+    <!-- <table>
+      <tr>
+        <td> - 07:00:00 </td>
+        <td> - 07:50:00 </td>
+        <td> - 08:55:00 </td>
+        <td> - 09:45:00 </td>
+        <td> - 10:50:00 </td>
+        <td> - 11:40:00 </td>
+        <td> - 12:30:00 </td>
+        <td> - 13:50:00 </td>
+        <td> - 14:40:00 </td>
+        <td> - 15:50:00 </td>
+        <td> - 16:40:00 </td>
+        <td> - 17:30:00 </td>
+        <td> - 19:00:00 </td>
+        <td> - 19:50:00 </td>
+        <td> - 20:55:00 </td>
+        <td> - 21:45:00 </td>
+      </tr>
+    </table>-->
     <div id="table">
       <b-table striped :fields="fields" :items="getItems">
         <template v-slot:cell(actions)="data">
@@ -205,6 +225,7 @@ export default {
               let vetPart = [parts1, parts2];
               // console.log("partes " + vetPart)
               this.items[i + 1].horario = vetPart.join("-");
+              // this.items[i + 1].pos = this.items[i].pos
               // console.log(this.items[i])
               cont++;
             } else {
@@ -216,6 +237,7 @@ export default {
             }
           }
           this.fund[j] = this.items[this.items.length - 1];
+          this.fund[j].cont = cont;
           return this.fund;
         });
     },
@@ -252,7 +274,7 @@ export default {
     }
   },
   mounted() {
-    this.getItems();
+    // this.getItems();
   }
 };
 </script>
