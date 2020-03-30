@@ -235,15 +235,12 @@ export default {
             })
             .then(() => {
               this.$toasted.global.defaultSuccess();
-              this.getItems();
+              this.$refs.table.refresh()
             });
         }
       });
     }
   },
-  mounted() {
-    this.getItems();
-  }
 };
 </script>
 

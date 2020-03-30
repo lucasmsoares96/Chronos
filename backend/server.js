@@ -173,15 +173,6 @@ const schedule = [{
 ];
 
 const reservations = [{
-        "email": "vitor@",
-        "nomeP": "vitor@",
-        "motivo": "",
-        "horario": "10:50:00",
-        "numero": "303",
-        "data": "2020-03-27T03:00:00.000Z",
-        "nome": "Sala"
-    },
-    {
         "email": "lucas@",
         "nomeP": "lucas@",
         "motivo": null,

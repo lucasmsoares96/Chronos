@@ -22,7 +22,7 @@
       </tr>
     </table>-->
     <div id="table">
-      <b-table striped :fields="fields" :items="getItems">
+      <b-table ref="table" striped :fields="fields" :items="getItems">
         <template v-slot:cell(actions)="data">
           <b-button
             variant="success"
@@ -251,7 +251,7 @@ export default {
             })
             .then(() => {
               this.$toasted.global.defaultSuccess();
-              this.getItems();
+              this.$refs.table.refresh()
             })
             .catch(showError);
         }
@@ -267,15 +267,12 @@ export default {
             })
             .then(() => {
               this.$toasted.global.defaultSuccess();
-              this.getItems();
+              this.$refs.table.refresh()
             });
         }
       });
     }
   },
-  mounted() {
-    // this.getItems();
-  }
 };
 </script>
 
