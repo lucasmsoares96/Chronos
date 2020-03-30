@@ -2,7 +2,7 @@
   <div id="history-decisions">
     <h2>Histórico</h2>
     <div id="table">
-      <b-table striped :fields="fields" :items="getItems">
+      <b-table ref="table" striped :fields="fields" :items="getItems">
         <template v-slot:cell(actions)="data">
           <b-button
             variant="danger"
@@ -103,18 +103,18 @@ export default {
           tdClass: "text-right"
         }
       ],
-      items: [],
-      fund: []
     };
   },
   methods: {
     getItems() {
+      let items = []
+      let fund = []
       return axios
         .post("http://localhost:3000/historico", {
           payload: this.$store.state.user
         })
         .then(res => {
-          this.items = res.data.map(e => {
+          items = res.data.map(e => {
             switch (e.horario) {
               case "07:00:00":
                 e.horario = "07:00 - 07:50";
@@ -185,7 +185,7 @@ export default {
             }
             return e;
           });
-          this.items.forEach(e => {
+          items.forEach(e => {
             if (e.status == 1) {
               e._cellVariants = { status: "success" };
               e.status = "Aprovado";
@@ -197,45 +197,41 @@ export default {
           let i = 0,
             j = 0,
             cont = 1;
-          for (i = 0; i < this.items.length - 1; i++) {
+          for (i = 0; i < items.length - 1; i++) {
             if (
-              this.items[i].email == this.items[i + 1].email &&
-              this.items[i].numero == this.items[i + 1].numero &&
-              this.items[i].pos + 1 == this.items[i + 1].pos
+              items[i].email == items[i + 1].email &&
+              items[i].numero == items[i + 1].numero &&
+              items[i].pos + 1 == items[i + 1].pos
             ) {
-              let parts1 = this.items[i].horario.split("-")[0];
-              // console.log("part1 " + parts1);
-              let parts2 = this.items[i + 1].horario.split("-")[1];
-              // console.log("part2 " + parts2)
+              let parts1 = items[i].horario.split("-")[0];
+              let parts2 = items[i + 1].horario.split("-")[1];
               let vetPart = [parts1, parts2];
-              // console.log("partes " + vetPart)
-              this.items[i + 1].horario = vetPart.join("-");
-              // console.log(this.items[i])
+              items[i + 1].horario = vetPart.join("-");
               cont++;
             } else {
-              this.fund[j] = this.items[i];
-              this.fund[j].cont = cont;
+              fund[j] = items[i];
+              fund[j].cont = cont;
               cont = 1;
-              // console.log(j)
               j = j + 1;
             }
           }
-          this.fund[j] = this.items[this.items.length - 1];
-          this.fund[j].cont = cont;
-          return this.fund;
+          fund[j] = items[items.length - 1];
+          fund[j].cont = cont;
+          return fund;
         });
     },
     denyItem(item) {
       this.$bvModal.msgBoxConfirm("Deseja negar a pedido?").then(value => {
         if (value == true) {
           axios
-            .post(`${baseApiUrl}/updateRecusadoProfessorHorario`, {
+            .post(`${baseApiUrl}/desfazer`, {
               item: item,
               payload: this.$store.state.user
             })
             .then(() => {
               this.$toasted.global.defaultSuccess();
               this.$refs.table.refresh()
+              this.getItems()
             });
         }
       });

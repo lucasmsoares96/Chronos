@@ -1,11 +1,11 @@
 <template>
     <div class="admin-page-tabs">
         <b-card no-body>
-            <b-tabs card>
+            <b-tabs lazy card>
                 <b-tab title="Reservas aguardando análise">
                     <AwaitingAnalysis />
                 </b-tab>
-                <b-tab lazy title="Histórico de Decisões">
+                <b-tab title="Histórico de Decisões">
                     <HistoryDecisions />
                 </b-tab>
             </b-tabs>

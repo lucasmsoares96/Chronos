@@ -52,7 +52,6 @@ export default {
             axios
                 .post("http://localhost:3000/data",{data,tipoRecurso})
                 .then(() => {
-                    // console.log(obj);
                     this.$store.commit("setObj", obj);
                     this.$router.push("/schedule");
                 }).catch(showError);
