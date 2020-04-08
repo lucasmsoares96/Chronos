@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import GeneralAdminResources from './GeneralAdminResources'
-import GeneralAdminTeachers from './GeneralAdminTeachers'
-import GeneralAdminTypeResources from './GeneralAdminTypeResources'
+import GeneralAdminResources from '../components/admin/generalAdmin/GeneralAdminResources'
+import GeneralAdminTeachers from '../components/admin/generalAdmin/GeneralAdminTeachers'
+import GeneralAdminTypeResources from '../components/admin/generalAdmin/GeneralAdminTypeResources'
 
 export default {
     name: 'GeneralAdmin',

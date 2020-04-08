@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import AwaitingAnalysis from "./AwaitingAnalysis";
-import HistoryDecisions from "./HistoryDecisions";
+import AwaitingAnalysis from "../components/admin/resourcesAdmin/AwaitingAnalysis";
+import HistoryDecisions from "../components/admin/resourcesAdmin/HistoryDecisions";
 
 export default {
     name: "ResourcesAdmin",

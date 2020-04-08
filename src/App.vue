@@ -39,6 +39,7 @@ export default {
 <style>
 *{
     outline: none;
+    box-shadow: none;
 }
 #table{
     width: 100%;

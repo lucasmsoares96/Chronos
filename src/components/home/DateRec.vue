@@ -84,7 +84,6 @@ export default {
 }
 
 .btn {
-    /* float: right; */
     width: 120px;
     margin-top: 0px 10px;
 }

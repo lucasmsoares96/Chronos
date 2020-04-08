@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import DataRec from "./DateRec";
-import Auth from './Auth.vue'
+import DataRec from "../components/home/DateRec";
+import Auth from '../components/home/Auth.vue'
 
 export default {
     name: "Home",
@@ -21,12 +21,6 @@ export default {
 </script>
 
 <style>
-/* *{
-    outline: none;
-    border: solid 1px;
-    margin: 5px;
-    padding: 2px;
-} */
 
 section {
     display: flex;
