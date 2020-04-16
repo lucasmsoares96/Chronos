@@ -1,203 +1,202 @@
 <template>
-    <div id="schedule">
-        <b-row cols="12" style="width: 100%" align-h="between">
-            <h2>Quadro de horarios</h2>
-            <h3>{{dataRec[0].split("-").reverse().join(" / ")}}</h3>
-            <!-- gera erro -->
-        </b-row>
-        <b-row cols="12" style="width: 100%" align-h="between">
-            <table>
-                <tr>
-                    <td id="model" class="table-success">livre</td>
-                    <td id="model" class="table-warning">1 em análise</td>
-                    <td id="model" class="table-danger">ocupado</td>
-                </tr>
-            </table>
-            <b-button variant="primary" v-b-modal.modal1 class="mb-2">Solicitar Reserva</b-button>
-        </b-row>
-        <div id="table">
-            <b-table
-                @click.native="clickOnCell"
-                bordered
-                :items="this.$store.state.items"
-                :fields="fields"
-            >
-                <template v-slot:cell()="data">
-                    <div style="display:none">{{ data.value }}</div>
-                </template>
-                <template v-slot:cell(numero)="data">{{ data.value }}</template>
-            </b-table>
-        </div>
-        <div>
-            <b-modal
-                id="modal1"
-                title="Fazer uma reserva para esse horário?"
-                header-text-variant="light"
-            >
-                <div>
-                    <b-form-textarea
-                        id="textarea"
-                        v-model="text"
-                        placeholder="Digite o seu motivo..."
-                        rows="5"
-                        max-rows="10"
-                        maxlength="255"
-                    ></b-form-textarea>
-                </div>
-                <template v-slot:modal-footer="{ cancel }">
-                    <b-button variant="primary" @click="sendData">OK</b-button>
-                    <b-button @click="cancel()">Cancelar</b-button>
-                </template>
-            </b-modal>
-        </div>
+  <div id="schedule">
+    <b-row cols="12" style="width: 100%" align-h="between">
+      <h2>Quadro de horarios</h2>
+      <h3>{{dataRec[0].split("-").reverse().join(" / ")}}</h3>
+      <!-- gera erro -->
+    </b-row>
+    <b-row cols="12" style="width: 100%" align-h="between">
+      <table>
+        <tr>
+          <td id="model" class="table-success">livre</td>
+          <td id="model" class="table-warning">1 em análise</td>
+          <td id="model" class="table-danger">ocupado</td>
+        </tr>
+      </table>
+      <b-button variant="primary" @click="requestReservation" class="mb-2">Solicitar Reserva</b-button>
+    </b-row>
+    <div id="table">
+      <b-table
+        @click.native="clickOnCell"
+        bordered
+        :items="this.$store.state.items"
+        :fields="fields"
+      >
+        <template v-slot:cell()="data">
+          <div style="display:none">{{ data.value }}</div>
+        </template>
+        <template v-slot:cell(numero)="data">{{ data.value }}</template>
+      </b-table>
     </div>
+    <div>
+      <b-modal id="modal1" title="Fazer uma reserva para esse horário?" header-text-variant="light">
+        <div>
+          <b-form-textarea
+            id="textarea"
+            v-model="text"
+            placeholder="Digite o seu motivo..."
+            rows="5"
+            max-rows="10"
+            maxlength="255"
+          ></b-form-textarea>
+        </div>
+        <template v-slot:modal-footer="{ cancel }">
+          <b-button variant="primary" @click="sendData">OK</b-button>
+          <b-button @click="cancel()">Cancelar</b-button>
+        </template>
+      </b-modal>
+    </div>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
 
 export default {
-    name: "Schedule",
-    data() {
-        return {
-            text: "",
-            recurso: "",
-            horario: "",
-            vet: [],
-            fields: [
-                { key: "numero", label: "Identificação" },
-                { key: "07:00-07:50" },
-                { key: "07:50-08:40" },
-                { key: "08:55-09:45" },
-                { key: "09:45-10:35" },
-                { key: "10:50-11:40" },
-                { key: "11:40-12:30" },
-                { key: "12:30-13:50" },
-                { key: "13:50-14:40" },
-                { key: "14:40-15:30" },
-                { key: "15:50-16:40" },
-                { key: "16:40-17:30" },
-                { key: "17:30-19:00" },
-                { key: "19:00-19:50" },
-                { key: "19:50-20:40" },
-                { key: "20:55-21:45" },
-                { key: "21:45-22:35" }
-            ],
-            dataRec: ""
-        };
-    },
-    methods: {
-        clickOnCell(e) {
-            if (Object.keys(this.$store.state.user).length) {
-                this.text = "";
-                const table = document.getElementsByTagName("table")[1];
-                let row =
-                    table.rows[e.srcElement.parentNode.rowIndex].cells[0]
-                        .innerHTML;
-                let column =
-                    table.rows[0].cells[e.srcElement.cellIndex].innerHTML;
-                this.recurso = row;
-                this.horario = column;
-                let obj = {};
-                obj.recurso = this.recurso;
-                obj.horario = this.horario;
-                obj.valor = e.toElement.children[0].innerHTML;
-                // if (table.rows[e.srcElement.parentNode.rowIndex].cells[e.srcElement.cellIndex-1].className == "table-primary" || this.vet.length == 0) {
-                //     console.log("true")
-                // }
+  name: "Schedule",
+  data() {
+    return {
+      text: "",
+      recurso: "",
+      horario: "",
+      vet: [],
+      fields: [
+        { key: "numero", label: "Identificação" },
+        { key: "07:00-07:50" },
+        { key: "07:50-08:40" },
+        { key: "08:55-09:45" },
+        { key: "09:45-10:35" },
+        { key: "10:50-11:40" },
+        { key: "11:40-12:30" },
+        { key: "12:30-13:50" },
+        { key: "13:50-14:40" },
+        { key: "14:40-15:30" },
+        { key: "15:50-16:40" },
+        { key: "16:40-17:30" },
+        { key: "17:30-19:00" },
+        { key: "19:00-19:50" },
+        { key: "19:50-20:40" },
+        { key: "20:55-21:45" },
+        { key: "21:45-22:35" }
+      ],
+      dataRec: ""
+    };
+  },
+  methods: {
+    clickOnCell(e) {
+      if (Object.keys(this.$store.state.user).length) {
+        this.text = "";
+        const table = document.getElementsByTagName("table")[1];
+        let row =
+          table.rows[e.srcElement.parentNode.rowIndex].cells[0].innerHTML;
+        let column = table.rows[0].cells[e.srcElement.cellIndex].innerHTML;
+        this.recurso = row;
+        this.horario = column;
+        let obj = {};
+        obj.recurso = this.recurso;
+        obj.horario = this.horario;
+        obj.valor = e.toElement.children[0].innerHTML;
+        // if (table.rows[e.srcElement.parentNode.rowIndex].cells[e.srcElement.cellIndex-1].className == "table-primary" || this.vet.length == 0) {
+        //     console.log("true")
+        // }
+        if (
+          this.vet.length == 0 ||
+          this.vet[this.vet.length - 1].recurso == this.recurso
+        ) {
+          if (
+            e.toElement.children[0].innerHTML == 0 ||
+            e.toElement.children[0].innerHTML == 1
+          ) {
+            if (
+              e.target.className == "table-success" ||
+              e.target.className == "table-warning"
+            ) {
+              this.vet.push(obj);
+              e.target.className = "table-primary";
+            } else if (e.toElement.children[0].innerHTML == 0) {
+              for (let cell in this.vet) {
                 if (
-                    this.vet.length == 0 ||
-                    this.vet[this.vet.length - 1].recurso == this.recurso
+                  this.vet[cell].recurso == row &&
+                  this.vet[cell].horario == column
                 ) {
-                    if (
-                        e.toElement.children[0].innerHTML == 0 ||
-                        e.toElement.children[0].innerHTML == 1
-                    ) {
-                        if (
-                            e.target.className == "table-success" ||
-                            e.target.className == "table-warning"
-                        ) {
-                            this.vet.push(obj);
-                            e.target.className = "table-primary";
-                        } else if (e.toElement.children[0].innerHTML == 0) {
-                            for (let cell in this.vet) {
-                                if (
-                                    this.vet[cell].recurso == row &&
-                                    this.vet[cell].horario == column
-                                ) {
-                                    this.vet.splice(cell, 1);
-                                }
-                            }
-                            e.target.className = "table-success";
-                        } else {
-                            for (let cell in this.vet) {
-                                if (
-                                    this.vet[cell].recurso == row &&
-                                    this.vet[cell].horario == column
-                                ) {
-                                    this.vet.splice(cell, 1);
-                                }
-                            }
-                            e.target.className = "table-warning";
-                        }
-                    } else {
-                        this.$bvModal.msgBoxOk(
-                            "Esse horário não está disponível"
-                        );
-                    }
-                } else {
-                    this.$bvModal.msgBoxOk(
-                        "Só é possível selecionar um recurso por vez"
-                    );
+                  this.vet.splice(cell, 1);
                 }
+              }
+              e.target.className = "table-success";
             } else {
-                this.$bvModal.msgBoxOk(
-                    "É preciso estar logado para solicitar uma reserva"
-                );
+              for (let cell in this.vet) {
+                if (
+                  this.vet[cell].recurso == row &&
+                  this.vet[cell].horario == column
+                ) {
+                  this.vet.splice(cell, 1);
+                }
+              }
+              e.target.className = "table-warning";
             }
-        },
-        sendData() {
-            axios
-                .post("http://localhost:3000/insertProfessorHorario", {
-                    data: this.dataRec[0],
-                    payload: this.$store.state.user,
-                    horario: this.vet,
-                    texto: this.text
-                })
-                .then(() => {
-                    this.$bvModal.hide("modal1");
-                    this.$store.commit("resSchedule");
-                });
+          } else {
+            this.$bvModal.msgBoxOk("Esse horário não está disponível");
+          }
+        } else {
+          this.$bvModal.msgBoxOk("Só é possível selecionar um recurso por vez");
         }
-    },
-    mounted() {
-        this.dataRec = JSON.parse(localStorage.getItem("dataRec"));
-        this.$store.commit("setObj", this.dataRec);
-        this.$store.commit("resSchedule");
+      } else {
         this.$bvModal.msgBoxOk(
-            "selecione um ou mais horarios em seguida click em Solicitar Reserva"
+          "É preciso estar logado para solicitar uma reserva"
         );
+      }
+    },
+    requestReservation() {
+      if (Object.keys(this.$store.state.user).length) {
+        this.$bvModal.show("modal1");
+      } else {
+        this.$bvModal.msgBoxOk(
+          "É preciso estar logado para solicitar uma reserva"
+        );
+      }
+    },
+    sendData() {
+      axios
+        .post("http://localhost:3000/insertProfessorHorario", {
+          data: this.dataRec[0],
+          payload: this.$store.state.user,
+          horario: this.vet,
+          texto: this.text
+        })
+        .then(() => {
+          this.$bvModal.hide("modal1");
+          this.$store.commit("resSchedule");
+        });
     }
+  },
+  mounted() {
+    this.dataRec = JSON.parse(localStorage.getItem("dataRec"));
+    this.$store.commit("setObj", this.dataRec);
+    this.$store.commit("resSchedule");
+    this.$bvModal.msgBoxOk(
+      "selecione um ou mais horarios em seguida click em Solicitar Reserva"
+    );
+  }
 };
 </script>
 
 <style>
 #model {
-    width: 100px;
-    text-align: center;
+  width: 100px;
+  text-align: center;
 }
 
 #schedule {
-    overflow: scroll;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 20px;
+  overflow: scroll;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
 }
 
 #schedule td:hover {
-    background-color: #c1c1c1;
+  background-color: #c1c1c1;
 }
 </style>
