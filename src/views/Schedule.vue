@@ -166,6 +166,7 @@ export default {
         .then(() => {
           this.$bvModal.hide("modal1");
           this.$store.commit("resSchedule");
+          this.$toasted.global.defaultSuccess();
         });
     }
   },
