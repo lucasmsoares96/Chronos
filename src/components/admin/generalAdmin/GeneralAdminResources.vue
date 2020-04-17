@@ -138,8 +138,7 @@ export default {
     save() {
       const method = this.resource.idRecursos ? "put" : "post";
       axios[method](`${baseApiUrl}/insertRecursos`, {
-        recursos: this.resource,
-        payload: this.$store.state.user
+        recursos: this.resource
       })
         .then(() => {
           this.$toasted.global.defaultSuccess();

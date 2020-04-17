@@ -157,9 +157,7 @@ export default {
     getItems() {
       let items = [];
       return axios
-        .post("http://localhost:3000/selectProfessorHorario", {
-          payload: this.$store.state.user
-        })
+        .post("http://localhost:3000/selectProfessorHorario")
         .then(res => {
           items = res.data;
           return items;
@@ -169,7 +167,6 @@ export default {
       axios
         .post(`${baseApiUrl}/updateAprovadoProfessorHorario`, {
           item: this.item,
-          payload: this.$store.state.user,
           justification: this.text
         })
         .then(() => {
@@ -183,7 +180,6 @@ export default {
       axios
         .post(`${baseApiUrl}/updateRecusadoProfessorHorario`, {
           item: this.item,
-          payload: this.$store.state.user,
           justification: this.text
         })
         .then(() => {

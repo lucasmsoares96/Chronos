@@ -102,38 +102,33 @@ export default {
           thClass: "text-center",
           tdClass: "text-right"
         }
-      ],
+      ]
     };
   },
   methods: {
     getItems() {
-      let items = []
-      return axios
-        .post("http://localhost:3000/historico", {
-          payload: this.$store.state.user
-        })
-        .then(res => {
-          items = res.data
-          return items
-        });
+      let items = [];
+      return axios.post("http://localhost:3000/historico").then(res => {
+        items = res.data;
+        return items;
+      });
     },
     denyItem(item) {
       this.$bvModal.msgBoxConfirm("Deseja negar a pedido?").then(value => {
         if (value == true) {
           axios
             .post(`${baseApiUrl}/desfazer`, {
-              item: item,
-              payload: this.$store.state.user
+              item: item
             })
             .then(() => {
               this.$toasted.global.defaultSuccess();
-              this.$refs.table.refresh()
-              this.getItems()
+              this.$refs.table.refresh();
+              this.getItems();
             });
         }
       });
     }
-  },
+  }
 };
 </script>
 
