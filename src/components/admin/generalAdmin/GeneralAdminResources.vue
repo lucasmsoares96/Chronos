@@ -49,7 +49,7 @@
         </b-col>
       </b-row>
     </b-form>
-    <hr />
+    <div class="p-4"></div>
     <div id="table">
       <b-table striped :fields="fields" :items="items">
         <template v-slot:cell(actions)="data">

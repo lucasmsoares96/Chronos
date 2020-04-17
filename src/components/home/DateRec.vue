@@ -1,9 +1,6 @@
 <template>
   <b-form id="formulario">
     <b-calendar hide-header v-model="value" locale="pt-BR"></b-calendar>
-    <br />
-    <br />
-    <br />
     <div id="form2">
       <b-form-group label="Selecione o recurso desejado">
         <b-form-radio-group
@@ -67,16 +64,16 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 10px;
   }
 }
 @media screen and (min-width: 600px) {
   #formulario {
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 20px;
   }
 }

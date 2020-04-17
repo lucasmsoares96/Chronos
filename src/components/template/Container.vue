@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <Header />
-        <Main />
-        <Footer />
-    </div>
+  <div>
+    <Header />
+    <Main />
+    <Footer />
+  </div>
 </template>
 
 <script>
@@ -12,14 +12,17 @@ import Footer from "./Footer.vue";
 import Main from "./Main.vue";
 
 export default {
-    name: "Container",
-    components: {
-        Header,
-        Footer,
-        Main
-    }
+  name: "Container",
+  components: {
+    Header,
+    Footer,
+    Main
+  }
 };
 </script>
 
 <style>
+.card {
+  border: none;
+}
 </style>

@@ -51,7 +51,6 @@ export default {
 
 h2,
 h3 {
-  margin-bottom: 20px;
   color: #007bff;
   font-size: 2rem;
 }

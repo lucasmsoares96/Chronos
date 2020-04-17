@@ -1,64 +1,69 @@
 <template>
-  <div id="schedule">
-    <b-row cols="12" style="width: 100%" align-h="between">
-      <h2>Quadro de horarios</h2>
-      <h3>{{this.$store.state.obj.data.split("-").reverse().join(" / ")}}</h3>
-      <!-- gera erro -->
-    </b-row>
-    <b-row cols="12" style="width: 100%" align-h="between">
-      <table v-if="checkDate()">
-        <tr>
-          <td id="model" class="table-success">livre</td>
-          <td id="model" class="table-warning">1 em análise</td>
-          <td id="model" class="table-danger">ocupado</td>
-        </tr>
-      </table>
-      <table v-else class="mb-4 mt-3">
-        <tr>
-          <td id="model" class="table-light">livre</td>
-          <td id="model" class="table-secondary">1 em análise</td>
-          <td id="model" class="table-dark">ocupado</td>
-        </tr>
-      </table>
-      <b-button
-        v-if="checkDate()"
-        variant="primary"
-        @click="requestReservation"
-        class="mb-2"
-      >Solicitar Reserva</b-button>
-    </b-row>
-    <div id="table">
-      <b-table
-        @click.native="clickOnCell"
-        bordered
-        :items="this.$store.state.items"
-        :fields="fields"
-      >
-        <template v-slot:cell()="data">
-          <div style="display:none">{{ data.value }}</div>
-        </template>
-        <template v-slot:cell(numero)="data">{{ data.value }}</template>
-      </b-table>
+  <section>
+    <div id="schedule">
+      <b-row cols="12" style="width: 100%; margin-left: 0px;" align-h="between" class="mb-5">
+        <h2>Quadro de horarios</h2>
+        <h3>{{this.$store.state.obj.data.split("-").reverse().join(" / ")}}</h3>
+      </b-row>
+      <b-row cols="12" style="width: 100%" align-h="between" class="mb-2">
+        <table v-if="checkDate()">
+          <tr>
+            <td id="model" class="table-success">livre</td>
+            <td id="model" class="table-warning">1 em análise</td>
+            <td id="model" class="table-danger">ocupado</td>
+          </tr>
+        </table>
+        <table v-else class="mb-4 mt-3">
+          <tr>
+            <td id="model" class="table-light">livre</td>
+            <td id="model" class="table-secondary">1 em análise</td>
+            <td id="model" class="table-dark">ocupado</td>
+          </tr>
+        </table>
+        <b-button
+          v-if="checkDate()"
+          variant="primary"
+          @click="requestReservation"
+          class="mb-2"
+        >Solicitar Reserva</b-button>
+      </b-row>
+      <div id="table">
+        <b-table
+          @click.native="clickOnCell"
+          bordered
+          :items="this.$store.state.items"
+          :fields="fields"
+        >
+          <template v-slot:cell()="data">
+            <div style="display:none">{{ data.value }}</div>
+          </template>
+          <template v-slot:cell(numero)="data">{{ data.value }}</template>
+        </b-table>
+      </div>
+      <div>
+        <b-modal
+          id="modal1"
+          title="Fazer uma reserva para esse horário?"
+          header-text-variant="light"
+        >
+          <div>
+            <b-form-textarea
+              id="textarea"
+              v-model="text"
+              placeholder="Digite o seu motivo..."
+              rows="5"
+              max-rows="10"
+              maxlength="255"
+            ></b-form-textarea>
+          </div>
+          <template v-slot:modal-footer="{ cancel }">
+            <b-button variant="primary" @click="sendData">OK</b-button>
+            <b-button @click="cancel()">Cancelar</b-button>
+          </template>
+        </b-modal>
+      </div>
     </div>
-    <div>
-      <b-modal id="modal1" title="Fazer uma reserva para esse horário?" header-text-variant="light">
-        <div>
-          <b-form-textarea
-            id="textarea"
-            v-model="text"
-            placeholder="Digite o seu motivo..."
-            rows="5"
-            max-rows="10"
-            maxlength="255"
-          ></b-form-textarea>
-        </div>
-        <template v-slot:modal-footer="{ cancel }">
-          <b-button variant="primary" @click="sendData">OK</b-button>
-          <b-button @click="cancel()">Cancelar</b-button>
-        </template>
-      </b-modal>
-    </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -219,7 +224,6 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 20px;
 }
 
 #schedule td:hover {

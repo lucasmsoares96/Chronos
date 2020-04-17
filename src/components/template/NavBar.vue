@@ -20,6 +20,11 @@
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
+        <span class="mr-1">
+          <b-nav-item @click.prevent="logOut" href>
+            <font-awesome-icon icon="book" mr-3></font-awesome-icon>Sobre
+          </b-nav-item>
+        </span>
         <b-nav-item @click.prevent="logOut" href>
           <font-awesome-icon icon="sign-out-alt"></font-awesome-icon>Sair
         </b-nav-item>
@@ -37,6 +42,9 @@
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
+        <b-nav-item @click.prevent="logOut" href>
+          <font-awesome-icon icon="book" mr-3></font-awesome-icon>Sobre
+        </b-nav-item>
         <b-nav-item-dropdown right ref="dropdown">
           <!-- Using 'button-content' slot -->
           <template v-slot:button-content>Sign In</template>
