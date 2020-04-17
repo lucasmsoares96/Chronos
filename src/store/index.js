@@ -24,36 +24,72 @@ export default new Vuex.Store({
           state.items.forEach((e, index1) => {
             state.items[index1]["_cellVariants"] = {};
             Object.values(e).forEach((el, index2) => {
-              if (
-                el == 2 &&
-                Object.keys(state.items[index1])[index2] !=
-                "idhorario"
-              ) {
-                let col = String(
-                  Object.keys(state.items[index1])[index2]
-                );
-                state.items[index1]["_cellVariants"][col] =
-                  "danger";
-              } else if (
-                el == 1 &&
-                Object.keys(state.items[index1])[index2] !=
-                "idhorario"
-              ) {
-                let col = String(
-                  Object.keys(state.items[index1])[index2]
-                );
-                state.items[index1]["_cellVariants"][col] =
-                  "warning";
-              } else if (
-                el == 0 &&
-                Object.keys(state.items[index1])[index2] !=
-                "idhorario"
-              ) {
-                let col = String(
-                  Object.keys(state.items[index1])[index2]
-                );
-                state.items[index1]["_cellVariants"][col] =
-                  "success";
+              let today = new Date();
+              let date = new Date(state.obj.data.split("-").join("/"));
+              if (date > today) {
+                if (
+                  el == 2 &&
+                  Object.keys(state.items[index1])[index2] !=
+                  "idhorario"
+                ) {
+                  let col = String(
+                    Object.keys(state.items[index1])[index2]
+                  );
+                  state.items[index1]["_cellVariants"][col] =
+                    "danger";
+                } else if (
+                  el == 1 &&
+                  Object.keys(state.items[index1])[index2] !=
+                  "idhorario"
+                ) {
+                  let col = String(
+                    Object.keys(state.items[index1])[index2]
+                  );
+                  state.items[index1]["_cellVariants"][col] =
+                    "warning";
+                } else if (
+                  el == 0 &&
+                  Object.keys(state.items[index1])[index2] !=
+                  "idhorario"
+                ) {
+                  let col = String(
+                    Object.keys(state.items[index1])[index2]
+                  );
+                  state.items[index1]["_cellVariants"][col] =
+                    "success";
+                }
+              } else {
+                if (
+                  el == 2 &&
+                  Object.keys(state.items[index1])[index2] !=
+                  "idhorario"
+                ) {
+                  let col = String(
+                    Object.keys(state.items[index1])[index2]
+                  );
+                  state.items[index1]["_cellVariants"][col] =
+                    "dark";
+                } else if (
+                  el == 1 &&
+                  Object.keys(state.items[index1])[index2] !=
+                  "idhorario"
+                ) {
+                  let col = String(
+                    Object.keys(state.items[index1])[index2]
+                  );
+                  state.items[index1]["_cellVariants"][col] =
+                    "secondary";
+                } else if (
+                  el == 0 &&
+                  Object.keys(state.items[index1])[index2] !=
+                  "idhorario"
+                ) {
+                  let col = String(
+                    Object.keys(state.items[index1])[index2]
+                  );
+                  state.items[index1]["_cellVariants"][col] =
+                    "light";
+                }
               }
             });
           });
