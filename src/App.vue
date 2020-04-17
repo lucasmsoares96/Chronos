@@ -10,6 +10,11 @@ import Container from "./components/template/Container";
 
 export default {
   name: "App",
+  data() {
+    return {
+      dataRec: ""
+    };
+  },
   components: {
     Container
   },
@@ -32,6 +37,8 @@ export default {
   },
   created() {
     this.validateToken();
+    this.dataRec = JSON.parse(localStorage.getItem("dataRec"));
+    this.$store.commit("setObj", this.dataRec);
   }
 };
 </script>
