@@ -13,7 +13,12 @@
           stacked
         ></b-form-radio-group>
       </b-form-group>
-      <b-button class="btn" variant="primary" v-on:click="sendDateRec">enviar</b-button>
+      <b-button
+        class="btn"
+        variant="primary"
+        style="align-self: flex-end"
+        v-on:click="sendDateRec"
+      >enviar</b-button>
     </div>
     <div></div>
   </b-form>
@@ -64,8 +69,14 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     margin: 10px;
+  }
+  #form2 {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 @media screen and (min-width: 600px) {
@@ -76,17 +87,16 @@ export default {
     justify-content: space-between;
     margin: 20px;
   }
+  #form2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
 }
 
 .btn {
   width: 120px;
   margin-top: 0px 10px;
-}
-
-#form2 {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
 }
 </style>

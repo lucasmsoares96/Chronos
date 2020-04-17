@@ -56,7 +56,7 @@
         </template>
         <template
           v-slot:cell(data)="data"
-        >{{ data.value.slice(0, 10).split("-").reverse().join(" / ") }}</template>
+        >{{ data.value.slice(0, 10).split("-").reverse().join("/") }}</template>
       </b-table>
     </div>
     <b-modal

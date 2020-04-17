@@ -90,12 +90,12 @@
       <ul id="social">
         <li>
           <a href="https://github.com/lucasmsoares96/Chronos">
-            <img alt="Vue logo" src="@/assets/GitHub-Mark-Light-32px.png" />
+            <img alt="Vue logo" src="@/assets/GitHub-Mark-Light-120px-plus.png" width="32" />
           </a>
         </li>
         <li style="visibility: hidden;">
           <a href="https://github.com/lucasmsoares96/Chronos">
-            <img alt="Vue logo" src="@/assets/GitHub-Mark-Light-32px.png" />
+            <img alt="Vue logo" src="@/assets/GitHub-Mark-Light-120px-plus.png" width="32" />
           </a>
         </li>
         <li>
@@ -165,7 +165,7 @@ export default {
 </script>
 
 <style>
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 940px) {
   #rodape {
     display: flex;
     flex-direction: column;
@@ -177,7 +177,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 940px) {
   #rodape {
     display: flex;
     flex-direction: row;
