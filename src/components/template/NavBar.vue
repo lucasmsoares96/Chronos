@@ -60,8 +60,6 @@
                 placeholder="senha"
               ></b-form-input>
             </b-form-group>
-
-            <b-form-checkbox class="mb-3">Lembrar-me</b-form-checkbox>
             <b-button variant="primary" size="sm" @click="login">Sign In</b-button>
           </b-dropdown-form>
           <b-dropdown-form v-if="signUp" style="width: 350px">
@@ -115,8 +113,6 @@
               v-model="user.confirmPassword"
               class="mb-3"
             />
-
-            <b-form-checkbox class="mb-3">Lembrar-me</b-form-checkbox>
             <b-button variant="primary" size="sm" @click="siginUp">Sign Up</b-button>
           </b-dropdown-form>
           <b-dropdown-divider></b-dropdown-divider>
