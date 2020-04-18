@@ -1,26 +1,6 @@
 <template>
   <div id="awaiting-analysis">
     <h2>Aguardando Análise</h2>
-    <!-- <table>
-      <tr>
-        <td> - 07:00:00 </td>
-        <td> - 07:50:00 </td>
-        <td> - 08:55:00 </td>
-        <td> - 09:45:00 </td>
-        <td> - 10:50:00 </td>
-        <td> - 11:40:00 </td>
-        <td> - 12:30:00 </td>
-        <td> - 13:50:00 </td>
-        <td> - 14:40:00 </td>
-        <td> - 15:50:00 </td>
-        <td> - 16:40:00 </td>
-        <td> - 17:30:00 </td>
-        <td> - 19:00:00 </td>
-        <td> - 19:50:00 </td>
-        <td> - 20:55:00 </td>
-        <td> - 21:45:00 </td>
-      </tr>
-    </table>-->
     <div id="table">
       <b-table ref="table" striped :fields="fields" :items="getItems">
         <template v-slot:cell(actions)="data">
@@ -203,21 +183,16 @@ export default {
       this.textState = null;
     },
     handleOk(bvModalEvt) {
-      // Prevent modal from closing
       bvModalEvt.preventDefault();
-      // Trigger submit handler
       this.handleSubmit();
     },
     handleSubmit() {
-      // Exit when the form isn't valid
       if (!this.checkFormValidity()) {
         return;
       }
-      // Push the text to submitted texts
       this.submittedTexts.push(this.text);
       if (this.mode == "save") this.approveItem();
       else this.denyItem();
-      // Hide the modal manually
       this.$nextTick(() => {
         this.$bvModal.hide("modal-prevent-closing");
       });

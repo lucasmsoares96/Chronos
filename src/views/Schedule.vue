@@ -112,9 +112,6 @@ export default {
           obj.recurso = this.recurso;
           obj.horario = this.horario;
           obj.valor = e.toElement.children[0].innerHTML;
-          // if (table.rows[e.srcElement.parentNode.rowIndex].cells[e.srcElement.cellIndex-1].className == "table-primary" || this.vet.length == 0) {
-          //     console.log("true")
-          // }
           if (Object.keys(this.$store.state.user).length) {
             if (
               this.vet.length == 0 ||

@@ -16,12 +16,6 @@ main {
   background-color: white;
 }
 
-/* * {
-  border: solid 1px;
-  margin: 2;
-  padding: 2;
-} */
-
 .row {
   margin: 0px;
 }

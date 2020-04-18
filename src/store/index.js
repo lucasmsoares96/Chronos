@@ -93,11 +93,6 @@ export default new Vuex.Store({
               }
             });
           });
-          // state.fields = Object.keys(state.items[0]).filter(obj => {
-          //     return obj == "idhorario" || obj == "_cellVariants"
-          //         ? false
-          //         : true;
-          // });
         });
     },
     setObj(state, obj) {
