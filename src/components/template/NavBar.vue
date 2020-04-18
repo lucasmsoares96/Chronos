@@ -20,7 +20,7 @@
 
       <b-navbar-nav class="ml-auto">
         <span class="mr-1">
-          <b-nav-item @click.prevent="logOut" href>
+          <b-nav-item @click.prevent href>
             <font-awesome-icon icon="book" mr-3></font-awesome-icon>Sobre
           </b-nav-item>
         </span>
@@ -40,7 +40,7 @@
       <b-navbar-nav></b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
-        <b-nav-item @click.prevent="logOut" href>
+        <b-nav-item @click.prevent href>
           <font-awesome-icon icon="book" mr-3></font-awesome-icon>Sobre
         </b-nav-item>
         <b-nav-item-dropdown right ref="dropdown">

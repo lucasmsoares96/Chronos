@@ -89,12 +89,12 @@
     <div id="rodape">
       <ul id="social">
         <li>
-          <a href="https://github.com/lucasmsoares96/Chronos">
+          <a href="https://github.com/lucasmsoares96/Chronos" target="_blank">
             <img alt="Vue logo" src="@/assets/GitHub-Mark-Light-120px-plus.png" width="32" />
           </a>
         </li>
         <li style="visibility: hidden;">
-          <a href="https://github.com/lucasmsoares96/Chronos">
+          <a href="https://github.com/lucasmsoares96/Chronos" target="_blank">
             <img alt="Vue logo" src="@/assets/GitHub-Mark-Light-120px-plus.png" width="32" />
           </a>
         </li>

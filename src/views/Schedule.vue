@@ -3,7 +3,7 @@
     <div id="schedule">
       <b-row cols="12" style="width: 100%; margin-left: 0px;" align-h="between" class="mb-5">
         <h2>Quadro de horarios</h2>
-        <h3>{{this.$store.state.obj.data.split("-").reverse().join(" / ")}}</h3>
+        <h3>{{this.$store.state.obj.date.split("-").reverse().join(" / ")}}</h3>
       </b-row>
       <b-row cols="12" style="width: 100%" align-h="between" class="mb-2">
         <table v-if="checkDate()">
@@ -28,12 +28,7 @@
         >Solicitar Reserva</b-button>
       </b-row>
       <div id="table">
-        <b-table
-          @click.native="clickOnCell"
-          bordered
-          :items="this.$store.state.items"
-          :fields="fields"
-        >
+        <b-table @click.native="clickOnCell" bordered :items="resSchedule" :fields="fields">
           <template v-slot:cell()="data">
             <div style="display:none">{{ data.value }}</div>
           </template>
@@ -95,10 +90,74 @@ export default {
         { key: "19:50-20:40" },
         { key: "20:55-21:45" },
         { key: "21:45-22:35" }
-      ]
+      ],
+      items: []
     };
   },
   methods: {
+    resSchedule() {
+      return axios
+        .get("http://localhost:3000/dataRecursos", {
+          params: {
+            data: this.$store.state.obj.date,
+            tipoRecurso: this.$store.state.tipoRecurso
+          }
+        })
+        .then(res => {
+          this.items = res.data;
+          this.items.forEach((e, index1) => {
+            this.items[index1]["_cellVariants"] = {};
+            Object.values(e).forEach((el, index2) => {
+              let today = new Date();
+              let date = new Date(
+                this.$store.state.obj.date.split("-").join("/")
+              );
+              if (date > today) {
+                if (
+                  el == 2 &&
+                  Object.keys(this.items[index1])[index2] != "idhorario"
+                ) {
+                  let col = String(Object.keys(this.items[index1])[index2]);
+                  this.items[index1]["_cellVariants"][col] = "danger";
+                } else if (
+                  el == 1 &&
+                  Object.keys(this.items[index1])[index2] != "idhorario"
+                ) {
+                  let col = String(Object.keys(this.items[index1])[index2]);
+                  this.items[index1]["_cellVariants"][col] = "warning";
+                } else if (
+                  el == 0 &&
+                  Object.keys(this.items[index1])[index2] != "idhorario"
+                ) {
+                  let col = String(Object.keys(this.items[index1])[index2]);
+                  this.items[index1]["_cellVariants"][col] = "success";
+                }
+              } else {
+                if (
+                  el == 2 &&
+                  Object.keys(this.items[index1])[index2] != "idhorario"
+                ) {
+                  let col = String(Object.keys(this.items[index1])[index2]);
+                  this.items[index1]["_cellVariants"][col] = "dark";
+                } else if (
+                  el == 1 &&
+                  Object.keys(this.items[index1])[index2] != "idhorario"
+                ) {
+                  let col = String(Object.keys(this.items[index1])[index2]);
+                  this.items[index1]["_cellVariants"][col] = "secondary";
+                } else if (
+                  el == 0 &&
+                  Object.keys(this.items[index1])[index2] != "idhorario"
+                ) {
+                  let col = String(Object.keys(this.items[index1])[index2]);
+                  this.items[index1]["_cellVariants"][col] = "light";
+                }
+              }
+            });
+          });
+          return this.items;
+        });
+    },
     clickOnCell(e) {
       if (e.toElement.cellIndex != 0) {
         if (this.checkDate()) {
@@ -168,7 +227,7 @@ export default {
     },
     checkDate() {
       let today = new Date();
-      let date = new Date(this.$store.state.obj.data.split("-").join("/"));
+      let date = new Date(this.$store.state.obj.date.split("-").join("/"));
       if (date > today) {
         return true;
       } else return false;
@@ -186,19 +245,17 @@ export default {
     sendData() {
       axios
         .post("http://localhost:3000/insertProfessorHorario", {
-          data: this.$store.state.dat,
+          data: this.$store.state.date,
           horario: this.vet,
           texto: this.text
         })
         .then(() => {
           this.$bvModal.hide("modal1");
-          this.$store.commit("resSchedule");
           this.$toasted.global.defaultSuccess();
         });
     }
   },
   mounted() {
-    this.$store.commit("resSchedule");
     if (!this.checkDate) {
       this.$bvModal.msgBoxOk(
         "selecione um ou mais horarios em seguida click em Solicitar Reserva"
