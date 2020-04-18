@@ -20,7 +20,7 @@
 
       <b-navbar-nav class="ml-auto">
         <span class="mr-1">
-          <b-nav-item @click.prevent href>
+          <b-nav-item to="/about" href>
             <font-awesome-icon icon="book" mr-3></font-awesome-icon>Sobre
           </b-nav-item>
         </span>
@@ -40,7 +40,7 @@
       <b-navbar-nav></b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
-        <b-nav-item @click.prevent href>
+        <b-nav-item to="/about" href>
           <font-awesome-icon icon="book" mr-3></font-awesome-icon>Sobre
         </b-nav-item>
         <b-nav-item-dropdown right ref="dropdown">
@@ -174,7 +174,8 @@ export default {
       });
       if (
         window.location.pathname != "/" &&
-        window.location.pathname != "/schedule"
+        window.location.pathname != "/schedule" &&
+        window.location.pathname != "/about"
       ) {
         this.$router.push("/");
       }
