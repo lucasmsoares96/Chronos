@@ -53,12 +53,14 @@
     <div id="table">
       <b-table striped :fields="fields" :items="items">
         <template v-slot:cell(actions)="data">
-          <b-button variant="warning" @click="loadResource(data.item, 'edit')" class="btn2 mr-2">
-            <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
-          </b-button>
-          <b-button variant="danger" class="btn2 mr-2" @click="loadResource(data.item, 'remove')">
-            <font-awesome-icon icon="trash"></font-awesome-icon>
-          </b-button>
+          <div style="width: 140px; margin: 0 0 0 auto;">
+            <b-button variant="warning" @click="loadResource(data.item, 'edit')" class="btn2 mr-2">
+              <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
+            </b-button>
+            <b-button variant="danger" class="btn2 mr-2" @click="loadResource(data.item, 'remove')">
+              <font-awesome-icon icon="trash"></font-awesome-icon>
+            </b-button>
+          </div>
         </template>
       </b-table>
     </div>

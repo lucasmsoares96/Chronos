@@ -4,24 +4,26 @@
     <div id="table">
       <b-table ref="table" striped :fields="fields" :items="getItems">
         <template v-slot:cell(actions)="data">
-          <b-button
-            variant="success"
-            v-b-tooltip.hover
-            title="Aprovar Pedido?"
-            @click="justification(data.item, 'save')"
-            class="btn2 mr-2"
-          >
-            <font-awesome-icon icon="check"></font-awesome-icon>
-          </b-button>
-          <b-button
-            variant="danger"
-            v-b-tooltip.hover
-            title="Negar Pedido?"
-            class="btn2 mr-2"
-            @click="justification(data.item, 'remove')"
-          >
-            <font-awesome-icon icon="times"></font-awesome-icon>
-          </b-button>
+          <div style="width: 140px; margin: 0 0 0 auto;">
+            <b-button
+              variant="success"
+              v-b-tooltip.hover
+              title="Aprovar Pedido?"
+              @click="justification(data.item, 'save')"
+              class="btn2 mr-2"
+            >
+              <font-awesome-icon icon="check"></font-awesome-icon>
+            </b-button>
+            <b-button
+              variant="danger"
+              v-b-tooltip.hover
+              title="Negar Pedido?"
+              class="btn2 mr-2"
+              @click="justification(data.item, 'remove')"
+            >
+              <font-awesome-icon icon="times"></font-awesome-icon>
+            </b-button>
+          </div>
         </template>
 
         <template v-slot:cell(show_details)="row">
