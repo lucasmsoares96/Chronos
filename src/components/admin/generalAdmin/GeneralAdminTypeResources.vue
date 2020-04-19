@@ -1,5 +1,5 @@
 <template>
-  <div id="general-admin-type-resources">
+  <section>
     <h2>Tipos de Recursos</h2>
     <b-form>
       <b-form-group label="Tipo de Recurso: " label-for="rec-type">
@@ -53,7 +53,7 @@
         </template>
       </b-table>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -166,14 +166,4 @@ export default {
 </script>
 
 <style>
-@media screen and (max-width: 600px) {
-  #general-admin-type-resources {
-    padding: 5px;
-  }
-}
-@media screen and (min-width: 600px) {
-  #general-admin-type-resources {
-    padding: 20px;
-  }
-}
 </style>

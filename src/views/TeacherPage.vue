@@ -3,24 +3,27 @@
     <b-card no-body>
       <b-tabs card>
         <b-tab title="Suas Reservas">
-          <div id="table">
-            <b-table hover striped :fields="fields" :items="items" :sort-by.sync="sortBy">
-              <template v-slot:cell(actions)="data">
-                <b-button
-                  v-b-tooltip.hover
-                  title="Cancelar reserva?"
-                  variant="danger"
-                  class="btn2 mr-2"
-                  @click="removeItem(data.item)"
-                >
-                  <font-awesome-icon icon="times"></font-awesome-icon>
-                </b-button>
-              </template>
-              <template
-                v-slot:cell(data)="data"
-              >{{ data.value.slice(0, 10).split("-").reverse().join("/") }}</template>
-            </b-table>
-          </div>
+          <section>
+            <h2>Aguardando Análise</h2>
+            <div id="table">
+              <b-table hover striped :fields="fields" :items="items" :sort-by.sync="sortBy">
+                <template v-slot:cell(actions)="data">
+                  <b-button
+                    v-b-tooltip.hover
+                    title="Cancelar reserva?"
+                    variant="danger"
+                    class="btn2 mr-2"
+                    @click="removeItem(data.item)"
+                  >
+                    <font-awesome-icon icon="times"></font-awesome-icon>
+                  </b-button>
+                </template>
+                <template
+                  v-slot:cell(data)="data"
+                >{{ data.value.slice(0, 10).split("-").reverse().join("/") }}</template>
+              </b-table>
+            </div>
+          </section>
         </b-tab>
       </b-tabs>
     </b-card>

@@ -13,14 +13,14 @@
           stacked
         ></b-form-radio-group>
       </b-form-group>
-      <b-button
-        class="btn"
-        variant="primary"
-        style="align-self: flex-end"
-        v-on:click="sendDateRec"
-      >enviar</b-button>
     </div>
-    <div></div>
+    <b-button
+      class="btn1"
+      variant="primary"
+      style="align-self: flex-end"
+      v-on:click="sendDateRec"
+    >enviar</b-button>
+    <span></span>
   </b-form>
 </template>
 
@@ -64,28 +64,40 @@ export default {
 </script>
 
 <style>
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
   #formulario {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 10px;
   }
   #form2 {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+  }
+} */
+
+@media screen and (max-width: 800px) {
+  #formulario {
+    margin: auto;
+  }
+  #form2 {
+    margin-top: 30px;
+  }
+  .btn1 {
+    float: right;
+    margin-bottom: 30px;
   }
 }
-@media screen and (min-width: 600px) {
+
+@media screen and (min-width: 800px) {
   #formulario {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 20px;
   }
   #form2 {
     display: flex;
@@ -95,7 +107,7 @@ export default {
   }
 }
 
-.btn {
+.btn1 {
   width: 120px;
   margin-top: 0px 10px;
 }

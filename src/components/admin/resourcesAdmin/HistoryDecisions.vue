@@ -1,5 +1,5 @@
 <template>
-  <div id="history-decisions">
+  <section>
     <h2>Histórico</h2>
     <div id="table">
       <b-table ref="table" striped :fields="fields" :items="getItems">
@@ -30,7 +30,7 @@
         >{{ data.value.slice(0, 10).split("-").reverse().join("/") }}</template>
       </b-table>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -133,14 +133,4 @@ export default {
 </script>
 
 <style>
-@media screen and (max-width: 600px) {
-  #history-decisions {
-    padding: 5px;
-  }
-}
-@media screen and (min-width: 600px) {
-  #history-decisions {
-    padding: 20px;
-  }
-}
 </style>

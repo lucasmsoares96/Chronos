@@ -1,91 +1,95 @@
 <template>
   <footer id="footer">
-    <div id="unidades">
+    <span id="unidades">
       <div>
-        <a href="#">
-          <img
-            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/bg_unidades-3.jpg"
-          />
-        </a>
+        <span>
+          <a href="#">
+            <img
+              src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/bg_unidades-3.jpg"
+            />
+          </a>
+        </span>
+        <span>
+          <a href="http://www.araxa.cefetmg.br">
+            <img
+              src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/araxa.jpg"
+            />
+          </a>
+        </span>
+        <span>
+          <a href="http://www.campus1.cefetmg.br">
+            <img
+              src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/campus1bh.jpg"
+            />
+          </a>
+        </span>
+        <span>
+          <a href="http://www.campus2.cefetmg.br">
+            <img
+              src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/campus2bh.jpg"
+            />
+          </a>
+        </span>
+        <span>
+          <a href="#">
+            <img
+              src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/campus6bh.jpg"
+            />
+          </a>
+        </span>
+        <span>
+          <a href="http://www.contagem.cefetmg.br">
+            <img
+              src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/contagem.jpg"
+            />
+          </a>
+        </span>
       </div>
       <div>
-        <a href="http://www.araxa.cefetmg.br">
-          <img
-            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/araxa.jpg"
-          />
-        </a>
+        <span>
+          <a href="http://www.curvelo.cefetmg.br">
+            <img
+              src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/curvelo.jpg"
+            />
+          </a>
+        </span>
+        <span>
+          <a href="http://www.divinopolis.cefetmg.br">
+            <img
+              src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/divinopolis.jpg"
+            />
+          </a>
+        </span>
+        <span>
+          <a href="http://www.leopoldina.cefetmg.br">
+            <img
+              src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/leopoldina.jpg"
+            />
+          </a>
+        </span>
+        <span>
+          <a href="http://www.nepomuceno.cefetmg.br">
+            <img
+              src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/nepomuceno.jpg"
+            />
+          </a>
+        </span>
+        <span>
+          <a href="http://www.timoteo.cefetmg.br">
+            <img
+              src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/timoteo.jpg"
+            />
+          </a>
+        </span>
+        <span>
+          <a href="http://www.varginha.cefetmg.br">
+            <img
+              src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/varginha.jpg"
+            />
+          </a>
+        </span>
       </div>
-      <div>
-        <a href="http://www.campus1.cefetmg.br">
-          <img
-            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/campus1bh.jpg"
-          />
-        </a>
-      </div>
-      <div>
-        <a href="http://www.campus2.cefetmg.br">
-          <img
-            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/campus2bh.jpg"
-          />
-        </a>
-      </div>
-      <div>
-        <a href="#">
-          <img
-            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/campus6bh.jpg"
-          />
-        </a>
-      </div>
-      <div>
-        <a href="http://www.contagem.cefetmg.br">
-          <img
-            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/contagem.jpg"
-          />
-        </a>
-      </div>
-      <div>
-        <a href="http://www.curvelo.cefetmg.br">
-          <img
-            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/curvelo.jpg"
-          />
-        </a>
-      </div>
-      <div>
-        <a href="http://www.divinopolis.cefetmg.br">
-          <img
-            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/divinopolis.jpg"
-          />
-        </a>
-      </div>
-      <div>
-        <a href="http://www.leopoldina.cefetmg.br">
-          <img
-            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/leopoldina.jpg"
-          />
-        </a>
-      </div>
-      <div>
-        <a href="http://www.nepomuceno.cefetmg.br">
-          <img
-            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/nepomuceno.jpg"
-          />
-        </a>
-      </div>
-      <div>
-        <a href="http://www.timoteo.cefetmg.br">
-          <img
-            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/timoteo.jpg"
-          />
-        </a>
-      </div>
-      <div>
-        <a href="http://www.varginha.cefetmg.br">
-          <img
-            src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/unidades/varginha.jpg"
-          />
-        </a>
-      </div>
-    </div>
+    </span>
     <div id="rodape">
       <ul id="social">
         <li>
@@ -172,9 +176,6 @@ export default {
     justify-content: center;
     align-items: center;
   }
-  #unidades {
-    display: none;
-  }
 }
 
 @media screen and (min-width: 940px) {
@@ -185,15 +186,18 @@ export default {
     justify-content: space-between;
     align-items: center;
   }
+}
+
+@media screen and (max-width: 1080px) {
+  #unidades {
+    display: none;
+  }
+}
+@media screen and (min-width: 1080px) {
   #unidades {
     padding-bottom: 60px;
     padding-top: 20px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
+    display: inline;
   }
 }
 

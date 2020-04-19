@@ -16,25 +16,19 @@ export default {
 </script>
 
 <style>
-/* * {
-  border: solid 1px;
-  margin: 2px;
-  padding: 2px;
-} */
-
 @media screen and (max-width: 600px) {
   #text {
     width: 100%;
     min-height: 400px;
   }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   #text {
     width: 100%;
     min-height: 400px;
   }
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 1000px) {
   #text {
     width: 70%;
     min-height: 400px;

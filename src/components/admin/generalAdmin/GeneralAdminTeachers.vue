@@ -1,5 +1,5 @@
 <template>
-  <div id="general-admin-teachers">
+  <section>
     <h2>Professores</h2>
     <b-form>
       <input id="user-id" type="hidden" v-model="user.id" />
@@ -93,7 +93,7 @@
         </template>
       </b-table>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -224,14 +224,4 @@ export default {
 </script>
 
 <style>
-@media screen and (max-width: 600px) {
-  #general-admin-teachers {
-    padding: 5px;
-  }
-}
-@media screen and (min-width: 600px) {
-  #general-admin-teachers {
-    padding: 20px;
-  }
-}
 </style>

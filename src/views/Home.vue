@@ -29,7 +29,7 @@ export default {
   align-items: center;
 }
 
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
   #grade {
     width: 100%;
     min-height: 400px;
@@ -37,10 +37,9 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 20px;
   }
-}
-@media screen and (max-width: 800px) {
+} */
+@media screen and (max-width: 1000px) {
   #grade {
     width: 100%;
     min-height: 400px;
@@ -48,10 +47,9 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 20px;
   }
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 1000px) {
   #grade {
     width: 75%;
     min-height: 400px;
@@ -59,7 +57,6 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 20px;
   }
 }
 </style>

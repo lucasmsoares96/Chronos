@@ -22,8 +22,27 @@ main {
 .col {
   padding: 0px;
 }
+.card-body {
+  padding: 0px;
+}
 
-section {
-  padding: 40px;
+@media screen and (max-width: 600px) {
+  section {
+    padding: 0px;
+  }
+  section h2 {
+    padding-left: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  section {
+    padding: 30px;
+  }
+  section h2 {
+    padding: 30px;
+  }
 }
 </style>

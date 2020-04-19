@@ -1,5 +1,5 @@
 <template>
-  <div id="awaiting-analysis">
+  <section>
     <h2>Aguardando Análise</h2>
     <div id="table">
       <b-table ref="table" striped :fields="fields" :items="getItems">
@@ -60,7 +60,7 @@
         </b-form-group>
       </form>
     </b-modal>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -202,14 +202,4 @@ export default {
 </script>
 
 <style>
-@media screen and (max-width: 600px) {
-  #awaiting-analysis {
-    padding: 5px;
-  }
-}
-@media screen and (min-width: 600px) {
-  #awaiting-analysis {
-    padding: 20px;
-  }
-}
 </style>
