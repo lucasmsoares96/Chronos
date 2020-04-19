@@ -1,7 +1,7 @@
 <template>
   <section>
     <div id="schedule">
-      <b-row cols="12" style="width: 100%; margin-left: 0px;" align-h="between" class="mb-5">
+      <b-row style="width: 100%; margin-left: 0px;" align-h="between" class="mb-3">
         <h2>Quadro de horarios</h2>
         <h3>{{this.$store.state.obj.date.split("-").reverse().join(" / ")}}</h3>
       </b-row>
@@ -63,6 +63,7 @@
 
 <script>
 import axios from "axios";
+import { baseApiUrl, showError } from "@/global";
 
 export default {
   name: "Schedule",
@@ -97,7 +98,7 @@ export default {
   methods: {
     resSchedule() {
       return axios
-        .get("http://localhost:3000/dataRecursos", {
+        .get(`${baseApiUrl}/dataRecursos`, {
           params: {
             data: this.$store.state.obj.date,
             tipoRecurso: this.$store.state.tipoRecurso
@@ -156,7 +157,8 @@ export default {
             });
           });
           return this.items;
-        });
+        })
+        .catch(showError);
     },
     clickOnCell(e) {
       if (e.toElement.cellIndex != 0) {
@@ -244,7 +246,7 @@ export default {
     },
     sendData() {
       axios
-        .post("http://localhost:3000/insertProfessorHorario", {
+        .post(`${baseApiUrl}/insertProfessorHorario`, {
           data: this.$store.state.date,
           horario: this.vet,
           texto: this.text
@@ -252,7 +254,8 @@ export default {
         .then(() => {
           this.$bvModal.hide("modal1");
           this.$toasted.global.defaultSuccess();
-        });
+        })
+        .catch(showError);
     }
   },
   mounted() {

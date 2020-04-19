@@ -30,6 +30,7 @@ main {
   section {
     padding: 0px;
   }
+  section h3,
   section h2 {
     padding-left: 10px;
     padding-top: 20px;
@@ -41,6 +42,7 @@ main {
   section {
     padding: 30px;
   }
+  section h3,
   section h2 {
     padding: 30px;
   }

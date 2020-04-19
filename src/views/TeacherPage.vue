@@ -90,7 +90,7 @@ export default {
   methods: {
     getItems() {
       axios
-        .post("http://localhost:3000/selectProfessorHorarioEspec")
+        .post(`${baseApiUrl}/selectProfessorHorarioEspec`)
         .then(res => {
           this.items = res.data;
           this.items.forEach(e => {
@@ -105,21 +105,25 @@ export default {
               e.status = "Recusado";
             }
           });
-        });
+        })
+        .catch(showError);
     },
     removeItem(item) {
       this.boxOne = "";
-      this.$bvModal.msgBoxConfirm("Deseja cancelar a reserva?").then(value => {
-        this.boxOne = value;
-        if (this.boxOne == true) {
-          axios
-            .post(`${baseApiUrl}/deleteProfessorHorarioEspec`, {
-              item: item
-            })
-            .then(() => this.getItems())
-            .catch(showError);
-        }
-      });
+      this.$bvModal
+        .msgBoxConfirm("Deseja cancelar a reserva?")
+        .then(value => {
+          this.boxOne = value;
+          if (this.boxOne == true) {
+            axios
+              .post(`${baseApiUrl}/deleteProfessorHorarioEspec`, {
+                item: item
+              })
+              .then(() => this.getItems())
+              .catch(showError);
+          }
+        })
+        .catch(showError);
     }
   },
   mounted() {

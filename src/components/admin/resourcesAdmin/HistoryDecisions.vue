@@ -35,7 +35,7 @@
 
 <script>
 import axios from "axios";
-import { baseApiUrl } from "@/global";
+import { baseApiUrl, showError } from "@/global";
 
 export default {
   name: "HistoryDecisions",
@@ -108,25 +108,32 @@ export default {
   methods: {
     getItems() {
       let items = [];
-      return axios.post("http://localhost:3000/historico").then(res => {
-        items = res.data;
-        return items;
-      });
+      return axios
+        .post(`${baseApiUrl}/historico`)
+        .then(res => {
+          items = res.data;
+          return items;
+        })
+        .catch(showError);
     },
     denyItem(item) {
-      this.$bvModal.msgBoxConfirm("Deseja negar a pedido?").then(value => {
-        if (value == true) {
-          axios
-            .post(`${baseApiUrl}/desfazer`, {
-              item: item
-            })
-            .then(() => {
-              this.$toasted.global.defaultSuccess();
-              this.$refs.table.refresh();
-              this.getItems();
-            });
-        }
-      });
+      this.$bvModal
+        .msgBoxConfirm("Deseja negar a pedido?")
+        .then(value => {
+          if (value == true) {
+            axios
+              .post(`${baseApiUrl}/desfazer`, {
+                item: item
+              })
+              .then(() => {
+                this.$toasted.global.defaultSuccess();
+                this.$refs.table.refresh();
+                this.getItems();
+              })
+              .catch(showError);
+          }
+        })
+        .catch(showError);
     }
   }
 };

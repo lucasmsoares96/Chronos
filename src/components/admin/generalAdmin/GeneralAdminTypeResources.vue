@@ -103,8 +103,9 @@ export default {
   methods: {
     getTypeResources() {
       axios
-        .get("http://localhost:3000/selectTabelaTipoDeRecursos")
-        .then(res => (this.items = res.data));
+        .get(`${baseApiUrl}/selectTabelaTipoDeRecursos`)
+        .then(res => (this.items = res.data))
+        .catch(showError);
     },
     reset() {
       this.mode = "save";
@@ -145,19 +146,23 @@ export default {
             if (value == true) {
               this.remove();
             }
-          });
+          })
+          .catch(showError);
       }
     },
     loadTeachers() {
       const url = `${baseApiUrl}/selectTabelaProfessor`;
-      axios.get(url).then(res => {
-        this.teachers = res.data.map(teachers => {
-          return {
-            value: teachers.idProfessor,
-            text: `${teachers.nomeP} - ${teachers.areaDoConhecimento} - ${teachers.email}`
-          };
-        });
-      });
+      axios
+        .get(url)
+        .then(res => {
+          this.teachers = res.data.map(teachers => {
+            return {
+              value: teachers.idProfessor,
+              text: `${teachers.nomeP} - ${teachers.areaDoConhecimento} - ${teachers.email}`
+            };
+          });
+        })
+        .catch(showError);
     }
   },
   mounted() {

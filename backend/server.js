@@ -661,3 +661,5 @@ app.post("/insertRecursos", (req, resp) => {
 });
 
 app.listen(3000);
+
+console.log("porta : 3000")

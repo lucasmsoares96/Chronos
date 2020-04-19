@@ -54,4 +54,7 @@ h3 {
   color: #007bff;
   font-size: 2rem;
 }
+.btn {
+  width: 140px;
+}
 </style>

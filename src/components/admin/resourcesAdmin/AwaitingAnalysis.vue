@@ -138,12 +138,10 @@ export default {
   methods: {
     getItems() {
       let items = [];
-      return axios
-        .post("http://localhost:3000/selectProfessorHorario")
-        .then(res => {
-          items = res.data;
-          return items;
-        });
+      return axios.post(`${baseApiUrl}/selectProfessorHorario`).then(res => {
+        items = res.data;
+        return items;
+      });
     },
     approveItem() {
       axios
@@ -168,7 +166,8 @@ export default {
           this.$toasted.global.defaultSuccess();
           this.getItems();
           this.$refs.table.refresh();
-        });
+        })
+        .catch(showError);
     },
     justification(item, mode) {
       this.item = item;

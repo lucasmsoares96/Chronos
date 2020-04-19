@@ -26,7 +26,7 @@
 
 <script>
 import axios from "axios";
-import { showError } from "@/global";
+import { baseApiUrl, showError } from "@/global";
 
 export default {
   name: "DateRec",
@@ -39,9 +39,12 @@ export default {
   },
   methods: {
     reqTable() {
-      axios.get("http://localhost:3000/tipoderecursos").then(res => {
-        this.options = res.data;
-      });
+      axios
+        .get(`${baseApiUrl}/tipoderecursos`)
+        .then(res => {
+          this.options = res.data;
+        })
+        .catch(showError);
     },
     sendDateRec() {
       let data = this.value;
@@ -49,7 +52,7 @@ export default {
       let obj = [data, tipoRecurso];
       localStorage.setItem("dataRec", JSON.stringify(obj));
       axios
-        .post("http://localhost:3000/data", { data, tipoRecurso })
+        .post(`${baseApiUrl}/data`, { data, tipoRecurso })
         .then(() => {
           this.$store.commit("setObj", obj);
           this.$router.push("/schedule");

@@ -119,19 +119,23 @@ export default {
   methods: {
     loadTypes() {
       const url = `${baseApiUrl}/tipoderecursos`;
-      axios.get(url).then(res => {
-        this.types = res.data.map(types => {
-          return {
-            value: types.idTipoDeRecursos,
-            text: types.nome
-          };
-        });
-      });
+      axios
+        .get(url)
+        .then(res => {
+          this.types = res.data.map(types => {
+            return {
+              value: types.idTipoDeRecursos,
+              text: types.nome
+            };
+          });
+        })
+        .catch(showError);
     },
     getResources() {
       axios
-        .get("http://localhost:3000/selectTabelaRecursos")
-        .then(res => (this.items = res.data));
+        .get(`${baseApiUrl}/selectTabelaRecursos`)
+        .then(res => (this.items = res.data))
+        .catch(showError);
     },
     reset() {
       this.mode = "save";
@@ -172,7 +176,8 @@ export default {
             if (value == true) {
               this.remove();
             }
-          });
+          })
+          .catch(showError);
       }
     }
   },
