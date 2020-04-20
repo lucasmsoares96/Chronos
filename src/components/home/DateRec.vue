@@ -20,7 +20,6 @@
       style="align-self: flex-end"
       v-on:click="sendDateRec"
     >enviar</b-button>
-    <span></span>
   </b-form>
 </template>
 

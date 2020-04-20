@@ -110,20 +110,17 @@ export default {
     },
     removeItem(item) {
       this.boxOne = "";
-      this.$bvModal
-        .msgBoxConfirm("Deseja cancelar a reserva?")
-        .then(value => {
-          this.boxOne = value;
-          if (this.boxOne == true) {
-            axios
-              .post(`${baseApiUrl}/deleteProfessorHorarioEspec`, {
-                item: item
-              })
-              .then(() => this.getItems())
-              .catch(showError);
-          }
-        })
-        .catch(showError);
+      this.$bvModal.msgBoxConfirm("Deseja cancelar a reserva?").then(value => {
+        this.boxOne = value;
+        if (this.boxOne == true) {
+          axios
+            .post(`${baseApiUrl}/deleteProfessorHorarioEspec`, {
+              item: item
+            })
+            .then(() => this.getItems())
+            .catch(showError);
+        }
+      });
     }
   },
   mounted() {

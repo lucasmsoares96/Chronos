@@ -3,62 +3,46 @@
     <h2>Professores</h2>
     <b-form>
       <input id="user-id" type="hidden" v-model="user.id" />
-      <b-row>
-        <b-col sm="12">
-          <b-form-group label="Nome: " label-for="user-nomeP">
-            <b-form-input
-              id="user-nome"
-              type="text"
-              v-model="user.nomeP"
-              required
-              placeholder="Informe o nome do professor..."
-              :readonly="mode != 'edit'"
-            ></b-form-input>
-          </b-form-group>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col sm="12">
-          <b-form-group label="CPF: " label-for="user-cpf">
-            <b-form-input
-              id="user-cpf"
-              type="text"
-              v-model="user.cpf"
-              required
-              placeholder="Informe o cpf do professor..."
-              :readonly="mode != 'edit'"
-            ></b-form-input>
-          </b-form-group>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col sm="12">
-          <b-form-group label="Área do conhecimento: " label-for="user-areaDoConhecimento">
-            <b-form-input
-              id="user-areaDoConhecimento"
-              type="text"
-              v-model="user.areaDoConhecimento"
-              required
-              placeholder="Informe a Área do conhecimento do professor..."
-              :readonly="mode != 'edit'"
-            ></b-form-input>
-          </b-form-group>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col sm="12">
-          <b-form-group label="E-mail: " label-for="user-email">
-            <b-form-input
-              id="user-email"
-              type="text"
-              v-model="user.email"
-              required
-              placeholder="Informe o E-mail do professor..."
-              :readonly="mode != 'edit'"
-            ></b-form-input>
-          </b-form-group>
-        </b-col>
-      </b-row>
+      <b-form-group label="Nome: " label-for="user-nomeP">
+        <b-form-input
+          id="user-nome"
+          type="text"
+          v-model="user.nomeP"
+          required
+          placeholder="Informe o nome do professor..."
+          :readonly="mode != 'edit'"
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group label="CPF: " label-for="user-cpf">
+        <b-form-input
+          id="user-cpf"
+          type="text"
+          v-model="user.cpf"
+          required
+          placeholder="Informe o cpf do professor..."
+          :readonly="mode != 'edit'"
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group label="Área do conhecimento: " label-for="user-areaDoConhecimento">
+        <b-form-input
+          id="user-areaDoConhecimento"
+          type="text"
+          v-model="user.areaDoConhecimento"
+          required
+          placeholder="Informe a Área do conhecimento do professor..."
+          :readonly="mode != 'edit'"
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group label="E-mail: " label-for="user-email">
+        <b-form-input
+          id="user-email"
+          type="text"
+          v-model="user.email"
+          required
+          placeholder="Informe o E-mail do professor..."
+          :readonly="mode != 'edit'"
+        ></b-form-input>
+      </b-form-group>
       <b-form-checkbox
         v-show="mode === 'edit'"
         id="user-general-admin"
@@ -71,15 +55,23 @@
         v-model="user.admRecursos"
         class="mt-3 mb-3"
       >Administrador de Recursos?</b-form-checkbox>
-      <b-row>
-        <b-col xs="12">
-          <b-button disabled variant="primary" v-if="mode === 'save'" @click="save">Adicionar</b-button>
-          <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
-          <b-button variant="warning" v-if="mode === 'edit'" @click="save">Editar</b-button>
-          <b-button class="ml-2" @click="reset">Cancelar</b-button>
-        </b-col>
-      </b-row>
+      <div>
+        <b-button disabled variant="primary" v-if="mode === 'save'" @click="save">Adicionar</b-button>
+        <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
+        <b-button variant="warning" v-if="mode === 'edit'" @click="save">Editar</b-button>
+        <b-button class="ml-2" @click="reset">Cancelar</b-button>
+      </div>
     </b-form>
+    <div>
+      <progress max="100" :value.prop="uploadPercentage"></progress>
+      <label>
+        File
+        <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" accept=".xlsx" />
+      </label>
+      <br />
+      <button v-on:click="submitFile()">Submit</button>
+      <br />
+    </div>
     <div class="p-4"></div>
     <div id="table">
       <b-table striped :items="items" :fields="fields">
@@ -105,6 +97,8 @@ export default {
   name: "GeneralAdminTeachers",
   data() {
     return {
+      file: "",
+      uploadPercentage: 0,
       mode: "save",
       user: {},
       fields: [
@@ -163,10 +157,41 @@ export default {
     };
   },
   methods: {
+    handleFileUpload() {
+      this.file = this.$refs.file.files[0];
+    },
+    submitFile() {
+      let formData = new FormData();
+      formData.append("file", this.file);
+      axios
+        .post(`${baseApiUrl}/upload`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          },
+          onUploadProgress: function(progressEvent) {
+            this.uploadPercentage = parseInt(
+              Math.round((progressEvent.loaded / progressEvent.total) * 100)
+            );
+          }.bind(this)
+        })
+        .then(() => {
+          this.$toasted.global.defaultSuccess();
+        })
+        .catch(showError);
+    },
+    onFileSelected() {
+      axios
+        .post(`${baseApiUrl}/upload`, this.file)
+        .then(() => {
+          this.$toasted.global.defaultSuccess();
+        })
+        .catch(showError);
+    },
     getTeachers() {
       axios
-        .get("http://localhost:3000/selectTabelaProfessor")
-        .then(res => (this.items = res.data));
+        .get(`${baseApiUrl}/selectTabelaProfessor`)
+        .then(res => (this.items = res.data))
+        .catch(showError);
     },
     reset() {
       this.mode = "save";

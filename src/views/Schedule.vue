@@ -161,7 +161,7 @@ export default {
         .catch(showError);
     },
     clickOnCell(e) {
-      if (e.toElement.cellIndex != 0) {
+      if (e.toElement.cellIndex != 0 && e.srcElement.parentNode.rowIndex != 0) {
         if (this.checkDate()) {
           const table = document.getElementsByTagName("table")[1];
           let row =

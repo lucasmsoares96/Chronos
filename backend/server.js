@@ -2,10 +2,53 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const multer = require("multer")
+// const XLSX = require("xlsx")
+
+const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(bodyParser.json());
+
+'use strict';
+
+const XLSX = require('xlsx');
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './upload');
+  },
+  filename: function (req, file, cb) {
+    var datetimestamp = Date.now();
+    cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1]);
+  }
+});
+var upload = multer({ //multer settings
+  storage: storage
+});
+
+function validate(req, res, next) {
+  if (!req.file) {
+    return res.send({
+      errors: {
+        message: 'file cant be empty'
+      }
+    });
+  }
+  next();
+}
+
+app.post('/upload', upload.single('file'), validate, function (req, res) {
+  const fileLocation = req.file.path;
+  console.log(fileLocation); // logs uploads/file-1541675389394.xls
+  var workbook = XLSX.readFile(fileLocation);
+  var sheet_name_list = workbook.SheetNames;
+  console.log(XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]))
+  return res.json({
+    json: XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]])
+  });
+});
 
 const typeResorces = [{
   "idTipoDeRecursos": 1,
@@ -660,6 +703,6 @@ app.post("/insertRecursos", (req, resp) => {
   resp.status(400).send('Informe o nome do recurso!');
 });
 
-app.listen(3000);
+app.listen(port);
 
-console.log("porta : 3000")
+console.log("porta : " + port)

@@ -117,23 +117,20 @@ export default {
         .catch(showError);
     },
     denyItem(item) {
-      this.$bvModal
-        .msgBoxConfirm("Deseja negar a pedido?")
-        .then(value => {
-          if (value == true) {
-            axios
-              .post(`${baseApiUrl}/desfazer`, {
-                item: item
-              })
-              .then(() => {
-                this.$toasted.global.defaultSuccess();
-                this.$refs.table.refresh();
-                this.getItems();
-              })
-              .catch(showError);
-          }
-        })
-        .catch(showError);
+      this.$bvModal.msgBoxConfirm("Deseja negar a pedido?").then(value => {
+        if (value == true) {
+          axios
+            .post(`${baseApiUrl}/desfazer`, {
+              item: item
+            })
+            .then(() => {
+              this.$toasted.global.defaultSuccess();
+              this.$refs.table.refresh();
+              this.getItems();
+            })
+            .catch(showError);
+        }
+      });
     }
   }
 };

@@ -146,8 +146,7 @@ export default {
             if (value == true) {
               this.remove();
             }
-          })
-          .catch(showError);
+          });
       }
     },
     loadTeachers() {
