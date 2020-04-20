@@ -7,6 +7,7 @@
 <script>
 import { userKey } from "@/global";
 import Container from "./components/template/Container";
+import "@/custom.scss";
 
 export default {
   name: "App",

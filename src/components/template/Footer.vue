@@ -204,7 +204,6 @@ export default {
 #footer {
   background-color: white;
   box-sizing: border-box;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;

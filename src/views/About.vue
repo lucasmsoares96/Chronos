@@ -36,6 +36,7 @@ export default {
 }
 
 pre {
+  font-size: 18px;
   margin: auto;
   white-space: pre-wrap; /* css-3 */
   white-space: -moz-pre-wrap; /* Mozilla, since 1999 */

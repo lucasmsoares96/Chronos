@@ -115,7 +115,7 @@ export default {
         .post(`${baseApiUrl}/inserirProfessor`, this.user)
         .then(() => {
           this.$toasted.global.defaultSuccess();
-          this.shwoSignUp = false;
+          this.showSignUp = false;
           this.login();
         })
         .catch(showError);
