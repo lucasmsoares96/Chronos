@@ -20,6 +20,14 @@
       />
       <b-form-input
         v-if="showSignUp"
+        id="user-matricula"
+        type="text"
+        placeholder="Informe seu número de matrícula"
+        v-model="user.matricula"
+        class="mb-3"
+      />
+      <b-form-input
+        v-if="showSignUp"
         id="user-cpf"
         type="text"
         placeholder="Informe seu cpf"

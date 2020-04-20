@@ -77,6 +77,13 @@
               class="mb-3"
             />
             <b-form-input
+              id="user-matricula"
+              type="text"
+              placeholder="Informe seu número de matrícula"
+              v-model="user.matricula"
+              class="mb-3"
+            />
+            <b-form-input
               id="user-cpf"
               type="text"
               placeholder="Informe seu cpf"
