@@ -11,19 +11,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(bodyParser.json());
 
-'use strict';
-
 const XLSX = require('xlsx');
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './upload');
-  },
-  filename: function (req, file, cb) {
-    var datetimestamp = Date.now();
-    cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1]);
-  }
-});
+var storage = multer.memoryStorage();
 var upload = multer({ //multer settings
   storage: storage
 });
@@ -40,16 +30,15 @@ function validate(req, res, next) {
 }
 
 app.post('/upload', upload.single('file'), validate, function (req, res) {
-  const fileLocation = req.file.path;
-  console.log(fileLocation); // logs uploads/file-1541675389394.xls
-  var workbook = XLSX.readFile(fileLocation);
+  const fileLocation = req.file.buffer;
+  var workbook = XLSX.read(fileLocation);
   var sheet_name_list = workbook.SheetNames;
   const fields = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]).filter((e) => {
     if (Object.keys(e).length == 11) {
       return e
     }
   })
-  const names = fields.forEach((e) => {
+  fields.forEach((e) => {
     console.log(e[Object.keys(e)[0]])
     console.log(e[Object.keys(e)[1]])
   })
