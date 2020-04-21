@@ -20,11 +20,7 @@ var upload = multer({ //multer settings
 
 function validate(req, res, next) {
   if (!req.file) {
-    return res.send({
-      errors: {
-        message: 'file cant be empty'
-      }
-    });
+    return res.status(400).send('Insira um arquivo');
   }
   next();
 }
@@ -44,9 +40,7 @@ app.post('/upload', upload.single('file'), validate, function (req, res) {
   })
   console.log(fields.length)
 
-  return res.json({
-    json: XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]])
-  });
+  return res.status(200).send('Arquivo enviado com sucesso');
 });
 
 const typeResorces = [{

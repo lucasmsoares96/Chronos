@@ -55,24 +55,28 @@
         v-model="user.admRecursos"
         class="mt-3 mb-3"
       >Administrador de Recursos?</b-form-checkbox>
-      <div>
+      <div style="float: left">
         <b-button disabled variant="primary" v-if="mode === 'save'" @click="save">Adicionar</b-button>
         <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
         <b-button variant="warning" v-if="mode === 'edit'" @click="save">Editar</b-button>
         <b-button class="ml-2" @click="reset">Cancelar</b-button>
       </div>
     </b-form>
-    <div>
-      <progress max="100" :value.prop="uploadPercentage"></progress>
-      <label>
-        File
-        <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" accept=".xlsx" />
-      </label>
+    <div id="file">
+      <b-form-file
+        class="mb-1"
+        accept=".xlsx"
+        v-model="file"
+        :state="Boolean(file)"
+        placeholder="Arquivo dos professores"
+        drop-placeholder="Arraste para cá"
+      ></b-form-file>
+      <b-progress :value="uploadPercentage" :max="100" show-progress animated></b-progress>
       <br />
-      <button v-on:click="submitFile()">Submit</button>
+      <b-button class="float-right" variant="primary" @click="submitFile()">Enviar</b-button>
       <br />
     </div>
-    <div class="p-4"></div>
+    <div style="clear: both" class="p-4"></div>
     <div id="table">
       <b-table striped :items="items" :fields="fields">
         <template v-slot:cell(actions)="data">
@@ -97,7 +101,7 @@ export default {
   name: "GeneralAdminTeachers",
   data() {
     return {
-      file: "",
+      file: null,
       uploadPercentage: 0,
       mode: "save",
       user: {},
@@ -157,9 +161,6 @@ export default {
     };
   },
   methods: {
-    handleFileUpload() {
-      this.file = this.$refs.file.files[0];
-    },
     submitFile() {
       let formData = new FormData();
       formData.append("file", this.file);
@@ -177,15 +178,10 @@ export default {
         .then(() => {
           this.$toasted.global.defaultSuccess();
         })
-        .catch(showError);
-    },
-    onFileSelected() {
-      axios
-        .post(`${baseApiUrl}/upload`, this.file)
-        .then(() => {
-          this.$toasted.global.defaultSuccess();
-        })
-        .catch(showError);
+        .catch(e => {
+          showError(e);
+          this.uploadPercentage = 0;
+        });
     },
     getTeachers() {
       axios
@@ -251,4 +247,16 @@ export default {
 </script>
 
 <style>
+@media screen and (max-width: 680px) {
+  #file {
+    padding-top: 20px;
+    clear: both;
+  }
+}
+@media screen and (min-width: 680px) {
+  #file {
+    width: 50%;
+    float: right;
+  }
+}
 </style>
