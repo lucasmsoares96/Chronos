@@ -1,12 +1,17 @@
 <template>
   <section>
     <div id="schedule">
-      <b-row style="width: 100%; margin-left: 0px;" align-h="between" class="mb-3">
+      <b-row style="width: 100%; margin-left: 0px; margin-right: 0px;" align-h="between">
         <h2>Quadro de horarios</h2>
         <h3>{{this.$store.state.obj.date.split("-").reverse().join(" / ")}}</h3>
       </b-row>
-      <b-row cols="12" style="width: 100%" align-h="between" class="mb-2">
-        <table v-if="checkDate()">
+      <b-row
+        cols="12"
+        style="width: 100%; margin-left: 0px; margin-right: 0px;"
+        align-h="between"
+        class="mb-2"
+      >
+        <table v-if="checkDate()" class="mt-3">
           <tr>
             <td id="model" class="table-success">livre</td>
             <td id="model" class="table-warning">1 em análise</td>
@@ -24,7 +29,7 @@
           v-if="checkDate()"
           variant="primary"
           @click="requestReservation"
-          class="mb-2"
+          class="mb-3 mt-3"
         >Solicitar Reserva</b-button>
       </b-row>
       <div id="table">
@@ -269,6 +274,18 @@ export default {
 </script>
 
 <style>
+@media screen and (max-width: 600px) {
+  #schedule {
+    padding: 20px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  #schedule {
+    padding: 0px;
+  }
+}
+
 #model {
   width: 100px;
   text-align: center;

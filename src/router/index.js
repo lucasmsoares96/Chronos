@@ -15,33 +15,51 @@ const routes = [{
   name: 'home',
   path: '/',
   component: Home,
+  meta: {
+    title: "Seleção de recurso",
+  }
 },
 {
   name: 'schedule',
   path: '/schedule',
   component: Schedule,
+  meta: {
+    title: "Quadro de horários",
+  }
 },
 {
   name: 'teacher',
   path: '/teacher',
   component: TeacherPage,
+  meta: {
+    title: "Página do Professor",
+  }
 },
 {
   name: 'about',
   path: '/about',
   component: About,
+  meta: {
+    title: "Sobre",
+  }
 },
 {
   name: 'resourcesAdmin',
   path: '/resourcesAdmin',
   component: ResourcesAdmin,
-  meta: { resourcesAdmin: true },
+  meta: {
+    resourcesAdmin: true,
+    title: "Adm de Recursos",
+  },
 },
 {
   name: 'generalAdmin',
   path: '/generalAdmin',
   component: GeneralAdmin,
-  meta: { generalAdmin: true },
+  meta: {
+    generalAdmin: true,
+    title: "Adm geral",
+  },
 }
 ]
 

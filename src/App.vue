@@ -56,6 +56,6 @@ h3 {
   font-size: 2rem;
 }
 .btn {
-  width: 140px;
+  width: 150px;
 }
 </style>

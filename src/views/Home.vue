@@ -29,16 +29,6 @@ export default {
   align-items: center;
 }
 
-/* @media screen and (max-width: 600px) {
-  #grade {
-    width: 100%;
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-} */
 @media screen and (max-width: 1000px) {
   #grade {
     width: 100%;

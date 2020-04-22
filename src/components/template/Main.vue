@@ -7,7 +7,12 @@
 <script>
 export default {
   name: "Main",
-  components: {}
+  components: {},
+  watch: {
+    $route(to) {
+      document.title = "Chronus / " + to.meta.title;
+    }
+  }
 };
 </script>
 

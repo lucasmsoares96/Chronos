@@ -66,21 +66,6 @@ export default {
 </script>
 
 <style>
-/* @media screen and (max-width: 600px) {
-  #formulario {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  #form2 {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-} */
-
 @media screen and (max-width: 800px) {
   #formulario {
     margin: auto;
