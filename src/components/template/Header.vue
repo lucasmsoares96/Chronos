@@ -7,7 +7,7 @@
         </h1>
       </div>
       <div style="align-self: flex-end">
-        <a href="http://www.cefetmg.br" target="_blank">
+        <a href="http://www.divinopolis.cefetmg.br/" target="_blank">
           <img
             src="http://www.divinopolis.cefetmg.br/wp-content/themes/unidades/imagens/logo-topo-5.png"
             alt="CEFET-MG"
