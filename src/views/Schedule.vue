@@ -106,7 +106,7 @@ export default {
         .get(`${baseApiUrl}/dataRecursos`, {
           params: {
             data: this.$store.state.obj.date,
-            tipoRecurso: this.$store.state.tipoRecurso
+            tipoRecurso: this.$store.state.obj.tipoRecurso
           }
         })
         .then(res => {
