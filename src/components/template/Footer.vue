@@ -188,12 +188,12 @@ export default {
   }
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1100px) {
   #unidades {
     display: none;
   }
 }
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: 1100px) {
   #unidades {
     padding-bottom: 60px;
     padding-top: 20px;

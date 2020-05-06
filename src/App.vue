@@ -47,7 +47,7 @@ export default {
 <style>
 #table {
   width: 100%;
-  overflow: scroll;
+  overflow: auto;
 }
 
 h2,

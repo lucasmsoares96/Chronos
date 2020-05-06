@@ -292,7 +292,7 @@ export default {
 }
 
 #schedule {
-  overflow: scroll;
+  overflow: auto;
   background-color: white;
   display: flex;
   flex-direction: column;
