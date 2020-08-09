@@ -252,7 +252,7 @@ export default {
     sendData() {
       axios
         .post(`${baseApiUrl}/insertProfessorHorario`, {
-          data: this.$store.state.date,
+          data: this.$store.state.obj.date,
           horario: this.vet,
           texto: this.text
         })
