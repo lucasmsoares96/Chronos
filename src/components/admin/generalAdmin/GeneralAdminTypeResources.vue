@@ -129,7 +129,7 @@ export default {
         .delete(`${baseApiUrl}/deleteTipoDeRecursos/${id}`)
         .then(() => {
           this.$toasted.global.defaultSuccess();
-          this.reset;
+          this.reset();
           this.getTypeResources();
         })
         .catch(showError);

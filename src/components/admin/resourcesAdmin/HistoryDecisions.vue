@@ -117,7 +117,7 @@ export default {
         .catch(showError);
     },
     denyItem(item) {
-      this.$bvModal.msgBoxConfirm("Deseja negar a pedido?").then(value => {
+      this.$bvModal.msgBoxConfirm("Deseja restaurar o pedido?").then(value => {
         if (value == true) {
           axios
             .post(`${baseApiUrl}/desfazer`, {

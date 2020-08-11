@@ -159,7 +159,7 @@ export default {
         .delete(`${baseApiUrl}/deleteRecursos/${id}`)
         .then(() => {
           this.$toasted.global.defaultSuccess();
-          this.reset;
+          this.reset();
           this.getResources();
         })
         .catch(showError);
