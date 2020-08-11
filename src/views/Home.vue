@@ -41,7 +41,7 @@ export default {
 }
 @media screen and (min-width: 1000px) {
   #grade {
-    width: 75%;
+    width: 50%;
     min-height: 400px;
     display: flex;
     flex-direction: column;
