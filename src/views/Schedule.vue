@@ -40,7 +40,7 @@
       </b-row>
       <div id="table">
         <b-table
-          ref="table"
+        ref="table"
           @click.native="clickOnCell"
           bordered
           :items="resSchedule"
@@ -123,8 +123,6 @@ export default {
         })
         .then((res) => {
           this.items = res.data;
-          console.log(">>> this.items");
-          console.log(this.items);
           this.items.forEach((e, index1) => {
             this.items[index1]["_cellVariants"] = {};
             Object.values(e).forEach((el, index2) => {
@@ -265,8 +263,14 @@ export default {
     },
     requestReservation() {
       if (Object.keys(this.$store.state.user).length) {
-        this.text = "";
-        this.$bvModal.show("modal1");
+        if (this.vet.length) {
+          this.text = "";
+          this.$bvModal.show("modal1");
+        } else {
+          this.$bvModal.msgBoxOk(
+            "Selecione um horário"
+          );
+        }
       } else {
         this.$bvModal.msgBoxOk(
           "É preciso estar logado para solicitar uma reserva"
