@@ -17,7 +17,6 @@
           id="descricao"
           type="text"
           v-model="recType.descricao"
-          required
           :readonly="mode === 'remove'"
           placeholder="Informe a descrição do recurso..."
         ></b-form-input>
