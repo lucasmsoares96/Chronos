@@ -110,8 +110,20 @@ export default {
       let items = [];
       return axios
         .post(`${baseApiUrl}/historico`)
-        .then(res => {
+        .then((res) => {
           items = res.data;
+          items.forEach((e) => {
+            if (e.status == 0) {
+              e._cellVariants = { status: "warning" };
+              e.status = "Em espera";
+            } else if (e.status == 1) {
+              e._cellVariants = { status: "info" };
+              e.status = "Aprovado";
+            } else if (e.status == 2) {
+              e._cellVariants = { status: "danger" };
+              e.status = "Recusado";
+            }
+          });
           return items;
         })
         .catch(showError);
