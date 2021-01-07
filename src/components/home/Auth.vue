@@ -33,6 +33,7 @@
         placeholder="Informe seu cpf"
         v-model="user.cpf"
         class="mb-3"
+        :maxlength="11"
       />
       <b-form-input
         v-if="showSignUp"
@@ -41,6 +42,7 @@
         placeholder="Informe seu Area do Conhecimento"
         v-model="user.areaDoConhecimento"
         class="mb-3"
+        :maxlength="45"
       />
       <b-form-input
         id="user-email"
@@ -48,6 +50,7 @@
         placeholder="Informe seu email"
         v-model="user.email"
         class="mb-3"
+        :maxlength="100"
       />
       <b-form-input
         v-if="showSignUp"
@@ -56,6 +59,7 @@
         placeholder="Confirme seu email"
         v-model="user.confirmEmail"
         class="mb-3"
+        :maxlength="100"
       />
       <b-form-input
         id="user-password"
@@ -63,6 +67,8 @@
         placeholder="Informe sua senha"
         v-model="user.password"
         class="mb-3"
+        @keydown.enter.native="login"
+        :maxlength="75"
       />
       <b-form-input
         v-if="showSignUp"
@@ -71,6 +77,7 @@
         placeholder="Confirme sua senha"
         v-model="user.confirmPassword"
         class="mb-3"
+        :maxlength="75"
       />
     </b-form>
 

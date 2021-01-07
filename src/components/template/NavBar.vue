@@ -53,6 +53,7 @@
                 size="sm"
                 v-model="user.email"
                 placeholder="email@example.com"
+                :maxlength="100"
               ></b-form-input>
             </b-form-group>
 
@@ -63,6 +64,7 @@
                 size="sm"
                 v-model="user.password"
                 placeholder="senha"
+                :maxlength="75"
               ></b-form-input>
             </b-form-group>
             <b-button variant="primary" size="sm" @click="login">Sign In</b-button>
@@ -89,6 +91,7 @@
               placeholder="Informe seu cpf"
               v-model="user.cpf"
               class="mb-3"
+              :maxlength="11"
             />
             <b-form-input
               id="user-area"
@@ -96,6 +99,7 @@
               placeholder="Informe seu Area do Conhecimento"
               v-model="user.areaDoConhecimento"
               class="mb-3"
+              :maxlength="45"
             />
             <b-form-input
               id="user-email"
@@ -103,6 +107,7 @@
               placeholder="Informe seu email"
               v-model="user.email"
               class="mb-3"
+              :maxlength="100"
             />
             <b-form-input
               id="user-confirmEmail"
@@ -110,6 +115,7 @@
               placeholder="Confirme seu email"
               v-model="user.confirmEmail"
               class="mb-3"
+              :maxlength="100"
             />
             <b-form-input
               id="user-password"
@@ -117,6 +123,7 @@
               placeholder="Informe sua senha"
               v-model="user.password"
               class="mb-3"
+              :maxlength="75"
             />
             <b-form-input
               id="confirm-password"
@@ -124,6 +131,7 @@
               placeholder="Confirme sua senha"
               v-model="user.confirmPassword"
               class="mb-3"
+              :maxlength="75"
             />
             <b-button variant="primary" size="sm" @click="siginUp">Sign Up</b-button>
           </b-dropdown-form>

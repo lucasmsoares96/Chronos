@@ -8,6 +8,7 @@
           id="user-nome"
           type="text"
           v-model="user.nomeP"
+          :maxlength="100"
           required
           placeholder="Informe o nome do professor..."
           :readonly="mode != 'edit'"
@@ -20,6 +21,7 @@
           v-model="user.cpf"
           required
           placeholder="Informe o cpf do professor..."
+          :maxlength="11"
           :readonly="mode != 'edit'"
         ></b-form-input>
       </b-form-group>
@@ -31,6 +33,7 @@
           required
           placeholder="Informe a Área do conhecimento do professor..."
           :readonly="mode != 'edit'"
+          :maxlength="45"
         ></b-form-input>
       </b-form-group>
       <b-form-group label="E-mail: " label-for="user-email">
@@ -41,6 +44,7 @@
           required
           placeholder="Informe o E-mail do professor..."
           :readonly="mode != 'edit'"
+          :maxlength="100"
         ></b-form-input>
       </b-form-group>
       <b-form-checkbox

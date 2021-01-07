@@ -7,6 +7,7 @@
           id="resource"
           type="text"
           v-model="resource.numero"
+          :maxlength="11"
           required
           :readonly="mode === 'remove'"
           placeholder="Informe o recurso..."
@@ -27,6 +28,7 @@
           id="informacao"
           type="text"
           v-model="resource.informacao"
+          :maxlength="100"
           :readonly="mode === 'remove'"
           placeholder="Se houver alguma informação adicional..."
         ></b-form-input>

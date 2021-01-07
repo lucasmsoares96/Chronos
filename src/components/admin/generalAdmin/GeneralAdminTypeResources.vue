@@ -7,6 +7,7 @@
           id="rec-type"
           type="text"
           v-model="recType.nome"
+          :maxlength="45"
           required
           :readonly="mode === 'remove'"
           placeholder="Informe o tipo de recurso..."
