@@ -1,7 +1,7 @@
 <template>
   <div class="admin-page-tabs">
     <b-card no-body>
-      <b-tabs card>
+      <b-tabs lazy card>
         <b-tab title="Tipos de Recursos">
           <GeneralAdminTypeResources />
         </b-tab>
