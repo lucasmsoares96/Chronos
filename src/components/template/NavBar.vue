@@ -64,6 +64,7 @@
                 size="sm"
                 v-model="user.password"
                 placeholder="senha"
+                @keydown.enter.native="login"
                 :maxlength="75"
               ></b-form-input>
             </b-form-group>
