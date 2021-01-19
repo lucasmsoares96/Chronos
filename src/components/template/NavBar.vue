@@ -190,7 +190,6 @@ export default {
       });
       if (
         window.location.pathname != "/" &&
-        window.location.pathname != "/schedule" &&
         window.location.pathname != "/about"
       ) {
         this.$router.push("/");

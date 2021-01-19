@@ -14,6 +14,17 @@
           :readonly="mode != 'edit'"
         ></b-form-input>
       </b-form-group>
+      <b-form-group label="Matrícula: " label-for="user-matricula">
+        <b-form-input
+          id="user-matricula"
+          type="text"
+          v-model="user.matricula"
+          required
+          placeholder="Informe a matrícula do professor..."
+          :maxlength="7"
+          :readonly="mode != 'edit'"
+        ></b-form-input>
+      </b-form-group>
       <b-form-group label="CPF: " label-for="user-cpf">
         <b-form-input
           id="user-cpf"
@@ -120,6 +131,13 @@ export default {
         {
           key: "email",
           label: "E-mail",
+          sortable: true,
+          thClass: "text-center",
+          tdClass: "text-center"
+        },
+        {
+          key: "matricula",
+          label: "Matrícula",
           sortable: true,
           thClass: "text-center",
           tdClass: "text-center"

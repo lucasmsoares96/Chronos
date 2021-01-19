@@ -141,7 +141,8 @@ export default {
       return axios.post(`${baseApiUrl}/selectProfessorHorario`).then(res => {
         items = res.data;
         return items;
-      });
+      })
+        .catch(showError);
     },
     approveItem() {
       axios

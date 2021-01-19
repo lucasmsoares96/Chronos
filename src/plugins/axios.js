@@ -9,8 +9,7 @@ const error = err => {
             JSON.stringify({ auth: false, token: null, payload: {} })
         );
         if (
-            window.location.pathname != "/" &&
-            window.location.pathname != "/schedule"
+            window.location.pathname != "/" 
         ) {
             window.location = '/'
         }
