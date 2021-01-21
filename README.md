@@ -1,5 +1,7 @@
 # Chronus
 
+Esse projeto foi desenvolvido por dois alunos (Lucas Martins Soares e Vitor Martins Soares) do segundo período do curso de Engenharia de Computação do CEFET-MG Campus V, Lucas Martins Soares e Vitor Martins Soares, orientados pelo diretor da instituição Emerson De Sousa Costa e coorientados por Tiago Alves De Oliveira, com o objetivo de otimizar o processo de reserva dos recursos físicos no CEFET.
+
 ## Como executar o projeto
 
 ### Instale as dependencias do FRONTEND  e execute-o no modo de desenvolvimento
@@ -23,6 +25,8 @@ http://localhost:3003/
 ```
 http://localhost:8080/
 ```
+
+![alt text](schedule.png "Schedule")
 
 <!-- ### Compiles and minifies for production
 ```
